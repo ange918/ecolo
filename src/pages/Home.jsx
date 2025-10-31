@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import Slider from 'react-slick'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
+import Card from '../components/Card'
+import PartnerBand from '../components/PartnerBand'
 
 const Home = () => {
   const sliderSettings = {
@@ -37,24 +39,32 @@ const Home = () => {
 
   const objectives = [
     {
-      icon: '♻️',
+      image: '/Recycled_plastic_granules_closeup_7e365a55.png',
       title: 'Réduire la pollution plastique',
-      description: 'Lutter contre les déchets non recyclés.',
+      description: 'Nous luttons activement contre les déchets plastiques non recyclés en collectant et traitant les matériaux pour leur donner une seconde vie utile.',
+      icon: 'bx-recycle',
+      iconText: 'Recyclage efficace'
     },
     {
-      icon: '👷',
+      image: '/Recycling_team_workshop_collaboration_a4789468.png',
       title: 'Créer des emplois verts',
-      description: 'Offrir de nouvelles opportunités locales.',
+      description: 'Notre projet génère des opportunités d\'emploi locales durables dans le secteur du recyclage et de la valorisation des déchets.',
+      icon: 'bx-group',
+      iconText: 'Emplois locaux'
     },
     {
-      icon: '⚙️',
+      image: '/Waste_sorting_industrial_process_75cdeb88.png',
       title: 'Valoriser les déchets',
-      description: 'Transformer le déchet en ressource utile.',
+      description: 'Nous transformons les déchets plastiques et textiles en ressources précieuses pour l\'industrie et la construction durable.',
+      icon: 'bx-cog',
+      iconText: 'Transformation'
     },
     {
-      icon: '🌱',
+      image: '/Hands_planting_tree_seedling_bc7f113f.png',
       title: "Promouvoir l'économie circulaire",
-      description: 'Sensibiliser et éduquer à la durabilité.',
+      description: 'Sensibilisation et éducation du public aux pratiques de recyclage et à l\'importance d\'une économie circulaire pour notre planète.',
+      icon: 'bx-leaf',
+      iconText: 'Développement durable'
     },
   ]
 
@@ -108,21 +118,19 @@ const Home = () => {
 
       <section className="py-20 bg-light-bg">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-montserrat font-bold text-center mb-12 text-green-deep">
+          <h2 className="text-4xl font-bold text-center mb-12 text-green-deep">
             Nos Objectifs
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {objectives.map((obj, index) => (
-              <div
+              <Card
                 key={index}
-                className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow"
-              >
-                <div className="text-5xl mb-4">{obj.icon}</div>
-                <h3 className="text-xl font-montserrat font-semibold mb-3 text-green-nature">
-                  {obj.title}
-                </h3>
-                <p className="text-text-gray font-open-sans">{obj.description}</p>
-              </div>
+                image={obj.image}
+                title={obj.title}
+                description={obj.description}
+                icon={obj.icon}
+                iconText={obj.iconText}
+              />
             ))}
           </div>
         </div>
@@ -169,25 +177,27 @@ const Home = () => {
 
       <section className="py-20 bg-green-deep text-white">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-montserrat font-bold mb-6">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">
             Participez dès aujourd'hui à la construction d'un Portugal plus propre
           </h2>
           <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
             <Link
               to="/contribute"
-              className="bg-green-nature hover:bg-green-hover text-white px-8 py-3 rounded-full font-montserrat font-semibold transition-colors"
+              className="bg-green-nature hover:bg-green-hover text-white px-8 py-3 rounded-full font-semibold transition-colors"
             >
               Contribuer maintenant 💚
             </Link>
             <Link
               to="/contact"
-              className="bg-blue-ocean hover:bg-blue-600 text-white px-8 py-3 rounded-full font-montserrat font-semibold transition-colors"
+              className="bg-blue-ocean hover:bg-blue-600 text-white px-8 py-3 rounded-full font-semibold transition-colors"
             >
               Devenir partenaire 🤝
             </Link>
           </div>
         </div>
       </section>
+
+      <PartnerBand />
 
       <Footer />
     </div>
