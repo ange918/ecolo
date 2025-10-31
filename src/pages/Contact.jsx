@@ -51,8 +51,9 @@ const Contact = () => {
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="relative z-20 text-center px-4">
-          <h1 className="text-4xl md:text-5xl font-montserrat font-bold mb-4">
-            CONTACTEZ-NOUS 🌱
+          <h1 className="text-4xl md:text-5xl font-montserrat font-bold mb-4 flex items-center justify-center gap-3">
+            <i className='bx bx-leaf text-green-300'></i>
+            CONTACTEZ-NOUS
           </h1>
           <p className="text-lg md:text-xl max-w-3xl mx-auto">
             Une question, une idée ou une envie de contribuer ? L'équipe ÉCO-MAT Portugal est à votre écoute.
@@ -126,8 +127,9 @@ const Contact = () => {
       <section className="py-20 bg-light-bg">
         <div className="container mx-auto px-4 max-w-3xl">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-montserrat font-bold mb-4 text-green-deep">
-              Envoyez-nous un message 🌍
+            <h2 className="text-4xl font-montserrat font-bold mb-4 text-green-deep flex items-center justify-center gap-3">
+              <i className='bx bx-envelope-open text-green-nature'></i>
+              Envoyez-nous un message
             </h2>
             <p className="text-text-gray font-open-sans">
               Remplissez le formulaire ci-dessous et notre équipe vous répondra dans les plus brefs délais.

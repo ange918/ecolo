@@ -92,7 +92,7 @@ const Project = () => {
       <section className="py-20 bg-light-bg">
         <div className="container mx-auto px-4 max-w-5xl">
           <h2 className="text-3xl font-montserrat font-bold mb-6 text-green-deep flex items-center">
-            <span className="text-4xl mr-3">🏢</span> Présentation générale du projet
+            <i className='bx bx-building text-4xl mr-3 text-green-nature'></i> Présentation générale du projet
           </h2>
           <div className="space-y-4 text-text-gray font-open-sans">
             <p><strong>Nom du projet :</strong> ÉCO-MAT (Écologie & Matières Transformées)</p>
@@ -106,7 +106,7 @@ const Project = () => {
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4 max-w-5xl">
           <h2 className="text-3xl font-montserrat font-bold mb-6 text-green-deep flex items-center">
-            <span className="text-4xl mr-3">🌍</span> Problématique
+            <i className='bx bx-world text-4xl mr-3 text-green-nature'></i> Problématique
           </h2>
           <ul className="space-y-3 text-text-gray font-open-sans">
             <li>• Les déchets plastiques et textiles représentent une menace majeure pour l'environnement.</li>

@@ -183,15 +183,17 @@ const Home = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
             <Link
               to="/contribute"
-              className="bg-green-nature hover:bg-green-hover text-white px-8 py-3 rounded-full font-semibold transition-colors"
+              className="bg-green-nature hover:bg-green-hover text-white px-8 py-3 rounded-full font-semibold transition-colors inline-flex items-center gap-2 justify-center"
             >
-              Contribuer maintenant 💚
+              <i className='bx bx-heart'></i>
+              Contribuer maintenant
             </Link>
             <Link
               to="/contact"
-              className="bg-blue-ocean hover:bg-blue-600 text-white px-8 py-3 rounded-full font-semibold transition-colors"
+              className="bg-blue-ocean hover:bg-blue-600 text-white px-8 py-3 rounded-full font-semibold transition-colors inline-flex items-center gap-2 justify-center"
             >
-              Devenir partenaire 🤝
+              <i className='bx bx-group'></i>
+              Devenir partenaire
             </Link>
           </div>
         </div>

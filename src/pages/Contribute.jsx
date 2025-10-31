@@ -137,8 +137,9 @@ const Contribute = () => {
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="relative z-20 text-center px-4">
-          <h1 className="text-4xl md:text-5xl font-montserrat font-bold mb-4">
-            CONTRIBUEZ À UN AVENIR PLUS VERT 🌍
+          <h1 className="text-4xl md:text-5xl font-montserrat font-bold mb-4 flex items-center justify-center gap-3 flex-wrap">
+            <i className='bx bx-world text-green-300'></i>
+            CONTRIBUEZ À UN AVENIR PLUS VERT
           </h1>
           <p className="text-lg md:text-xl max-w-3xl mx-auto">
             Soutenez ÉCO-MAT Portugal et aidez-nous à transformer les déchets en ressources durables.

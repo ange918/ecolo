@@ -52,7 +52,12 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-green-nature mt-8 pt-8 text-center text-sm text-gray-300">
-          <p>© 2025 ÉCO-MAT Portugal — Projet soutenu par l'Union Européenne 🇪🇺 et le Portugal 🇵🇹</p>
+          <p className="flex items-center justify-center gap-2 flex-wrap">
+            © 2025 ÉCO-MAT Portugal — Projet soutenu par l'Union Européenne
+            <i className='bx bx-world text-blue-400'></i>
+            et le Portugal
+            <i className='bx bx-flag text-green-400'></i>
+          </p>
         </div>
       </div>
     </footer>

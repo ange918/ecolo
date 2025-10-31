@@ -51,9 +51,10 @@ const Header = () => {
               ))}
               <Link
                 to="/contribute"
-                className="bg-green-nature text-white px-6 py-2 rounded-full font-montserrat font-semibold hover:bg-green-hover transition-colors"
+                className="bg-green-nature text-white px-6 py-2 rounded-full font-montserrat font-semibold hover:bg-green-hover transition-colors inline-flex items-center gap-2"
               >
-                Contribuer 💚
+                <i className='bx bx-heart'></i>
+                Contribuer
               </Link>
             </div>
 
@@ -86,10 +87,11 @@ const Header = () => {
               ))}
               <Link
                 to="/contribute"
-                className="block bg-green-nature text-white px-6 py-2 rounded-full font-montserrat font-semibold text-center"
+                className="flex items-center justify-center gap-2 bg-green-nature text-white px-6 py-2 rounded-full font-montserrat font-semibold text-center"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Contribuer 💚
+                <i className='bx bx-heart'></i>
+                Contribuer
               </Link>
             </div>
           )}
