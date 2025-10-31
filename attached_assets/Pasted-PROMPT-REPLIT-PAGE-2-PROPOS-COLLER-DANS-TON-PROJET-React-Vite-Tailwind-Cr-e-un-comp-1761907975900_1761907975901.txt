@@ -1,0 +1,245 @@
+PROMPT REPLIT — PAGE 2 : "À PROPOS" (À COLLER DANS TON PROJET React + Vite + Tailwind)
+
+Crée un composant React About.jsx (et fichiers nécessaires) pour la page À PROPOS du site ÉCO-MAT Portugal. Le code doit être compatible avec un projet Vite + React + Tailwind CSS, utiliser React Router pour la navigation, et respecter la palette & polices validées.
+
+Paramètres globaux (rappels)
+
+Palette (à définir dans tailwind.config.js / CSS variables) :
+
+--green: #2E8B57
+
+--blue: #1E90FF
+
+--yellow: #FFD700
+
+--deep-green: #1B4D3E
+
+--light-bg: #F8F9FA
+
+--text-gray: #333333
+
+--hover-green: #3CB371
+
+Polices : Montserrat (titres), Open Sans (paragraphe). Importer via Google Fonts dans index.html.
+
+Header, footer et menu burger sont partagés entre les pages (réutiliser le même Header/Footer components).
+
+Accessibilité : tous les boutons et images ont aria-label et alt. Contraste texte/fond conforme.
+
+Structure du composant About.jsx
+
+Importations nécessaires
+
+import React from "react";
+import { Link } from "react-router-dom";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+import AutoplaySlider from "react-slick"; // ou swiper selon préférence
+// n'oublie pas d'importer le css de react-slick / swiper et tailwind base
+
+
+Section 1 — Bande héro (QUI SOMMES-NOUS ?)
+
+Pleine largeur, h-[60vh] sur desktop, h-[45vh] mobile.
+
+Image de fond (placeholder) : url('/assets/about-hero.jpg') — overlay sombre (bg-black/40) pour lisibilité.
+
+Texte centré verticalement :
+
+Petit label (Montserrat, uppercase, bleu) : QUI SOMMES-NOUS ?
+
+Titre principal (Montserrat, 48–32px selon viewport) : ÉCO-MAT Portugal — Transformar resíduos em recursos
+
+Court chapeau / phrase d’accroche (Open Sans) :
+
+“Nous sommes une initiative dédiée à la transformation des déchets en matières réutilisables, basée au Portugal et soutenue par des partenaires institutionnels et privés.”
+
+Accessibilité & SEO : <h1> pour le titre principal, meta tags sur la page (title & description).
+
+Section 2 — Description longue (Contexte et origine)
+
+Bloc texte large, fond clair --light-bg, padding généreux.
+
+Contenu (texte à insérer tel quel) :
+
+L’idée du projet
+L’idée du projet ÉCO-MAT est née suite aux aléas climatiques observés et aggravés par la pollution massive de nos terres et de nos eaux. Face à la multiplication des inondations, des perturbations agricoles et à la dégradation des écosystèmes, nous avons voulu répondre par une action concrète : transformer les déchets en ressources utiles.
+
+Notre mission
+Transformer les déchets plastiques, textiles et organiques en matériaux réutilisables et produits finis (vêtements recyclés, granules plastiques, pavés, sacs, fibres). Promouvoir l’économie circulaire, réduire l’empreinte carbone et créer des emplois verts au Portugal.
+
+Notre vision
+Faire du Portugal un modèle d’économie circulaire au niveau européen — une filière locale qui valorise le déchet, soutient les communautés et protège notre climat.
+
+Mettre en exergue (card ou blockquote) une phrase forte :
+
+“Chaque déchet est une opportunité — notre défi est de le transformer.”
+
+Section 3 — Nos Objectifs
+
+Titre Nos objectifs (Montserrat)
+
+Liste structurée (grid responsive 2–3 colonnes) :
+
+Réduire la pollution plastique et textile.
+
+Mettre en place des circuits de collecte locaux.
+
+Produire des matériaux recyclés commercialisables.
+
+Sensibiliser et former les communautés locales.
+
+Générer des emplois durables.
+
+Section 4 — Avantages (Ce que nous apportons)
+
+3–4 cards horizontales ou en grille :
+
+Impact environnemental — Réduction des déchets dirigés vers les décharges et la mer.
+
+Impact social — Création d’emplois verts et inclusion locale.
+
+Impact économique — Création d’une filière de valorisation locale.
+
+Innovation — Développement de technologies et de savoir-faire en recyclage.
+
+Section 5 — Limites (Ce que nous reconnaissons)
+
+Titre Nos limites + paragraphes courts (liste bullet) :
+
+Dépendance initiale au financement pour l’achat d’équipements lourds.
+
+Complexité logistique de collecte à grande échelle (zones rurales).
+
+Besoin de partenariats techniques pour certaines technologies (extrusion, filage).
+
+Besoin d’une forte sensibilisation publique pour assurer le tri à la source.
+
+Section 6 — Solutions proposées pour surmonter ces limites
+
+Titre Solutions envisagées
+
+Cards / bullet points :
+
+Recherche de financements Européens (fonds verts, subventions UE, PNUD).
+
+Partenariats avec municipalités et entreprises locales pour points de collecte.
+
+Programmes de formation professionnelle et actions de sensibilisation.
+
+Phasage du projet : commencer par une usine pilote régionale avant montée en échelle.
+
+Mise en place d’un suivi KPI transparent (quantité collectée, emplois créés, CO₂ évités).
+
+Section 7 — Galerie automatique (Slider)
+
+Slider auto-play, infinite loop, pause on hover, responsive.
+
+Images : plusieurs placeholders about-gallery-1.jpg ... about-gallery-6.jpg.
+
+Légendes courtes pour chaque image (ex : “Collecte de plastiques”, “Traitement et lavage”, “Production de granules”, “Filière textile recyclée”).
+
+Accessibilité : chaque image a alt descriptif.
+
+Paramètres recommandés : autoplay: true, autoplaySpeed: 3500, slidesToShow responsive: 3 (desktop), 2 (tablet), 1 (mobile).
+
+Section 8 — Appel à l’action (CTA)
+
+Bande horizontale, fond --green, texte blanc centré :
+
+“Vous voulez soutenir ÉCO-MAT ? Rejoignez-nous — contribuez ou devenez partenaire.”
+
+Boutons : Contribuer maintenant (primary) et Nous contacter (secondary).
+
+Footer
+
+Réutiliser Footer partagé : logo, lien vers mentions légales, contacts, réseaux sociaux.
+
+Inclure petit rappel : “Page À propos — ÉCO-MAT Portugal — Soutenu par l’Union Européenne et partenaires locaux.”
+
+Détails techniques & code hints (à inclure dans Replit)
+
+Utiliser Tailwind pour le layout et les responsive utilities. Personnaliser tailwind.config.js avec les couleurs listées.
+
+Importer Google Fonts Montserrat & Open Sans dans index.html.
+
+Installer react-slick + slick-carousel CSS (ou swiper) pour la galerie. Ajouter fallback CSS simple si JS slider non supporté.
+
+Header doit rester sticky. Le menu burger doit être accessible (aria-expanded, aria-controls).
+
+Ajouter meta tags SEO pour la page (title: “À propos — ÉCO-MAT Portugal”, description: court résumé).
+
+Prévoir des placeholders pour images dans /public/assets/ et mentions pour remplacer par images finales haute résolution.
+
+Tester la responsivité : mobile-first, menu burger, boutons taille tappable (min 44px height).
+
+Implémenter animation légère CSS (fade-in) sur l’apparition des sections (intersection observer ou framer-motion).
+
+Texte final à insérer (copier-coller pour la partie “Description longue” et sections)
+
+L’idée du projet
+L’idée du projet ÉCO-MAT est née suite aux aléas climatiques observés et aggravés par la pollution massive de nos terres et de nos eaux. Face à la multiplication des inondations, des perturbations agricoles et à la dégradation des écosystèmes, nous avons voulu répondre par une action concrète : transformer les déchets en ressources utiles.
+
+Notre mission
+Transformer les déchets plastiques, textiles et organiques en matériaux réutilisables et produits finis (vêtements recyclés, granules plastiques, pavés, sacs, fibres). Promouvoir l’économie circulaire, réduire l’empreinte carbone et créer des emplois verts au Portugal.
+
+Notre vision
+Faire du Portugal un modèle d’économie circulaire au niveau européen — une filière locale qui valorise le déchet, soutient les communautés et protège notre climat.
+
+Nos objectifs
+
+Réduire la pollution plastique et textile.
+
+Mettre en place des circuits de collecte locaux.
+
+Produire des matériaux recyclés commercialisables.
+
+Sensibiliser et former les communautés locales.
+
+Générer des emplois durables.
+
+Les avantages
+
+Impact environnemental : réduction des déchets en mer et en décharge.
+
+Impact social : création d’emplois verts et inclusion.
+
+Impact économique : création d’une filière de valorisation locale.
+
+Innovation : développement de technologies et savoir-faire en recyclage.
+
+Nos limites
+
+Besoin initial de financement important pour équipements.
+
+Logistique de collecte dans les zones rurales.
+
+Nécessité de partenariats techniques spécialisés.
+
+Besoin d’un important travail de sensibilisation publique.
+
+Solutions proposées
+
+Recherche de financements européens / subventions.
+
+Partenariats municipaux pour points de collecte.
+
+Programmes de formation et campagnes de sensibilisation.
+
+Démarrage par une usine pilote puis montée en échelle.
+
+Transparence par reporting KPI publics (quantités collectées, emplois crées, CO₂ évités).
+
+Livrables attendus (à générer dans Replit)
+
+About.jsx (composant React avec sections ci-dessus)
+
+Styles Tailwind (classes utilitaires et tailwind.config.js personnalisé)
+
+Import Google Fonts (Montserrat & Open Sans)
+
+Slider fonctionnel pour la galerie (react-slick / swiper)
+
+CTA et footer intégrés
+
+Tests manuels de responsivité (mobile/tablet/desktop) avec menu burger dynamique
