@@ -13,8 +13,8 @@ Site web complet pour le projet ÉCO-MAT Portugal, une initiative de recyclage e
 - **Vert hover**: #3CB371 (états hover)
 
 ## Polices
-- **Titres**: Montserrat (Google Fonts)
-- **Texte**: Open Sans (Google Fonts)
+- **Titres**: Poppins (Google Fonts)
+- **Texte**: Montserrat (Google Fonts)
 
 ## Structure du Projet
 ```
@@ -123,13 +123,19 @@ npm run preview  # Preview du build
 ✅ Accessibilité (aria-labels)
 
 ## Recent Changes
-- 2025-10-31: Migration complète du projet
+- 2025-10-31: Migration et modernisation complète du projet
   - Migration de Create React App vers Vite
   - Installation et configuration de Tailwind CSS v3
   - Création de 5 pages complètes selon spécifications
   - Génération de 10 images professionnelles
-  - Création des composants Header et Footer
+  - Création des composants Header, Footer, Card, et PartnerBand
+  - Remplacement de tous les emojis fonctionnels par des Boxicons
+  - Intégration Boxicons pour tous les icônes fonctionnels
+  - Création composant Card réutilisable avec support Boxicons
+  - Création composant PartnerBand avec défilement automatique et Boxicons
+  - Mise à jour des polices : Poppins (titres) et Montserrat (texte)
   - Intégration React Router
-  - Intégration PayPal SDK
+  - Intégration PayPal SDK (8 paliers de contribution)
+  - Intégration Google Maps sur page Contact
   - Configuration du déploiement Autoscale
-  - Tests de toutes les pages
+  - Tests de toutes les pages et vérification de la responsivité
