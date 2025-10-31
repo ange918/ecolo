@@ -1,0 +1,167 @@
+Crée un site web React + Vite + Tailwind nommé eco-mat-portugal, 100 % responsive, moderne et écologique.
+Ajoute un menu burger dynamique sur mobile et intègre la palette et polices suivantes :
+
+🎨 Palette :
+
+Vert nature : #2E8B57
+
+Bleu océan : #1E90FF
+
+Jaune solaire : #FFD700
+
+Vert profond : #1B4D3E
+
+Blanc cassé : #F8F9FA
+
+Gris texte : #333333
+
+Vert clair (hover) : #3CB371
+
+🖋️ Polices :
+
+Titres : Montserrat
+
+Texte : Open Sans
+
+Installe les polices via Google Fonts dans index.html.
+
+🏠 PAGE D’ACCUEIL (Home.jsx)
+
+Structure complète :
+
+1️⃣ Bande supérieure
+
+Fine barre horizontale blanche (50px de haut) :
+
+À gauche → logo Union Européenne 🇪🇺
+
+À droite → logo Portugal 🇵🇹
+
+2️⃣ Header principal (navbar)
+
+À gauche : logo ÉCO-MAT (texte vert “ÉCO” + texte bleu “MAT”)
+
+Au centre : liens → Accueil | À propos | Projets | Contact
+
+À droite : bouton vert “Contribuer 💚”
+
+Menu burger dynamique sur mobile
+
+Sticky quand on scroll
+
+3️⃣ Section HÉROS – Slider (3 diapositives)
+
+Slider automatique + navigation manuelle.
+Chaque slide pleine largeur et hauteur h-screen.
+Boutons stylés avec bg-green-600 hover:bg-green-500.
+
+Slide 1 :
+
+Image fond : nature + recyclage + usine verte
+
+Titre : “ÉCO-MAT Portugal”
+
+Description : “Transformons les déchets en opportunités pour un avenir durable.”
+
+Boutons : “Découvrir le projet” / “Contribuer”
+
+Slide 2 :
+
+Image fond : déchets plastiques nettoyés
+
+Titre : “REDONNEZ VIE AUX DÉCHETS PLASTIQUES”
+
+Description : “Nous collectons, trions et transformons les plastiques pour leur donner une seconde vie.”
+
+Boutons : idem
+
+Slide 3 :
+
+Image fond : tri sélectif et recyclage industriel
+
+Titre : “RECYCLAGE DES ORDURES”
+
+Description : “Réinventons la gestion des déchets pour construire un Portugal plus propre et plus vert.”
+
+Boutons : idem
+
+4️⃣ Section Nos Objectifs
+
+Titre centré : “Nos Objectifs”
+4 cards (grille responsive 2x2) :
+1️⃣ ♻️ Réduire la pollution plastique
+
+Lutter contre les déchets non recyclés.
+2️⃣ 👷 Créer des emplois verts
+Offrir de nouvelles opportunités locales.
+3️⃣ ⚙️ Valoriser les déchets
+Transformer le déchet en ressource utile.
+4️⃣ 🌱 Promouvoir l’économie circulaire
+Sensibiliser et éduquer à la durabilité.
+
+Design : cards avec fond blanc, ombre légère, bord arrondi rounded-2xl, icône verte.
+
+5️⃣ Section À propos (résumé)
+
+Fond clair #F8F9FA, padding généreux.
+Texte :
+
+“ÉCO-MAT Portugal est un projet innovant dédié à la transformation des déchets en ressources réutilisables. Nous croyons en un avenir plus propre, où chaque geste compte.”
+Bouton : “En savoir plus →”
+
+6️⃣ Section Avantages du projet
+
+Titre : “Les problèmes que nous résolvons”
+4 cards horizontales :
+
+Pollution plastique
+
+Déchets industriels non traités
+
+Manque de sensibilisation au recyclage
+
+Dépendance aux matières premières vierges
+
+7️⃣ Section Partenaires
+
+Fond blanc, carousel horizontal automatique.
+Logos des partenaires (exemples : UE, Portugal, PNUD, ONG, Startups vertes).
+
+8️⃣ Section Call to Action (CTA)
+
+Fond vert profond #1B4D3E, texte blanc.
+Texte :
+
+“Participez dès aujourd’hui à la construction d’un Portugal plus propre.”
+Boutons :
+
+“Contribuer maintenant 💚”
+
+“Devenir partenaire 🤝”
+
+9️⃣ Footer
+
+Fond vert profond #1B4D3E, texte blanc.
+4 colonnes :
+
+Logo + mini-description
+
+Liens rapides : Accueil / À propos / Projets / Contact
+
+Mentions légales
+
+Réseaux sociaux
+
+⚙️ Détails techniques
+
+Menu burger animé sur mobile avec framer-motion ou simple toggle React.
+
+Slider héro → utiliser react-slick ou swiper (auto + pagination).
+
+Carousel partenaires → horizontal auto-scroll.
+
+Animations d’apparition sur les sections (Fade In / Slide Up).
+
+Transition douce entre pages avec react-router-dom.
+
+Couleurs Tailwind personnalisées dans tailwind.config.js.

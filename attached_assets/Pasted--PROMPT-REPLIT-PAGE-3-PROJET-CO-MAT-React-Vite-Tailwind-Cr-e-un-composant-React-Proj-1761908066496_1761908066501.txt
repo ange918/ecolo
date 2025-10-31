@@ -1,0 +1,295 @@
+🌿 PROMPT REPLIT — PAGE 3 : “PROJET ÉCO-MAT” (React + Vite + Tailwind)
+
+Crée un composant React Project.jsx (et les éventuels sous-composants) pour la page Notre Projet du site ÉCO-MAT Portugal.
+Cette page détaille intégralement le projet industriel de recyclage “ÉCO-MAT”, avec les textes complets, un budget en euros, un call-to-action, et un footer cohérent avec les autres pages.
+
+🔧 Rappel de configuration globale
+
+Palette de couleurs :
+
+--green: #2E8B57
+
+--blue: #1E90FF
+
+--yellow: #FFD700
+
+--deep-green: #1B4D3E
+
+--light-bg: #F8F9FA
+
+--text-gray: #333333
+
+--hover-green: #3CB371
+
+Polices :
+
+Titres : Montserrat, sans-serif
+
+Paragraphes : Open Sans, sans-serif
+
+Composants communs :
+
+Header sticky avec menu burger dynamique
+
+Footer partagé sur tout le site
+
+Boutons Découvrir / Contribuer cohérents avec la page d’accueil
+
+🧱 Structure de la page Project.jsx
+1️⃣ Section HÉRO — “NOTRE PROJET”
+
+Image de fond (/assets/project-hero.jpg) avec overlay sombre (bg-black/50)
+
+Texte centré verticalement :
+
+Label : NOTRE PROJET
+
+Titre principal : “ÉCO-MAT — Redonner vie aux déchets”
+
+Sous-texte :
+
+“Un projet industriel éco-responsable dédié à la transformation des déchets plastiques, textiles et organiques en ressources réutilisables.”
+
+2️⃣ Présentation générale du projet
+
+Titre : 🏢 1. Présentation générale du projet
+
+Texte à insérer :
+
+Nom du projet : ÉCO-MAT (Écologie & Matières Transformées)
+Nature du projet :
+Création d’une usine industrielle éco-responsable dédiée à la valorisation des déchets plastiques, textiles et organiques en produits réutilisables : vêtements recyclés, sacs, fibres, objets utilitaires, etc.
+
+Objectif global :
+Réduire la pollution par les déchets et créer une économie circulaire qui transforme les déchets en ressources valorisables.
+
+Localisation proposée :
+Zone industrielle proche d’un grand centre urbain (Portugal — région à définir selon la faisabilité locale).
+
+3️⃣ Problématique environnementale
+
+Titre : 🌍 2. Problématique
+
+Les déchets plastiques et textiles représentent une menace majeure pour l’environnement.
+Le taux de recyclage en Afrique et en Europe du Sud reste faible.
+La population produit de plus en plus de déchets non traités.
+Le manque d’infrastructures modernes pour la transformation freine l’économie circulaire.
+
+Un encadré en fond clair peut afficher une citation :
+
+“Recycler n’est plus une option — c’est une urgence climatique.”
+
+4️⃣ Objectifs du projet
+
+Titre : 💡 3. Objectifs du projet
+
+Objectif général :
+Transformer les déchets en matières premières et produits finis réutilisables pour promouvoir une économie verte et circulaire.
+
+Objectifs spécifiques :
+
+Collecter et trier les déchets plastiques, textiles et organiques.
+
+Produire de nouveaux matériaux (fibres textiles, granules plastiques, sacs recyclés, etc.).
+
+Créer de l’emploi local et sensibiliser les communautés.
+
+Réduire la pollution et les émissions de CO₂.
+
+Afficher ces objectifs dans des cards vertes à icônes (recyclage, industrie, emploi, CO₂).
+
+5️⃣ Processus de production
+
+Titre : 🔧 4. Processus de production
+
+Grille 4 colonnes (responsive 1-2-4).
+Chaque étape = une card avec icône + texte.
+
+♻️ Étapes principales :
+
+Collecte et tri des déchets : Collaboration avec municipalités, ONG et particuliers. Mise en place de points de collecte.
+
+Nettoyage et broyage : Lavage industriel des plastiques et textiles, broyage en paillettes ou fibres.
+
+Transformation :
+
+Plastiques → granules → objets moulés (bancs, seaux, pavés).
+
+Textiles → fils recyclés → tissus ou vêtements.
+
+Organique → compost ou biogaz (option).
+
+Conception et vente : Fabrication d’articles finis, commercialisation locale et exportation.
+
+6️⃣ Infrastructure & équipements
+
+Titre : 👷 5. Infrastructure et équipements nécessaires
+
+Bâtiments :
+
+Atelier de tri et lavage
+
+Atelier de transformation plastique
+
+Atelier textile
+
+Entrepôts et bureaux administratifs
+
+Équipements :
+
+Broyeurs industriels
+
+Machines de lavage
+
+Extrudeuses / presse-injecteurs
+
+Machines à filer et à coudre
+
+Compresseurs, convoyeurs, générateurs
+
+Véhicules de collecte
+
+Représenter chaque sous-catégorie avec une icône (🏭, ⚙️, 🚚…).
+
+7️⃣ Ressources humaines
+
+Titre : 👥 6. Ressources humaines
+
+Mettre sous forme de tableau clair ou liste :
+
+Poste	Nombre	Description
+Directeur de projet	1	Supervision globale
+Ingénieurs environnement	2	Gestion technique du recyclage
+Techniciens de production	10	Opération machines
+Ouvriers de tri	15	Collecte et tri
+Responsable qualité	1	Contrôle de conformité
+Comptable / RH	1	Administration
+Agents commerciaux	3	Vente et distribution
+Total	33	Personnel initial
+8️⃣ Budget prévisionnel
+
+Titre : 💰 7. Budget prévisionnel (en euros)
+
+Poste	Coût estimé (€)
+Terrain et construction	200 000
+Machines et équipements	450 000
+Véhicules de collecte	75 000
+Salaires première année	120 000
+Formation et sensibilisation	25 000
+Électricité, eau, maintenance	40 000
+Fonds de roulement	40 000
+Total estimé	≈ 1 200 000 €
+
+Encadrer ce tableau avec un fond clair (bg-light-bg) et ombre douce.
+
+9️⃣ Rentabilité & retombées économiques
+
+Titre : 📈 8. Rentabilité et retombées économiques
+
+Revenus potentiels :
+
+Vente de granules plastiques, fibres textiles, objets recyclés.
+
+Contrats de collecte avec municipalités.
+
+Vente de produits finis (sacs, vêtements, pavés, etc.).
+
+Retombées :
+
+Création d’emplois directs et indirects.
+
+Diminution de la pollution.
+
+Développement d’une industrie verte locale.
+
+🔟 Impact social & environnemental
+
+Titre : 🌿 9. Impact social et environnemental
+
+Réduction du volume de déchets dans la nature.
+
+Sensibilisation au tri sélectif.
+
+Amélioration du cadre de vie.
+
+Contribution aux ODD (12, 13 et 15).
+
+Ajouter icônes durabilité, feuille verte, planète.
+
+1️⃣1️⃣ Partenariats & financements
+
+Titre : 🤝 10. Partenariats et financements possibles
+
+Partenaires potentiels :
+
+Ministère de l’Environnement
+
+Agences européennes de développement (PNUD, UE, BAD)
+
+ONG environnementales
+
+Entreprises privées (Responsabilité sociétale)
+
+Fonds verts & investisseurs à impact
+
+Afficher logos possibles (placeholder).
+
+1️⃣2️⃣ Stratégie de communication
+
+Titre : 📢 11. Stratégie de communication
+
+Campagnes de sensibilisation sur les réseaux sociaux.
+
+Collaboration avec les écoles et associations.
+
+Label “Fabriqué à partir de déchets recyclés”.
+
+Participation à des foires écologiques et salons industriels.
+
+1️⃣3️⃣ Calendrier de mise en œuvre
+
+Titre : 🧩 12. Calendrier de mise en œuvre
+
+Étape	Durée
+Étude de faisabilité	2 mois
+Recherche de financement	4 mois
+Construction de l’usine	6–8 mois
+Installation des équipements	2 mois
+Recrutement et formation	1 mois
+Lancement officiel	Mois 15
+1️⃣4️⃣ Call to Action (CTA)
+
+Bande verte centrée :
+
+“Envie de soutenir la transition écologique au Portugal ?
+Contribuez dès aujourd’hui à la réalisation du projet ÉCO-MAT.”
+
+Bouton principal : “Contribuer maintenant” → /contribuer
+Bouton secondaire : “Devenir partenaire” → /contact
+
+1️⃣5️⃣ Footer
+
+Réutiliser le même que les autres pages :
+mentions légales, liens rapides, réseaux sociaux, copyright :
+
+“© 2025 ÉCO-MAT Portugal — Projet soutenu par l’Union Européenne.”
+
+⚙️ Techniques à appliquer
+
+Layout en container mx-auto px-4
+
+Utiliser Tailwind utilities (grid, gap-8, text-center, bg-light-bg, shadow-md)
+
+Prévoir transitions hover sur boutons
+
+Responsivité mobile-first :
+
+Sections en colonne simple
+
+Tableaux scrollables horizontalement
+
+SEO :
+
+<title>Notre Projet — ÉCO-MAT Portugal</title>
+
+<meta description="Découvrez le projet ÉCO-MAT, une usine éco-responsable dédiée à la transformation des déchets au Portugal.">
