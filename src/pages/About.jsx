@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import Slider from 'react-slick'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
+import Card from '../components/Card'
+import PartnerBand from '../components/PartnerBand'
 
 const About = () => {
   const gallerySettings = {
@@ -49,20 +51,32 @@ const About = () => {
 
   const advantages = [
     {
+      image: '/Portuguese_countryside_landscape_c53d6ded.png',
       title: 'Impact environnemental',
-      description: 'Réduction des déchets dirigés vers les décharges et la mer.',
+      description: 'Réduction significative des déchets dirigés vers les décharges et la mer, protection des écosystèmes naturels et diminution de l\'empreinte carbone au Portugal.',
+      icon: 'bx-world',
+      iconText: 'Protection environnementale'
     },
     {
+      image: '/Recycling_team_workshop_collaboration_a4789468.png',
       title: 'Impact social',
-      description: 'Création d\'emplois verts et inclusion locale.',
+      description: 'Création d\'emplois verts durables, inclusion des communautés locales et formation professionnelle dans le secteur du recyclage et de l\'économie circulaire.',
+      icon: 'bx-group',
+      iconText: 'Emplois et formation'
     },
     {
+      image: '/Recycled_plastic_granules_closeup_7e365a55.png',
       title: 'Impact économique',
-      description: 'Création d\'une filière de valorisation locale.',
+      description: 'Création d\'une filière de valorisation locale rentable, développement de produits recyclés commercialisables et stimulation de l\'économie circulaire régionale.',
+      icon: 'bx-bar-chart-alt-2',
+      iconText: 'Croissance économique'
     },
     {
+      image: '/Eco_factory_nature_scene_f4ad2bf6.png',
       title: 'Innovation',
-      description: 'Développement de technologies et de savoir-faire en recyclage.',
+      description: 'Développement et implémentation de technologies avancées de recyclage, transfert de savoir-faire et positionnement du Portugal comme leader en économie circulaire.',
+      icon: 'bx-bulb',
+      iconText: 'Technologies vertes'
     },
   ]
 
@@ -145,12 +159,12 @@ const About = () => {
 
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-montserrat font-bold text-center mb-12 text-green-deep">Nos objectifs</h2>
+          <h2 className="text-4xl font-bold text-center mb-12 text-green-deep">Nos objectifs</h2>
           <ul className="max-w-3xl mx-auto space-y-4">
             {objectives.map((obj, index) => (
               <li key={index} className="flex items-start">
-                <span className="text-green-nature text-2xl mr-4">✓</span>
-                <span className="text-text-gray font-open-sans text-lg">{obj}</span>
+                <i className='bx bx-check-circle text-green-nature text-2xl mr-4'></i>
+                <span className="text-text-gray text-lg">{obj}</span>
               </li>
             ))}
           </ul>
@@ -159,15 +173,19 @@ const About = () => {
 
       <section className="py-20 bg-light-bg">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-montserrat font-bold text-center mb-12 text-green-deep">
+          <h2 className="text-4xl font-bold text-center mb-12 text-green-deep">
             Ce que nous apportons
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {advantages.map((adv, index) => (
-              <div key={index} className="bg-white rounded-xl p-6 shadow-md">
-                <h3 className="text-xl font-montserrat font-semibold mb-3 text-green-nature">{adv.title}</h3>
-                <p className="text-text-gray font-open-sans">{adv.description}</p>
-              </div>
+              <Card
+                key={index}
+                image={adv.image}
+                title={adv.title}
+                description={adv.description}
+                icon={adv.icon}
+                iconText={adv.iconText}
+              />
             ))}
           </div>
         </div>
@@ -175,12 +193,12 @@ const About = () => {
 
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-montserrat font-bold text-center mb-12 text-green-deep">Nos limites</h2>
+          <h2 className="text-4xl font-bold text-center mb-12 text-green-deep">Nos limites</h2>
           <ul className="max-w-3xl mx-auto space-y-4">
             {limits.map((limit, index) => (
               <li key={index} className="flex items-start">
-                <span className="text-yellow-solar text-2xl mr-4">⚠</span>
-                <span className="text-text-gray font-open-sans">{limit}</span>
+                <i className='bx bx-error text-yellow-500 text-2xl mr-4'></i>
+                <span className="text-text-gray">{limit}</span>
               </li>
             ))}
           </ul>
@@ -189,12 +207,12 @@ const About = () => {
 
       <section className="py-20 bg-light-bg">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-montserrat font-bold text-center mb-12 text-green-deep">Solutions envisagées</h2>
+          <h2 className="text-4xl font-bold text-center mb-12 text-green-deep">Solutions envisagées</h2>
           <ul className="max-w-3xl mx-auto space-y-4">
             {solutions.map((solution, index) => (
               <li key={index} className="flex items-start">
-                <span className="text-blue-ocean text-2xl mr-4">→</span>
-                <span className="text-text-gray font-open-sans">{solution}</span>
+                <i className='bx bx-right-arrow-alt text-blue-ocean text-2xl mr-4'></i>
+                <span className="text-text-gray">{solution}</span>
               </li>
             ))}
           </ul>
@@ -225,26 +243,28 @@ const About = () => {
 
       <section className="py-20 bg-green-nature text-white">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-montserrat font-bold mb-4">
+          <h2 className="text-3xl font-bold mb-4">
             Vous voulez soutenir ÉCO-MAT ?
           </h2>
           <p className="text-xl mb-8">Rejoignez-nous — contribuez ou devenez partenaire.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               to="/contribute"
-              className="bg-white text-green-nature hover:bg-gray-100 px-8 py-3 rounded-full font-montserrat font-semibold transition-colors"
+              className="bg-white text-green-nature hover:bg-gray-100 px-8 py-3 rounded-full font-semibold transition-colors"
             >
               Contribuer maintenant
             </Link>
             <Link
               to="/contact"
-              className="bg-blue-ocean hover:bg-blue-600 text-white px-8 py-3 rounded-full font-montserrat font-semibold transition-colors"
+              className="bg-blue-ocean hover:bg-blue-600 text-white px-8 py-3 rounded-full font-semibold transition-colors"
             >
               Nous contacter
             </Link>
           </div>
         </div>
       </section>
+
+      <PartnerBand />
 
       <Footer />
     </div>

@@ -2,28 +2,38 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
+import Card from '../components/Card'
+import PartnerBand from '../components/PartnerBand'
 
 const Project = () => {
   const productionSteps = [
     {
-      icon: '♻️',
+      image: '/Waste_collection_truck_neighborhood_b4e34dfc.png',
       title: 'Collecte et tri des déchets',
-      description: 'Collaboration avec municipalités, ONG et particuliers. Mise en place de points de collecte.',
+      description: 'Collaboration avec municipalités, ONG et particuliers pour la mise en place de points de collecte stratégiques à travers le Portugal. Tri sélectif des plastiques et textiles.',
+      icon: 'bx-recycle',
+      iconText: 'Collecte responsable'
     },
     {
-      icon: '🧼',
+      image: '/Plastic_washing_facility_equipment_18611b8e.png',
       title: 'Nettoyage et broyage',
-      description: 'Lavage industriel des plastiques et textiles, broyage en paillettes ou fibres.',
+      description: 'Lavage industriel des plastiques et textiles avec technologies écologiques. Broyage en paillettes ou fibres pour faciliter la transformation ultérieure.',
+      icon: 'bx-water',
+      iconText: 'Traitement écologique'
     },
     {
-      icon: '⚙️',
+      image: '/Sorted_plastic_recycling_facility_f1402ba9.png',
       title: 'Transformation',
-      description: 'Plastiques → granules → objets moulés (bancs, seaux, pavés). Textiles → fils recyclés → tissus ou vêtements.',
+      description: 'Plastiques transformés en granules puis en objets moulés (bancs, seaux, pavés). Textiles convertis en fils recyclés puis en tissus ou vêtements durables.',
+      icon: 'bx-cog',
+      iconText: 'Production innovante'
     },
     {
-      icon: '📦',
+      image: '/Textile_recycling_production_line_f246795a.png',
       title: 'Conception et vente',
-      description: 'Fabrication d\'articles finis, commercialisation locale et exportation.',
+      description: 'Fabrication d\'articles finis de haute qualité, commercialisation locale et internationale avec focus sur la durabilité et l\'économie circulaire.',
+      icon: 'bx-shopping-bag',
+      iconText: 'Commercialisation'
     },
   ]
 
@@ -114,17 +124,29 @@ const Project = () => {
 
       <section className="py-20 bg-light-bg">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-montserrat font-bold mb-12 text-center text-green-deep flex items-center justify-center">
-            <span className="text-4xl mr-3">🔧</span> Processus de production
+          <h2 className="text-3xl font-bold mb-12 text-center text-green-deep flex items-center justify-center">
+            <i className='bx bx-cog text-4xl mr-3'></i> Processus de production
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {productionSteps.map((step, index) => (
-              <div key={index} className="bg-white rounded-xl p-6 shadow-md">
-                <div className="text-5xl mb-4">{step.icon}</div>
-                <h3 className="text-xl font-montserrat font-semibold mb-3 text-green-nature">{step.title}</h3>
-                <p className="text-text-gray font-open-sans">{step.description}</p>
-              </div>
+              <Card
+                key={index}
+                image={step.image}
+                title={step.title}
+                description={step.description}
+                icon={step.icon}
+                iconText={step.iconText}
+              />
             ))}
+          </div>
+          <div className="mt-12 text-center">
+            <Link
+              to="/about"
+              className="inline-flex items-center bg-green-nature hover:bg-green-hover text-white px-8 py-3 rounded-full font-semibold transition-colors"
+            >
+              En savoir plus sur notre approche
+              <i className='bx bx-right-arrow-alt ml-2 text-xl'></i>
+            </Link>
           </div>
         </div>
       </section>
@@ -210,26 +232,28 @@ const Project = () => {
 
       <section className="py-20 bg-green-deep text-white">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-montserrat font-bold mb-4">
+          <h2 className="text-3xl font-bold mb-4">
             Envie de soutenir la transition écologique au Portugal ?
           </h2>
           <p className="text-xl mb-8">Contribuez dès aujourd'hui à la réalisation du projet ÉCO-MAT.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               to="/contribute"
-              className="bg-green-nature hover:bg-green-hover px-8 py-3 rounded-full font-montserrat font-semibold transition-colors"
+              className="bg-green-nature hover:bg-green-hover px-8 py-3 rounded-full font-semibold transition-colors"
             >
               Contribuer maintenant
             </Link>
             <Link
               to="/contact"
-              className="bg-blue-ocean hover:bg-blue-600 px-8 py-3 rounded-full font-montserrat font-semibold transition-colors"
+              className="bg-blue-ocean hover:bg-blue-600 px-8 py-3 rounded-full font-semibold transition-colors"
             >
               Devenir partenaire
             </Link>
           </div>
         </div>
       </section>
+
+      <PartnerBand />
 
       <Footer />
     </div>
