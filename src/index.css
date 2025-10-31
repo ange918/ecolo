@@ -9,14 +9,17 @@
 }
 
 body {
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Montserrat', sans-serif;
+  background-color: #F8F9FA;
   color: #333333;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Alegreya Sans', 'Montserrat', sans-serif;
+  font-weight: 700;
+  color: #1B4D3E;
 }
 
 :root {
@@ -35,4 +38,24 @@ h1, h2, h3, h4, h5, h6 {
 
 .slick-dots li.slick-active button:before {
   color: #FFD700 !important;
+}
+
+.partner-scroll {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  animation: scroll 30s linear infinite;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.partner-scroll:hover {
+  animation-play-state: paused;
 }

@@ -1,0 +1,122 @@
+Tu dois modifier un site React + Vite + Tailwind existant nommé ECO-MAT Portugal.  
+Le site doit être moderne, écologique, entièrement responsive et inclure toutes les fonctionnalités suivantes :
+
+1️⃣ Polices :
+- Titres → Rocaleta
+- Textes → Montserrat
+
+2️⃣ Icônes :
+- Utiliser Boxicons pour toutes les icônes (menu, cards, avantages, réseaux sociaux)
+
+3️⃣ Cards :
+- Sur toutes les pages, chaque card doit avoir :
+  - Une image
+  - Un titre en Rocaleta
+  - Un texte descriptif détaillé
+  - Une icône Boxicons optionnelle pour illustrer
+- Les grilles doivent être responsive : `grid-cols-1 md:grid-cols-2 lg:grid-cols-4`
+
+4️⃣ Bande de partenaires :
+- Avant le footer sur toutes les pages
+- Défilement automatique (marquee) avec logos : Union Européenne, Portugal, PNUD, BAD, ONG locales
+
+5️⃣ Menu burger dynamique :
+- Responsive sur mobile et tablette
+- Icône “menu” (bx bx-menu) / “close” (bx bx-x)
+- Bouton “Contribuer” visible sur mobile
+
+6️⃣ Responsivité :
+- Tout le site doit être responsive sur mobile, tablette et desktop
+- Images, cards, textes et sliders adaptatifs
+
+---
+
+### 🔧 Instructions techniques
+
+1. **index.html (head)** :
+<link href="https://fonts.googleapis.com/css2?family=Rocaleta:wght@600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+
+2. **CSS global (index.css / App.css)** :
+body { font-family: 'Montserrat', sans-serif; background-color: #F8F9FA; color: #333333; }
+h1,h2,h3,h4,h5 { font-family: 'Rocaleta', sans-serif; color: #1B4D3E; }
+.partner-scroll { display: flex; align-items: center; animation: scroll 30s linear infinite; }
+@keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+3. **Header.jsx** :
+- Logo cliquable à gauche
+- Liens : Accueil | À propos | Projets | Contact
+- Bouton “Contribuer” à droite
+- Menu burger dynamique responsive
+
+4. **Cards (composant reusable)** :
+<div className="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300">
+  <img src="/images/nom-image.jpg" alt="Description" className="w-full h-48 object-cover" />
+  <div className="p-5">
+    <h3 className="text-xl font-bold mb-2">Titre de la card</h3>
+    <p className="text-gray-600 mb-3">Texte descriptif détaillé de la card.</p>
+    <div className="flex items-center text-green-700 font-medium">
+      <i className='bx bx-leaf text-2xl mr-2'></i> Point clé
+    </div>
+  </div>
+</div>
+
+5. **Bande de partenaires (avant footer)** :
+<section className="bg-green-50 py-6 overflow-hidden relative">
+  <h2 className="text-center text-2xl font-bold mb-4">Nos partenaires 🌱</h2>
+  <div className="partner-scroll w-max space-x-10">
+    <img src="/logos/eu.png" alt="Union Européenne" className="h-12 inline-block" />
+    <img src="/logos/portugal.png" alt="Portugal" className="h-12 inline-block" />
+    <img src="/logos/pnud.png" alt="PNUD" className="h-12 inline-block" />
+    <img src="/logos/bad.png" alt="BAD" className="h-12 inline-block" />
+    <img src="/logos/ong.png" alt="ONG partenaire" className="h-12 inline-block" />
+  </div>
+</section>
+
+---
+
+### 📄 Contenu par page
+
+**Accueil**
+- Slider hero 3 slides (texte + 2 boutons)
+- Nos objectifs (4 cards)
+- À propos rapide (texte + bouton)
+- Avantages du projet (cards)
+- Bande partenaires
+- Call-to-action
+- Footer
+
+**À propos**
+- Section héro + titre + image
+- Texte détaillé : mission, vision, valeurs
+- Objectifs + avantages + limites + solutions
+- Galerie slider images
+- Bande partenaires
+- Footer
+
+**Projets**
+- Section héro + titre
+- Cards projets avec images, texte et bouton “En savoir plus”
+- Bande partenaires
+- Footer
+
+**Contribuer**
+- Section héro + texte
+- Choix contribution : 50€ → 100 000€
+- Paiement PayPal intégré
+- Message de remerciement
+- Bande partenaires
+- Footer
+
+**Contact**
+- Section héro + image
+- Formulaire : nom, email, message
+- Carte Google Maps
+- Réseaux sociaux Boxicons
+- Bande partenaires
+- Footer
+
+---
+
+Le site doit être **100% responsive**, moderne et écologique, avec **animations douces**, **grilles adaptatives** et **espacements harmonieux**.  
+Toutes les pages doivent être modifiées pour intégrer les nouvelles **cards avec images**, **bande de partenaires**, **polices Rocaleta/Montserrat** et **menu burger dynamique**.
