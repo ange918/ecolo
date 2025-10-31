@@ -5,6 +5,7 @@ import About from './pages/About'
 import Project from './pages/Project'
 import Contribute from './pages/Contribute'
 import Contact from './pages/Contact'
+import ScrollToTop from './components/ScrollToTop'
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/contribute" element={<Contribute />} />
         <Route path="/contact" element={<Contact />} />
       </Routes>
+      <ScrollToTop />
     </div>
   )
 }

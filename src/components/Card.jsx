@@ -8,6 +8,7 @@ const Card = ({ image, title, description, icon, iconText }) => {
           src={image}
           alt={title}
           className="w-full h-48 object-cover"
+          loading="lazy"
         />
       )}
       <div className="p-5 flex-1 flex flex-col">

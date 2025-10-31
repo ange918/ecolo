@@ -230,6 +230,7 @@ const About = () => {
                     src={img.src}
                     alt={img.alt}
                     className="w-full h-full object-cover"
+                    loading="lazy"
                   />
                   <div className="absolute bottom-0 left-0 right-0 bg-black/60 p-4">
                     <p className="text-white font-open-sans text-center">{img.alt}</p>
