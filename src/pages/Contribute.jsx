@@ -1,10 +1,72 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { PayPalButtons, PayPalScriptProvider } from '@paypal/react-paypal-js'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 
+const PayPalButtonWrapper = ({ amount, label }) => {
+  const [success, setSuccess] = useState(false)
+  const [error, setError] = useState(null)
+
+  const createOrder = (data, actions) => {
+    return actions.order.create({
+      purchase_units: [
+        {
+          amount: {
+            value: amount.toString(),
+            currency_code: 'EUR',
+          },
+          description: `Contribution ÉCO-MAT Portugal - ${label}`,
+        },
+      ],
+    })
+  }
+
+  const onApprove = async (data, actions) => {
+    try {
+      const order = await actions.order.capture()
+      setSuccess(true)
+      setError(null)
+      console.log('Payment successful:', order)
+    } catch (err) {
+      setError('Erreur lors du paiement. Veuillez réessayer.')
+      console.error('Payment error:', err)
+    }
+  }
+
+  const onError = (err) => {
+    setError('Erreur lors de la transaction. Veuillez réessayer.')
+    console.error('PayPal error:', err)
+  }
+
+  if (success) {
+    return (
+      <div className="bg-green-nature/10 border-2 border-green-nature rounded-lg p-4 text-center">
+        <p className="text-green-nature font-montserrat font-semibold">✅ Merci pour votre contribution!</p>
+      </div>
+    )
+  }
+
+  return (
+    <div>
+      {error && (
+        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded mb-2 text-sm">
+          {error}
+        </div>
+      )}
+      <PayPalButtons
+        style={{ layout: 'vertical', label: 'donate' }}
+        createOrder={createOrder}
+        onApprove={onApprove}
+        onError={onError}
+      />
+    </div>
+  )
+}
+
 const Contribute = () => {
+  const [selectedAmount, setSelectedAmount] = useState(null)
+
   const amounts = [
     { amount: 50, label: 'petit soutien symbolique', emoji: '💚' },
     { amount: 100, label: 'ami de la planète', emoji: '🌱' },
@@ -49,11 +111,10 @@ const Contribute = () => {
     },
   ]
 
-  const handlePayPalClick = (amount) => {
-    window.open(
-      `https://www.paypal.com/donate?business=eco-mat@portugal.org&amount=${amount}&currency_code=EUR`,
-      '_blank'
-    )
+  const paypalOptions = {
+    'client-id': 'test',
+    currency: 'EUR',
+    intent: 'capture',
   }
 
   return (
@@ -95,36 +156,49 @@ const Contribute = () => {
         </div>
       </section>
 
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-montserrat font-bold text-center mb-4 text-green-deep">
-            Choisissez votre montant de contribution
-          </h2>
-          <p className="text-xl text-center text-text-gray mb-12">
-            Votre soutien, quel qu'il soit, fait la différence.
-          </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-            {amounts.map((item, index) => (
-              <div
-                key={index}
-                className="bg-white border-2 border-gray-200 rounded-xl p-6 text-center hover:border-green-nature hover:shadow-lg transition-all"
-              >
-                <div className="text-5xl mb-3">{item.emoji}</div>
-                <div className="text-3xl font-montserrat font-bold text-green-nature mb-2">
-                  {item.amount} €
-                </div>
-                <p className="text-sm font-open-sans text-text-gray mb-4">{item.label}</p>
-                <button
-                  onClick={() => handlePayPalClick(item.amount)}
-                  className="w-full bg-blue-ocean hover:bg-blue-600 text-white px-6 py-2 rounded-full font-montserrat font-semibold transition-colors"
+      <PayPalScriptProvider options={paypalOptions}>
+        <section className="py-20 bg-white">
+          <div className="container mx-auto px-4">
+            <h2 className="text-4xl font-montserrat font-bold text-center mb-4 text-green-deep">
+              Choisissez votre montant de contribution
+            </h2>
+            <p className="text-xl text-center text-text-gray mb-4">
+              Votre soutien, quel qu'il soit, fait la différence.
+            </p>
+            <p className="text-sm text-center text-text-gray mb-12">
+              Note: Pour utiliser PayPal en production, remplacez le client-id 'test' par votre vrai client-id PayPal dans le code.
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+              {amounts.map((item, index) => (
+                <div
+                  key={index}
+                  className={`bg-white border-2 rounded-xl p-6 text-center transition-all ${
+                    selectedAmount === item.amount
+                      ? 'border-green-nature shadow-lg'
+                      : 'border-gray-200 hover:border-green-nature hover:shadow-lg'
+                  }`}
                 >
-                  Contribuer via PayPal
-                </button>
-              </div>
-            ))}
+                  <div className="text-5xl mb-3">{item.emoji}</div>
+                  <div className="text-3xl font-montserrat font-bold text-green-nature mb-2">
+                    {item.amount} €
+                  </div>
+                  <p className="text-sm font-open-sans text-text-gray mb-4">{item.label}</p>
+                  {selectedAmount === item.amount ? (
+                    <PayPalButtonWrapper amount={item.amount} label={item.label} />
+                  ) : (
+                    <button
+                      onClick={() => setSelectedAmount(item.amount)}
+                      className="w-full bg-blue-ocean hover:bg-blue-600 text-white px-6 py-2 rounded-full font-montserrat font-semibold transition-colors"
+                    >
+                      Sélectionner
+                    </button>
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </PayPalScriptProvider>
 
       <section className="py-20 bg-green-50">
         <div className="container mx-auto px-4 max-w-4xl">
@@ -176,12 +250,12 @@ const Contribute = () => {
             Chaque don compte. Ensemble, construisons l'usine ÉCO-MAT Portugal.
           </h2>
           <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
-            <button
-              onClick={() => handlePayPalClick(100)}
+            <a
+              href="#contribution-section"
               className="bg-green-nature hover:bg-green-hover px-8 py-3 rounded-full font-montserrat font-semibold transition-colors"
             >
               Contribuer maintenant via PayPal
-            </button>
+            </a>
             <Link
               to="/contact"
               className="bg-blue-ocean hover:bg-blue-600 px-8 py-3 rounded-full font-montserrat font-semibold transition-colors"
