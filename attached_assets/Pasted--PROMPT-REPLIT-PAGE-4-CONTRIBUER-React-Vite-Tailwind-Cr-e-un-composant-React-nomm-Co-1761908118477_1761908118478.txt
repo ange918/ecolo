@@ -1,0 +1,163 @@
+💰 PROMPT REPLIT — PAGE 4 : “CONTRIBUER” (React + Vite + Tailwind)
+
+Crée un composant React nommé Contribute.jsx pour la page Contribuer du site ÉCO-MAT Portugal.
+Cette page permet à l’utilisateur de choisir un montant de contribution et de payer via PayPal, avec une mise en page claire, écologique et totalement responsive (mobile, tablette, desktop).
+
+⚙️ Configuration visuelle et technique
+
+Palette (déjà définie) :
+
+Vert nature : #2E8B57
+
+Bleu océan : #1E90FF
+
+Jaune solaire : #FFD700
+
+Vert profond : #1B4D3E
+
+Fond clair : #F8F9FA
+
+Texte principal : #333333
+
+Vert clair hover : #3CB371
+
+Polices :
+
+Titres : Montserrat
+
+Texte : Open Sans
+
+🧱 Structure complète de la page Contribute.jsx
+1️⃣ Section HÉRO
+
+Image de fond : photo inspirante (des mains qui plantent un arbre ou un atelier de recyclage).
+Overlay vert foncé transparent.
+
+Texte centré (blanc) :
+
+Titre : CONTRIBUEZ À UN AVENIR PLUS VERT 🌍
+Sous-texte : Soutenez ÉCO-MAT Portugal et aidez-nous à transformer les déchets en ressources durables.
+Bouton : “Voir les options de contribution ↓”
+
+2️⃣ Section EXPLICATION (Pourquoi contribuer ?)
+
+Fond clair bg-light-bg
+Texte centré :
+
+“Chaque don contribue à la construction d’une usine éco-responsable au Portugal.
+Ensemble, nous pouvons réduire la pollution, créer des emplois et redonner vie aux déchets.”
+
+Grille 3 colonnes (1 colonne sur mobile) avec icônes :
+
+♻️ Recyclage — “Chaque euro aide à collecter et trier les déchets.”
+
+🏭 Infrastructure — “Votre soutien finance l’installation des machines de transformation.”
+
+👷 Emploi local — “Vous contribuez à créer des postes durables pour les communautés locales.”
+
+3️⃣ Section CONTRIBUTION (sélecteur de montants)
+
+Titre : “Choisissez votre montant de contribution”
+Sous-texte : “Votre soutien, quel qu’il soit, fait la différence.”
+
+Grille responsive de 8 cards représentant les paliers :
+
+Montant	Design
+50 €	petit soutien symbolique 💚
+100 €	ami de la planète 🌱
+200 €	protecteur vert 🌿
+500 €	ambassadeur durable 🌍
+1 000 €	bâtisseur éco-responsable 🏗️
+5 000 €	partenaire or 🌟
+10 000 €	investisseur vert 💼
+100 000 €	grand mécène 🌳
+
+💡 Chaque card :
+
+Fond blanc
+
+Bordure verte sur hover
+
+Texte centré avec emoji
+
+Bouton “Contribuer via PayPal”
+
+Lorsqu’on clique, redirection vers un lien PayPal (exemple) :
+
+https://www.paypal.com/donate?business=eco-mat@portugal.org&amount=XXX
+
+
+👉 XXX = montant sélectionné.
+
+Sur mobile :
+Les cards s’affichent en 2 par ligne, avec boutons bien espacés.
+
+4️⃣ Section TRANSPARENCE
+
+Fond vert clair bg-green-50
+Titre : “Transparence et impact”
+Texte :
+
+100 % des contributions sont utilisées pour financer les équipements, la formation et la construction de l’usine.
+
+Chaque trimestre, un rapport public sera publié.
+
+Vous recevrez une attestation de contribution éco-citoyenne.
+
+Icônes de check ✅ à côté de chaque ligne.
+
+5️⃣ Section Témoignages (facultative mais conseillée)
+
+3 mini cards horizontales avec citations :
+
+“Contribuer à ÉCO-MAT, c’est participer à un projet concret pour la planète.” — Inès P., Lisbonne
+
+“Une initiative écologique et inspirante, fière d’en faire partie.” — João M., Porto
+
+“Un vrai projet d’avenir. Bravo à l’équipe !” — Clara D., Paris
+
+6️⃣ Section Call to Action
+
+Fond vert profond #1B4D3E, texte blanc centré.
+
+“Chaque don compte. Ensemble, construisons l’usine ÉCO-MAT Portugal.”
+
+Boutons :
+
+“Contribuer maintenant via PayPal”
+
+“Devenir partenaire institutionnel”
+
+Boutons avec effets hover bg-green-600 hover:bg-green-500.
+
+7️⃣ Footer (identique aux autres pages)
+
+“© 2025 ÉCO-MAT Portugal — Projet soutenu par l’Union Européenne.”
+Liens : Accueil | À propos | Projet | Contact | Mentions légales
+
+⚙️ Fonctionnalités techniques
+
+✅ Composant React réutilisable DonationCard pour les montants.
+
+✅ Intégration PayPal :
+
+Soit via simple redirection (liens fixes),
+
+Soit via SDK officiel :
+
+npm install @paypal/react-paypal-js
+
+
+puis intégration :
+
+<PayPalButtons style={{ layout: "vertical" }} amount={selectedAmount} />
+
+
+✅ Responsivité mobile/tablette avec Tailwind (grid-cols-1 sm:grid-cols-2 md:grid-cols-4).
+
+✅ Animation légère des cards (hover + fadeIn).
+
+✅ SEO :
+
+<title>Contribuer — ÉCO-MAT Portugal</title>
+<meta name="description" content="Soutenez le projet ÉCO-MAT Portugal en contribuant via PayPal. Ensemble, construisons un avenir durable.">
