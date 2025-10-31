@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
+import PartnerBand from '../components/PartnerBand'
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -31,11 +32,11 @@ const Contact = () => {
   }
 
   const socialLinks = [
-    { name: 'Site web', icon: '🌍', url: '#' },
-    { name: 'Facebook', icon: '📘', url: 'https://facebook.com/ecomatportugal' },
-    { name: 'Twitter', icon: '🐦', url: 'https://twitter.com/ecomatpt' },
-    { name: 'Instagram', icon: '📸', url: 'https://instagram.com/ecomat.pt' },
-    { name: 'LinkedIn', icon: '💼', url: 'https://linkedin.com/company/ecomatportugal' },
+    { name: 'Site web', icon: 'bx bxs-globe', url: '#', color: 'text-green-600' },
+    { name: 'Facebook', icon: 'bx bxl-facebook-circle', url: 'https://facebook.com/ecomatportugal', color: 'text-blue-600' },
+    { name: 'Twitter', icon: 'bx bxl-twitter', url: 'https://twitter.com/ecomatpt', color: 'text-sky-500' },
+    { name: 'Instagram', icon: 'bx bxl-instagram', url: 'https://instagram.com/ecomat.pt', color: 'text-pink-600' },
+    { name: 'LinkedIn', icon: 'bx bxl-linkedin-square', url: 'https://linkedin.com/company/ecomatportugal', color: 'text-blue-700' },
   ]
 
   return (
@@ -68,34 +69,34 @@ const Contact = () => {
               </h2>
               <div className="space-y-6">
                 <div className="flex items-start">
-                  <span className="text-3xl mr-4">📍</span>
+                  <i className='bx bxs-map text-green-nature text-3xl mr-4'></i>
                   <div>
-                    <h3 className="font-montserrat font-semibold text-lg mb-1">Adresse</h3>
-                    <p className="text-text-gray font-open-sans">
+                    <h3 className="font-semibold text-lg mb-1">Adresse</h3>
+                    <p className="text-text-gray">
                       Av. da Liberdade 100<br />
                       1250-140 Lisboa, Portugal
                     </p>
                   </div>
                 </div>
                 <div className="flex items-start">
-                  <span className="text-3xl mr-4">☎️</span>
+                  <i className='bx bxs-phone text-green-nature text-3xl mr-4'></i>
                   <div>
-                    <h3 className="font-montserrat font-semibold text-lg mb-1">Téléphone</h3>
-                    <p className="text-text-gray font-open-sans">+351 912 345 678</p>
+                    <h3 className="font-semibold text-lg mb-1">Téléphone</h3>
+                    <p className="text-text-gray">+351 912 345 678</p>
                   </div>
                 </div>
                 <div className="flex items-start">
-                  <span className="text-3xl mr-4">📧</span>
+                  <i className='bx bxs-envelope text-green-nature text-3xl mr-4'></i>
                   <div>
-                    <h3 className="font-montserrat font-semibold text-lg mb-1">Email</h3>
-                    <p className="text-text-gray font-open-sans">contact@eco-mat.pt</p>
+                    <h3 className="font-semibold text-lg mb-1">Email</h3>
+                    <p className="text-text-gray">contact@eco-mat.pt</p>
                   </div>
                 </div>
                 <div className="flex items-start">
-                  <span className="text-3xl mr-4">🕓</span>
+                  <i className='bx bxs-time text-green-nature text-3xl mr-4'></i>
                   <div>
-                    <h3 className="font-montserrat font-semibold text-lg mb-1">Horaires</h3>
-                    <p className="text-text-gray font-open-sans">Lundi - Vendredi : 9h - 18h</p>
+                    <h3 className="font-semibold text-lg mb-1">Horaires</h3>
+                    <p className="text-text-gray">Lundi - Vendredi : 9h - 18h</p>
                   </div>
                 </div>
               </div>
@@ -230,10 +231,10 @@ const Contact = () => {
                 href={social.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex flex-col items-center bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow w-32"
+                className="flex flex-col items-center bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-all duration-300 w-32 group"
               >
-                <span className="text-5xl mb-2">{social.icon}</span>
-                <span className="font-montserrat font-semibold text-text-gray">{social.name}</span>
+                <i className={`${social.icon} ${social.color} text-5xl mb-2 group-hover:scale-110 transition-transform`}></i>
+                <span className="font-semibold text-text-gray">{social.name}</span>
               </a>
             ))}
           </div>
@@ -242,25 +243,27 @@ const Contact = () => {
 
       <section className="py-20 bg-green-deep text-white">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-montserrat font-bold mb-4">
+          <h2 className="text-3xl font-bold mb-4">
             Envie de soutenir notre mission ?
           </h2>
           <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
             <Link
               to="/project"
-              className="bg-white text-green-deep hover:bg-gray-100 px-8 py-3 rounded-full font-montserrat font-semibold transition-colors"
+              className="bg-white text-green-deep hover:bg-gray-100 px-8 py-3 rounded-full font-semibold transition-colors"
             >
               Découvrir le projet
             </Link>
             <Link
               to="/contribute"
-              className="bg-green-nature hover:bg-green-hover px-8 py-3 rounded-full font-montserrat font-semibold transition-colors"
+              className="bg-green-nature hover:bg-green-hover px-8 py-3 rounded-full font-semibold transition-colors"
             >
               Contribuer maintenant
             </Link>
           </div>
         </div>
       </section>
+
+      <PartnerBand />
 
       <Footer />
     </div>
