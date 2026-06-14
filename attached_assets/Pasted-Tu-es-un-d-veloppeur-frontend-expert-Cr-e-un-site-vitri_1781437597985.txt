@@ -1,0 +1,336 @@
+Tu es un développeur frontend expert. Crée un site vitrine complet et professionnel pour l'entreprise "Senan Concept" en utilisant React + Vite + Tailwind CSS. Voici toutes les instructions à suivre à la lettre.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🏢 INFORMATIONS SUR L'ENTREPRISE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Nom : Senan Concept
+Spécialité : 
+- Réalisation de tenues artistiques (costumerie)
+- Décoration d'intérieure
+- Fabrication artisanale de poufs
+
+Réalisations emblématiques :
+- Costumes du Trône de Béhanzin (royauté du Bénin)
+- Festival des Masques
+- Vodouns Days (cérémonies spirituelles)
+
+Localisation : Cotonou, Bénin
+Email : contact@senanconcept.com
+Téléphone : +229 XX XX XX XX
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🛠️ STACK TECHNIQUE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+- React 18 + Vite
+- Tailwind CSS (configuration personnalisée avec les couleurs du projet)
+- Framer Motion (animations et transitions)
+- React Scroll (navigation fluide entre sections)
+- Google Fonts : Cormorant Garamond (titres) + Jost (corps de texte)
+- Lucide React (icônes uniquement)
+- Aucune autre librairie UI (pas de Shadcn, pas de MUI, pas de DaisyUI)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🎨 DESIGN SYSTEM — À RESPECTER STRICTEMENT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Palette de couleurs :
+--or: #C9A84C
+--or-light: #E8D5A0
+--or-pale: #F5EDD8
+--noir: #0A0A0A
+--noir-2: #111111
+--noir-3: #1A1A1A
+--blanc: #F5F0E8
+--texte: #B8B0A0
+
+Dans tailwind.config.js, déclare ces couleurs :
+colors: {
+  or: '#C9A84C',
+  'or-light': '#E8D5A0',
+  'or-pale': '#F5EDD8',
+  noir: '#0A0A0A',
+  'noir-2': '#111111',
+  'noir-3': '#1A1A1A',
+  blanc: '#F5F0E8',
+  texte: '#B8B0A0',
+}
+
+Typographie :
+- Titres : font-family 'Cormorant Garamond', serif — poids 300 et 600
+- Corps : font-family 'Jost', sans-serif — poids 300, 400 et 500
+- Ajoute dans index.html : 
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+Style général :
+- Fond noir profond (#0A0A0A)
+- Textes clairs sur fond sombre
+- Accents dorés (#C9A84C) sur titres, bordures, boutons CTA
+- Bordures fines : 1px solid rgba(201,168,76,0.15)
+- Aucun border-radius sur les boutons (design carré/angulaire)
+- Espacement généreux entre sections (py-24 minimum)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📁 STRUCTURE DES FICHIERS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+src/
+├── App.jsx
+├── main.jsx
+├── index.css
+├── components/
+│   ├── Navbar.jsx
+│   ├── Hero.jsx
+│   ├── About.jsx
+│   ├── Services.jsx
+│   ├── Realisations.jsx
+│   ├── Contact.jsx
+│   └── Footer.jsx
+└── assets/
+    └── images/ (dossier pour les photos — laisser vide avec placeholder SVG)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🧱 COMPOSANTS À CRÉER — DÉTAIL COMPLET
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+─────────────────────────────────────
+1. Navbar.jsx
+─────────────────────────────────────
+- Position fixe en haut (fixed top-0 z-50)
+- Fond : rgba(10,10,10,0.92) avec backdrop-blur
+- Bordure inférieure : 1px solid rgba(201,168,76,0.12)
+- Logo à gauche : "SENAN" en or + "CONCEPT" en blanc — font Cormorant Garamond, uppercase, letter-spacing large
+- Liens de navigation au centre : Services | Réalisations | À propos — en Jost 300, uppercase, letter-spacing, couleur texte (#B8B0A0), hover couleur or
+- Bouton CTA à droite : "Contactez-nous" — border 1px solid or, couleur or, hover background or couleur noir
+- Au scroll (useEffect + window scroll > 50px), la navbar devient légèrement plus opaque
+- Navigation smooth scroll vers les sections (utilise react-scroll Link ou ancres classiques)
+- Framer Motion : fadeInDown sur mount (opacity 0 → 1, y -20 → 0)
+
+─────────────────────────────────────
+2. Hero.jsx
+─────────────────────────────────────
+- Hauteur : min-h-screen
+- Fond : #0A0A0A avec un radial-gradient très subtil doré au centre (opacity 0.05)
+- Contenu centré verticalement et horizontalement
+- Eyebrow text : "Art · Costume · Décoration" — couleur or, uppercase, letter-spacing 0.35em, font-size 0.72rem
+- H1 en Cormorant Garamond 300 : "L'art du costume" + saut de ligne + "à l'âme africaine" — mot "africaine" en italic et couleur or
+- Taille du H1 : clamp(3rem, 8vw, 6.5rem)
+- Sous-titre (p) : "Tenues artistiques sur-mesure, décoration d'intérieure et création de poufs — au service des rois, des festivals et des mémoires culturelles." — couleur texte, max-w-xl, centré
+- Deux boutons :
+  * "Nos réalisations" → fond or, couleur noir, hover fond or-light
+  * "Prendre contact" → transparent, border 1px solid rgba(245,240,232,0.3), hover border or couleur or
+- Indicateur de scroll en bas : ligne verticale animée (animation keyframe CSS scaleY 0→1) + texte "Défiler" en uppercase tiny
+- Framer Motion staggered : eyebrow (delay 0.2), H1 (delay 0.4), sous-titre (delay 0.6), boutons (delay 0.8) — tous en fadeInUp (y: 30 → 0, opacity 0 → 1)
+
+─────────────────────────────────────
+3. About.jsx
+─────────────────────────────────────
+- id="about"
+- Fond : #111111
+- Layout : 2 colonnes (grid grid-cols-1 lg:grid-cols-2 gap-24) — colonne texte à gauche, visuel à droite
+- Colonne gauche :
+  * Eyebrow "Notre identité" en or
+  * H2 Cormorant Garamond : "L'excellence au service de la culture" (multiligne)
+  * Divider : 60px wide, 1px height, bg or, mt-6 mb-10
+  * 3 paragraphes de texte décrivant l'entreprise (couleur texte, font-weight 300, line-height 1.9)
+  * Grille de stats 2x2 avec border 1px or (opacity 0.15) :
+    - "3+" / "Festivals majeurs"
+    - "100%" / "Fait à la main"
+    - "15+" / "Années d'expérience"
+    - "BJ" / "Bénin, Afrique de l'Ouest"
+  * Les chiffres sont en Cormorant Garamond 300, font-size 3rem, couleur or
+  * Les labels en Jost uppercase tiny, couleur texte
+- Colonne droite :
+  * Rectangle sombre (bg noir-3) avec border 1px or (opacity 0.2), hauteur 500px
+  * À l'intérieur : SVG décoratif d'une silhouette en costume (opacity 0.1) centré
+  * En bas du rectangle : bandeau sombre avec citation en italique Cormorant Garamond : "Habiller une culture, c'est honorer une identité." — couleur or-light
+- Framer Motion : fadeInLeft pour colonne texte, fadeInRight pour visuel (triggerés au scroll avec whileInView)
+
+─────────────────────────────────────
+4. Services.jsx
+─────────────────────────────────────
+- id="services"
+- Fond : #0A0A0A
+- Section label "Ce que nous faisons" + H2 "Nos domaines de création"
+- Grille 3 colonnes séparées par des lignes or (1px, opacity 0.1) :
+
+Service 1 — Tenues artistiques
+  numéro : "01"
+  icône : SVG inline d'une robe/costume (stroke or, fill none)
+  titre : "Tenues artistiques"
+  desc : "Costumes royaux, tenues de cérémonie et créations scéniques conçus avec des matières nobles et un soin du détail exceptionnel. Chaque pièce est une œuvre unique."
+
+Service 2 — Décoration d'intérieure
+  numéro : "02"
+  icône : SVG inline d'une fenêtre/intérieur
+  titre : "Décoration d'intérieure"
+  desc : "Des espaces réinventés avec des pièces artisanales uniques, alliant l'esthétique africaine contemporaine à une élégance intemporelle."
+
+Service 3 — Réalisation de poufs
+  numéro : "03"
+  icône : SVG inline d'un pouf
+  titre : "Réalisation de poufs"
+  desc : "Poufs artisanaux fabriqués à la main, ornés de motifs traditionnels africains — une touche d'authenticité chaleureuse pour vos intérieurs."
+
+- Chaque carte service :
+  * Padding 2.5rem 2rem
+  * Numéro : 0.65rem uppercase or opacity 0.6, mb-6
+  * Icône : SVG 44x44px, stroke or, fill none, stroke-width 1.5, mb-6
+  * Titre : Cormorant Garamond 400 1.4rem mb-3
+  * Desc : Jost 300 0.85rem couleur texte line-height 1.8
+  * Hover : background passe à #1A1A1A + pseudo-element ::after ligne or apparaît en bas (width 0 → 100%, transition 0.4s)
+- Framer Motion : staggered fadeInUp sur les 3 cartes (whileInView, delay 0, 0.15, 0.3)
+
+─────────────────────────────────────
+5. Realisations.jsx
+─────────────────────────────────────
+- id="realisations"
+- Fond : #111111
+- Section label "Portfolio" + H2 "Nos réalisations emblématiques"
+- Paragraphe intro (max-w-xl) : "De la cour royale de Béhanzin aux festivals sacrés, nos créations ont marqué les plus grands évènements culturels du Bénin."
+- Grille 3 colonnes :
+
+Réalisation 1 — Trône de Béhanzin
+  tag : "Costumerie royale"
+  titre : "Trône de Béhanzin"
+  sous-titre : "Costumes de cour de la royauté Fon"
+  image : div bg #1A1A1A avec SVG décoratif silhouette royale centré (opacity 0.08)
+
+Réalisation 2 — Festival des Masques
+  tag : "Festival culturel"
+  titre : "Festival des Masques"
+  sous-titre : "Tenues rituelles & masques sacrés"
+  image : div bg #1A1A1A avec SVG décoratif masque africain (opacity 0.08)
+
+Réalisation 3 — Vodouns Days
+  tag : "Cérémonie spirituelle"
+  titre : "Vodouns Days"
+  sous-titre : "Parures & tenues des cultes vodoun"
+  image : div bg #1A1A1A avec SVG décoratif silhouette cérémonielle (opacity 0.08)
+
+- Chaque carte réalisation :
+  * aspect-ratio 3/4 (hauteur environ 360px)
+  * position relative, overflow hidden
+  * Le SVG en fond occupe tout l'espace (position absolute inset-0, display flex items-center justify-center)
+  * En bas : bandeau info (position absolute bottom-0 left-0 right-0) avec border-top 1px or (opacity 0.2) + gradient fond noir transparent
+  * Tag : 0.62rem uppercase letter-spacing 0.25em couleur or mb-1
+  * Titre : Cormorant Garamond 1.1rem 400
+  * Sous-titre : Jost 0.78rem couleur texte
+  * Hover : le SVG de fond monte légèrement en opacité (0.08 → 0.15)
+- Framer Motion : fadeInUp staggered (whileInView)
+
+─────────────────────────────────────
+6. Contact.jsx
+─────────────────────────────────────
+- id="contact"
+- Fond : #0A0A0A
+- Layout 2 colonnes (grid-cols-1 lg:grid-cols-2 gap-24) :
+
+Colonne gauche :
+  * Section label "Travaillons ensemble"
+  * H2 "Concrétisez votre projet"
+  * Divider or
+  * Paragraphe intro
+  * Liste d'infos de contact avec points dorés :
+    - 📍 Localisation : Cotonou, Bénin
+    - 📧 Email : contact@senanconcept.com
+    - 📞 Téléphone : +229 XX XX XX XX
+    - 🕐 Disponibilité : Lun – Ven, 8h – 18h
+  * Chaque item : flex row, petit cercle or (6x6px rounded-full) + texte (label uppercase tiny or + valeur blanc)
+
+Colonne droite — Formulaire :
+  Champs : Votre nom | Email | Type de projet (select : Tenue artistique / Décoration d'intérieure / Réalisation de poufs / Événement & Festival / Autre) | Message (textarea)
+  
+  Style des champs :
+  * Label : 0.68rem uppercase letter-spacing 0.15em couleur or mb-2
+  * Input/Textarea/Select : background transparent, border-bottom 1px solid rgba(201,168,76,0.25), padding 0.7rem 0, couleur blanc, font Jost 300 0.9rem, outline none
+  * Focus : border-bottom passe à or
+  * Aucun border-radius
+  
+  Bouton submit : "Envoyer ma demande"
+  * Fond or, couleur noir, padding 0.9rem, uppercase, letter-spacing, width 100%, font Jost 500 0.82rem
+  * Hover : fond or-light
+  
+  - Le formulaire est géré avec useState (pas de backend, juste state local + console.log au submit + affichage message succès)
+
+─────────────────────────────────────
+7. Footer.jsx
+─────────────────────────────────────
+- Fond : #111111
+- Border-top : 1px solid rgba(201,168,76,0.12)
+- Flex row justify-between align-center wrap gap-6
+- Logo gauche : "SENAN CONCEPT" Cormorant Garamond or uppercase
+- Texte centre : "© 2025 Senan Concept — Tous droits réservés" — Jost tiny couleur texte
+- Liens droite : Services | Réalisations | Contact — uppercase tiny couleur texte hover or
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+⚙️ APP.JSX
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Importe et assemble tous les composants dans cet ordre :
+<Navbar />
+<Hero />
+<About />
+<Services />
+<Realisations />
+<Contact />
+<Footer />
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🌐 INDEX.CSS — STYLES GLOBAUX
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { background: #0A0A0A; color: #F5F0E8; font-family: 'Jost', sans-serif; overflow-x: hidden; }
+h1, h2, h3, h4 { font-family: 'Cormorant Garamond', serif; }
+
+.section-label {
+  font-size: 0.68rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: #C9A84C;
+  margin-bottom: 0.75rem;
+}
+
+.divider {
+  width: 60px;
+  height: 1px;
+  background: #C9A84C;
+  margin: 1.5rem 0 2.5rem;
+}
+
+@keyframes scrollLine {
+  0% { opacity: 0; transform: scaleY(0); transform-origin: top; }
+  50% { opacity: 1; transform: scaleY(1); transform-origin: top; }
+  100% { opacity: 0; transform: scaleY(1); transform-origin: bottom; }
+}
+
+.scroll-line { animation: scrollLine 2s ease-in-out infinite; }
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📦 DÉPENDANCES À INSTALLER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+npm install framer-motion lucide-react react-scroll
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✅ RÈGLES IMPORTANTES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Aucune image externe — utilise uniquement des SVG inline ou des divs colorées comme placeholders pour les photos
+2. Tout le texte est en FRANÇAIS
+3. Aucune librairie UI externe sauf celles listées (pas Shadcn, pas MUI)
+4. Le site doit être 100% responsive (mobile first)
+5. Toutes les animations Framer Motion utilisent whileInView avec viewport={{ once: true }} pour ne se déclencher qu'une fois
+6. Le bouton "Contactez-nous" dans la Navbar scrolle vers la section #contact
+7. Les couleurs viennent UNIQUEMENT du design system défini — pas de gris standard Tailwind
+8. Chaque section a son propre fichier composant isolé
+9. Aucun console.error ne doit apparaître au lancement
+
+Lance l'application avec : npm run dev
