@@ -1,10 +1,19 @@
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
-import { Link } from 'react-scroll'
+import { Link as ScrollLink } from 'react-scroll'
+import { Link as RouterLink, useLocation } from 'react-router-dom'
+
+const NAV_SECTIONS = [
+  { label: 'Services', to: 'services' },
+  { label: 'Réalisations', to: 'realisations' },
+  { label: 'Contact', to: 'contact' },
+]
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
+  const location = useLocation()
+  const isHome = location.pathname === '/'
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50)
@@ -12,11 +21,28 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  const navLinks = [
-    { label: 'Services', to: 'services' },
-    { label: 'Réalisations', to: 'realisations' },
-    { label: 'Qui sommes-nous', to: 'about' },
-  ]
+  useEffect(() => { setMenuOpen(false) }, [location])
+
+  const SectionLink = ({ to, label, className, style, onClick }) => {
+    if (isHome) {
+      return (
+        <ScrollLink to={to} smooth duration={700} offset={-64}
+          className={className} style={style} onClick={onClick}>
+          {label}
+        </ScrollLink>
+      )
+    }
+    return (
+      <RouterLink to={`/#${to}`} className={className} style={style} onClick={onClick}>
+        {label}
+      </RouterLink>
+    )
+  }
+
+  const linkStyle = {
+    fontFamily: 'Jost, sans-serif', fontWeight: 400, fontSize: '0.92rem', cursor: 'pointer',
+    color: '#B8B0A0', textDecoration: 'none', transition: 'color 0.25s',
+  }
 
   return (
     <motion.nav
@@ -33,68 +59,42 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-12 h-16 flex items-center justify-between">
         {/* Logo */}
-        <Link to="hero" smooth duration={600} className="cursor-pointer flex-shrink-0">
-          <span
-            style={{
-              fontFamily: 'Jost, sans-serif',
-              fontWeight: 700,
-              fontSize: '1.35rem',
-              letterSpacing: '0.1em',
-              textTransform: 'uppercase',
-              color: '#C9A84C',
-            }}
-          >
+        <RouterLink to="/" style={{ textDecoration: 'none' }}>
+          <span style={{ fontFamily: 'Jost, sans-serif', fontWeight: 700, fontSize: '1.3rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#C9A84C' }}>
             SENAN<span style={{ color: '#F5F0E8', fontWeight: 300 }}> CONCEPT</span>
           </span>
-        </Link>
+        </RouterLink>
 
         {/* Desktop nav */}
         <div className="hidden md:flex items-center gap-10">
-          {navLinks.map((link) => (
-            <Link
-              key={link.to}
-              to={link.to}
-              smooth
-              duration={600}
-              offset={-64}
-              className="cursor-pointer text-texte hover:text-blanc transition-colors duration-300"
-              style={{ fontFamily: 'Jost, sans-serif', fontWeight: 400, fontSize: '0.92rem' }}
-            >
-              {link.label}
-            </Link>
+          {NAV_SECTIONS.map(link => (
+            <SectionLink key={link.to} to={link.to} label={link.label}
+              style={linkStyle}
+              className="hover:text-blanc"
+            />
           ))}
-        </div>
-
-        {/* CTA pill */}
-        <div className="hidden md:block">
-          <Link
-            to="contact"
-            smooth
-            duration={600}
-            offset={-64}
-            className="cursor-pointer px-6 py-2.5 transition-all duration-300"
-            style={{
-              border: '1.5px solid #C9A84C',
-              color: '#C9A84C',
-              fontFamily: 'Jost, sans-serif',
-              fontWeight: 500,
-              fontSize: '0.88rem',
-              borderRadius: '9999px',
-              display: 'inline-block',
-            }}
-            onMouseEnter={e => { e.currentTarget.style.background = '#C9A84C'; e.currentTarget.style.color = '#0A0A0A' }}
-            onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#C9A84C' }}
+          <RouterLink to="/qui-sommes-nous"
+            style={{ ...linkStyle, color: location.pathname === '/qui-sommes-nous' ? '#C9A84C' : '#B8B0A0' }}
           >
-            Contactez-nous
-          </Link>
+            Qui sommes-nous
+          </RouterLink>
         </div>
 
-        {/* Mobile burger */}
-        <button
-          className="md:hidden flex flex-col gap-1.5 p-2"
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Menu"
-        >
+        {/* CTA */}
+        <div className="hidden md:block">
+          <SectionLink to="contact" label="Contactez-nous"
+            style={{
+              border: '1.5px solid #C9A84C', color: '#C9A84C',
+              fontFamily: 'Jost, sans-serif', fontWeight: 500, fontSize: '0.88rem',
+              borderRadius: '9999px', padding: '0.45rem 1.3rem',
+              cursor: 'pointer', display: 'inline-block', textDecoration: 'none',
+              transition: 'all 0.25s',
+            }}
+          />
+        </div>
+
+        {/* Burger */}
+        <button className="md:hidden flex flex-col gap-1.5 p-2" onClick={() => setMenuOpen(!menuOpen)} aria-label="Menu">
           <span className={`block h-px w-6 bg-or transition-all duration-300 ${menuOpen ? 'rotate-45 translate-y-2' : ''}`} />
           <span className={`block h-px w-6 bg-or transition-all duration-300 ${menuOpen ? 'opacity-0' : ''}`} />
           <span className={`block h-px w-6 bg-or transition-all duration-300 ${menuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
@@ -103,32 +103,24 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       {menuOpen && (
-        <div className="md:hidden px-6 pb-6 flex flex-col gap-6" style={{ background: 'rgba(10,10,10,0.98)' }}>
-          {navLinks.map((link) => (
-            <Link
-              key={link.to}
-              to={link.to}
-              smooth
-              duration={600}
-              offset={-64}
-              onClick={() => setMenuOpen(false)}
-              className="cursor-pointer text-texte hover:text-blanc transition-colors duration-300"
-              style={{ fontFamily: 'Jost, sans-serif', fontWeight: 400, fontSize: '0.92rem' }}
-            >
-              {link.label}
-            </Link>
+        <div className="md:hidden px-6 pb-6 flex flex-col gap-5" style={{ background: 'rgba(10,10,10,0.98)' }}>
+          {NAV_SECTIONS.map(link => (
+            <SectionLink key={link.to} to={link.to} label={link.label}
+              style={linkStyle} onClick={() => setMenuOpen(false)} />
           ))}
-          <Link
-            to="contact"
-            smooth
-            duration={600}
-            offset={-64}
+          <RouterLink to="/qui-sommes-nous" onClick={() => setMenuOpen(false)}
+            style={{ ...linkStyle, color: '#B8B0A0', textDecoration: 'none' }}>
+            Qui sommes-nous
+          </RouterLink>
+          <SectionLink to="contact" label="Contactez-nous"
+            style={{
+              border: '1.5px solid #C9A84C', color: '#C9A84C',
+              fontFamily: 'Jost, sans-serif', fontSize: '0.88rem',
+              borderRadius: '9999px', padding: '0.5rem 1.2rem',
+              textAlign: 'center', textDecoration: 'none', display: 'block',
+            }}
             onClick={() => setMenuOpen(false)}
-            className="cursor-pointer text-center py-2.5"
-            style={{ border: '1.5px solid #C9A84C', color: '#C9A84C', fontFamily: 'Jost, sans-serif', fontSize: '0.88rem', borderRadius: '9999px' }}
-          >
-            Contactez-nous
-          </Link>
+          />
         </div>
       )}
     </motion.nav>
