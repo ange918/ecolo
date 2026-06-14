@@ -15,7 +15,7 @@ export default function Navbar() {
   const navLinks = [
     { label: 'Services', to: 'services' },
     { label: 'Réalisations', to: 'realisations' },
-    { label: 'À propos', to: 'about' },
+    { label: 'Qui sommes-nous', to: 'about' },
   ]
 
   return (
@@ -24,8 +24,8 @@ export default function Navbar() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: 'easeOut' }}
       style={{
-        background: scrolled ? 'rgba(10,10,10,0.98)' : 'rgba(10,10,10,0.92)',
-        borderBottom: '1px solid rgba(201,168,76,0.12)',
+        background: scrolled ? 'rgba(10,10,10,0.98)' : 'rgba(10,10,10,0.85)',
+        borderBottom: '1px solid rgba(201,168,76,0.1)',
         backdropFilter: 'blur(12px)',
         WebkitBackdropFilter: 'blur(12px)',
       }}
@@ -35,11 +35,16 @@ export default function Navbar() {
         {/* Logo */}
         <Link to="hero" smooth duration={600} className="cursor-pointer flex-shrink-0">
           <span
-            style={{ fontFamily: '"Cormorant Garamond", serif', letterSpacing: '0.25em' }}
-            className="text-xl font-light uppercase"
+            style={{
+              fontFamily: 'Jost, sans-serif',
+              fontWeight: 700,
+              fontSize: '1.35rem',
+              letterSpacing: '0.1em',
+              textTransform: 'uppercase',
+              color: '#C9A84C',
+            }}
           >
-            <span className="text-or">SENAN</span>
-            <span className="text-blanc ml-2">CONCEPT</span>
+            SENAN<span style={{ color: '#F5F0E8', fontWeight: 300 }}> CONCEPT</span>
           </span>
         </Link>
 
@@ -52,30 +57,30 @@ export default function Navbar() {
               smooth
               duration={600}
               offset={-64}
-              className="cursor-pointer text-texte hover:text-or transition-colors duration-300"
-              style={{ fontFamily: 'Jost, sans-serif', fontWeight: 300, fontSize: '0.78rem', letterSpacing: '0.15em', textTransform: 'uppercase' }}
+              className="cursor-pointer text-texte hover:text-blanc transition-colors duration-300"
+              style={{ fontFamily: 'Jost, sans-serif', fontWeight: 400, fontSize: '0.92rem' }}
             >
               {link.label}
             </Link>
           ))}
         </div>
 
-        {/* CTA */}
+        {/* CTA pill */}
         <div className="hidden md:block">
           <Link
             to="contact"
             smooth
             duration={600}
             offset={-64}
-            className="cursor-pointer px-5 py-2 transition-all duration-300"
+            className="cursor-pointer px-6 py-2.5 transition-all duration-300"
             style={{
-              border: '1px solid #C9A84C',
+              border: '1.5px solid #C9A84C',
               color: '#C9A84C',
               fontFamily: 'Jost, sans-serif',
-              fontWeight: 400,
-              fontSize: '0.75rem',
-              letterSpacing: '0.15em',
-              textTransform: 'uppercase',
+              fontWeight: 500,
+              fontSize: '0.88rem',
+              borderRadius: '9999px',
+              display: 'inline-block',
             }}
             onMouseEnter={e => { e.currentTarget.style.background = '#C9A84C'; e.currentTarget.style.color = '#0A0A0A' }}
             onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#C9A84C' }}
@@ -107,8 +112,8 @@ export default function Navbar() {
               duration={600}
               offset={-64}
               onClick={() => setMenuOpen(false)}
-              className="cursor-pointer text-texte hover:text-or transition-colors duration-300"
-              style={{ fontFamily: 'Jost, sans-serif', fontWeight: 300, fontSize: '0.78rem', letterSpacing: '0.15em', textTransform: 'uppercase' }}
+              className="cursor-pointer text-texte hover:text-blanc transition-colors duration-300"
+              style={{ fontFamily: 'Jost, sans-serif', fontWeight: 400, fontSize: '0.92rem' }}
             >
               {link.label}
             </Link>
@@ -119,8 +124,8 @@ export default function Navbar() {
             duration={600}
             offset={-64}
             onClick={() => setMenuOpen(false)}
-            className="cursor-pointer text-center py-2 mt-2"
-            style={{ border: '1px solid #C9A84C', color: '#C9A84C', fontFamily: 'Jost, sans-serif', fontSize: '0.75rem', letterSpacing: '0.15em', textTransform: 'uppercase' }}
+            className="cursor-pointer text-center py-2.5"
+            style={{ border: '1.5px solid #C9A84C', color: '#C9A84C', fontFamily: 'Jost, sans-serif', fontSize: '0.88rem', borderRadius: '9999px' }}
           >
             Contactez-nous
           </Link>
