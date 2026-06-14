@@ -1,74 +1,148 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
+const collaborators = [
+  { nom: 'EFAMBE', role: 'Artiste & Performeur' },
+  { nom: 'Pepe Oleka', role: 'Artiste musical' },
+  { nom: 'Sagbohan Danialou', role: 'Musicien traditionnel' },
+  { nom: 'Stéphanie MONTCHO', role: 'Événementiel' },
+  { nom: 'Maeva Gomez', role: 'Mode artisanale' },
+  { nom: 'Trône de Béhanzin', role: 'Maison royale du Bénin' },
+  { nom: 'Festival des Masques', role: 'Festival culturel' },
+  { nom: 'Vodouns Days', role: 'Cérémonie spirituelle' },
+]
+
 const testimonials = [
   {
     nom: 'EFAMBE',
     titre: 'Artiste & Performeur',
-    texte: "Senan Concept a transformé ma vision artistique en réalité. Les tenues créées pour ma performance étaient d'une précision et d'une beauté à couper le souffle. AndyChris a su capturer l'essence de mon univers. Je ne travaillerai avec personne d'autre.",
     tag: 'Tenue artistique',
+    texte: "Senan Concept a transformé ma vision artistique en réalité. Les tenues créées pour ma performance étaient d'une précision et d'une beauté à couper le souffle. AndyChris a su capturer l'essence de mon univers.",
   },
   {
     nom: 'Pepe Oleka',
     titre: 'Artiste musical',
-    texte: "Pour mon dernier clip, j'avais besoin de costumes qui parlent d'Afrique sans clichés. Senan Concept a répondu au-delà de mes espérances — des pièces modernes, ancrées dans la tradition. Un travail d'orfèvre.",
     tag: 'Costumerie',
+    texte: "Pour mon dernier clip, j'avais besoin de costumes qui parlent d'Afrique sans clichés. Senan Concept a répondu au-delà de mes espérances — des pièces modernes, ancrées dans la tradition. Un travail d'orfèvre.",
   },
   {
     nom: 'Sagbohan Danialou',
-    titre: 'Artiste & Musicien traditionnel',
-    texte: "Les tenues réalisées pour mes prestations scéniques incarnent parfaitement la fierté culturelle du Bénin. Senan Concept comprend la profondeur de notre héritage et sait le magnifier avec talent et respect.",
+    titre: 'Musicien traditionnel',
     tag: 'Tenue de scène',
+    texte: "Les tenues réalisées pour mes prestations scéniques incarnent parfaitement la fierté culturelle du Bénin. Senan Concept comprend la profondeur de notre héritage et sait le magnifier avec talent et respect.",
   },
   {
     nom: 'Stéphanie MONTCHO',
     titre: 'Organisatrice d\'événements',
-    texte: "J'ai fait appel à Senan Concept pour plusieurs événements haut de gamme. Chaque fois, la qualité est irréprochable, les délais respectés et le soin apporté au client exceptionnel. C'est ma référence absolue pour la costumerie au Bénin.",
     tag: 'Événementiel',
+    texte: "J'ai fait appel à Senan Concept pour plusieurs événements haut de gamme. Chaque fois, la qualité est irréprochable, les délais respectés. C'est ma référence absolue pour la costumerie au Bénin.",
   },
   {
     nom: 'Maeva Gomez',
     titre: 'Créatrice de mode',
-    texte: "En tant que professionnelle du secteur, je suis exigeante. Senan Concept m'a impressionnée par la finesse de ses finitions, la qualité des matières choisies et surtout par la créativité débordante d'AndyChris. Un talent rare.",
     tag: 'Mode artisanale',
+    texte: "En tant que professionnelle du secteur, je suis exigeante. Senan Concept m'a impressionnée par la finesse de ses finitions et surtout par la créativité débordante d'AndyChris. Un talent rare.",
   },
   {
     nom: 'Trône de Béhanzin',
     titre: 'Maison royale du Bénin',
-    texte: "Les costumes de cour réalisés par Senan Concept pour les cérémonies du Trône de Béhanzin honorent dignement notre royauté. Chaque pièce témoigne d'une connaissance profonde et d'un respect sincère pour notre histoire.",
     tag: 'Costumerie royale',
+    texte: "Les costumes de cour réalisés par Senan Concept honorent dignement notre royauté. Chaque pièce témoigne d'une connaissance profonde et d'un respect sincère pour notre histoire millénaire.",
   },
   {
     nom: 'Festival des Masques',
     titre: 'Direction artistique',
-    texte: "Depuis notre collaboration avec Senan Concept, nos participants se présentent avec des tenues qui racontent une histoire. L'authenticité des créations contribue à l'âme même de notre festival. Un partenariat que nous renouvelons chaque année.",
     tag: 'Festival culturel',
+    texte: "Depuis notre collaboration avec Senan Concept, nos participants se présentent avec des tenues qui racontent une histoire. L'authenticité des créations contribue à l'âme même de notre festival.",
   },
   {
     nom: 'Vodouns Days',
     titre: 'Comité d\'organisation',
-    texte: "Les parures et tenues cérémonielles créées par Senan Concept pour les Vodouns Days ont élevé notre célébration à un niveau de beauté et de sacralité inédit. AndyChris comprend le spirituel autant que l'esthétique.",
     tag: 'Cérémonie spirituelle',
+    texte: "Les parures et tenues cérémonielles créées pour les Vodouns Days ont élevé notre célébration à un niveau de beauté et de sacralité inédit. AndyChris comprend le spirituel autant que l'esthétique.",
   },
 ]
 
+function TestimonialCard({ t, isActive, onClick }) {
+  return (
+    <div
+      onClick={onClick}
+      className="flex flex-col justify-between cursor-pointer transition-all duration-300"
+      style={{
+        padding: '2rem',
+        background: isActive ? '#1A1A1A' : 'rgba(26,26,26,0.4)',
+        border: `1px solid ${isActive ? 'rgba(201,168,76,0.4)' : 'rgba(201,168,76,0.1)'}`,
+        height: '100%',
+        minHeight: '260px',
+      }}
+    >
+      {/* Quote top */}
+      <div>
+        <p style={{
+          fontFamily: 'Jost, sans-serif',
+          fontSize: '3.5rem',
+          color: isActive ? 'rgba(201,168,76,0.25)' : 'rgba(201,168,76,0.1)',
+          lineHeight: 0.8,
+          marginBottom: '0.8rem',
+          transition: 'color 0.3s',
+        }}>"</p>
+        <p style={{
+          fontFamily: 'Jost, sans-serif',
+          fontWeight: 300,
+          fontSize: '0.88rem',
+          color: isActive ? '#D0C8B8' : '#787068',
+          lineHeight: 1.85,
+          fontStyle: 'italic',
+          transition: 'color 0.3s',
+        }}>
+          {t.texte}
+        </p>
+      </div>
+
+      {/* Footer card */}
+      <div className="flex items-end justify-between gap-3 mt-5 pt-4"
+        style={{ borderTop: `1px solid ${isActive ? 'rgba(201,168,76,0.2)' : 'rgba(201,168,76,0.07)'}` }}>
+        <div>
+          <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 600, fontSize: '0.92rem', color: isActive ? '#F5F0E8' : '#787068', transition: 'color 0.3s' }}>
+            {t.nom}
+          </p>
+          <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 300, fontSize: '0.72rem', color: '#B8B0A0', marginTop: '0.15rem' }}>
+            {t.titre}
+          </p>
+        </div>
+        <span style={{
+          flexShrink: 0,
+          fontFamily: 'Jost, sans-serif',
+          fontWeight: 400,
+          fontSize: '0.62rem',
+          letterSpacing: '0.15em',
+          textTransform: 'uppercase',
+          color: isActive ? '#C9A84C' : 'rgba(201,168,76,0.35)',
+          border: `1px solid ${isActive ? 'rgba(201,168,76,0.35)' : 'rgba(201,168,76,0.12)'}`,
+          padding: '0.2rem 0.6rem',
+          borderRadius: '9999px',
+          transition: 'all 0.3s',
+          whiteSpace: 'nowrap',
+        }}>
+          {t.tag}
+        </span>
+      </div>
+    </div>
+  )
+}
+
 export default function Testimonials() {
+  const [page, setPage] = useState(0)
+  const perPage = 4
+  const totalPages = Math.ceil(testimonials.length / perPage)
+  const visible = testimonials.slice(page * perPage, page * perPage + perPage)
   const [active, setActive] = useState(0)
-  const [dir, setDir] = useState(1)
-
-  const goTo = (index) => {
-    setDir(index > active ? 1 : -1)
-    setActive(index)
-  }
-  const prev = () => goTo(active === 0 ? testimonials.length - 1 : active - 1)
-  const next = () => goTo(active === testimonials.length - 1 ? 0 : active + 1)
-
-  const t = testimonials[active]
 
   return (
     <section id="temoignages" className="py-24 lg:py-32 px-6 lg:px-12" style={{ background: '#0A0A0A' }}>
       <div className="max-w-7xl mx-auto">
 
+        {/* ─── Header ─── */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -82,71 +156,108 @@ export default function Testimonials() {
           </h2>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Liste témoins */}
-          <div className="flex flex-col gap-2">
-            {testimonials.map((t, i) => (
-              <button
+        {/* ─── Collaborateurs ─── */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="mb-16 p-8"
+          style={{ background: '#111111', border: '1px solid rgba(201,168,76,0.1)' }}
+        >
+          <p style={{
+            fontFamily: 'Jost, sans-serif', fontWeight: 600, fontSize: '0.7rem',
+            letterSpacing: '0.3em', textTransform: 'uppercase', color: '#C9A84C',
+            marginBottom: '1.5rem',
+          }}>
+            Nous avons déjà collaboré avec
+          </p>
+          <div className="flex flex-wrap gap-3">
+            {collaborators.map((c, i) => (
+              <motion.div
                 key={i}
-                onClick={() => goTo(i)}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.3, delay: i * 0.06 }}
+                className="flex flex-col"
                 style={{
-                  textAlign: 'left', padding: '0.9rem 1.2rem',
-                  background: active === i ? '#1A1A1A' : 'transparent',
-                  borderLeft: `2px solid ${active === i ? '#C9A84C' : 'rgba(201,168,76,0.1)'}`,
-                  cursor: 'pointer', border: 'none', transition: 'all 0.25s',
-                  borderLeftWidth: '2px', borderLeftStyle: 'solid',
+                  padding: '0.6rem 1.2rem',
+                  background: '#1A1A1A',
+                  border: '1px solid rgba(201,168,76,0.15)',
                 }}
               >
-                <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: active === i ? 600 : 400, fontSize: '0.9rem', color: active === i ? '#F5F0E8' : '#B8B0A0' }}>
-                  {t.nom}
-                </p>
-                <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 300, fontSize: '0.72rem', color: active === i ? '#C9A84C' : 'rgba(184,176,160,0.5)', marginTop: '0.15rem' }}>
-                  {t.tag}
-                </p>
-              </button>
+                <span style={{ fontFamily: 'Jost, sans-serif', fontWeight: 600, fontSize: '0.88rem', color: '#F5F0E8' }}>
+                  {c.nom}
+                </span>
+                <span style={{ fontFamily: 'Jost, sans-serif', fontWeight: 300, fontSize: '0.68rem', color: '#C9A84C', marginTop: '0.1rem' }}>
+                  {c.role}
+                </span>
+              </motion.div>
             ))}
           </div>
+        </motion.div>
 
-          {/* Témoignage actif */}
-          <div className="lg:col-span-2 relative overflow-hidden" style={{ minHeight: '280px' }}>
-            <AnimatePresence mode="wait" custom={dir}>
-              <motion.div
-                key={active}
-                custom={dir}
-                initial={{ opacity: 0, x: dir * 40 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: dir * -40 }}
-                transition={{ duration: 0.4 }}
-                className="p-8 lg:p-12 h-full flex flex-col justify-between"
-                style={{ background: '#111111', border: '1px solid rgba(201,168,76,0.12)' }}
-              >
-                {/* Guillemet décoratif */}
-                <div>
-                  <p style={{ fontFamily: 'Jost, sans-serif', fontSize: '5rem', color: 'rgba(201,168,76,0.15)', lineHeight: 1, marginBottom: '-1rem' }}>"</p>
-                  <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 300, fontSize: '1.05rem', color: '#D0C8B8', lineHeight: 1.9, fontStyle: 'italic' }}>
-                    {t.texte}
-                  </p>
-                </div>
+        {/* ─── Grille des témoignages ─── */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={page}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.4 }}
+            className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8"
+          >
+            {visible.map((t, i) => (
+              <TestimonialCard
+                key={i}
+                t={t}
+                isActive={active === (page * perPage + i)}
+                onClick={() => setActive(page * perPage + i)}
+              />
+            ))}
+          </motion.div>
+        </AnimatePresence>
 
-                <div className="flex items-center justify-between mt-8 pt-6"
-                  style={{ borderTop: '1px solid rgba(201,168,76,0.15)' }}>
-                  <div>
-                    <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 600, fontSize: '1rem', color: '#F5F0E8' }}>{t.nom}</p>
-                    <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 300, fontSize: '0.8rem', color: '#C9A84C', marginTop: '0.2rem' }}>{t.titre}</p>
-                  </div>
-                  <div className="flex gap-2">
-                    <button onClick={prev} style={{ width: '38px', height: '38px', border: '1px solid rgba(201,168,76,0.3)', borderRadius: '50%', background: 'transparent', cursor: 'pointer', color: '#C9A84C', fontSize: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 0.2s' }}
-                      onMouseEnter={e => e.currentTarget.style.background = 'rgba(201,168,76,0.1)'}
-                      onMouseLeave={e => e.currentTarget.style.background = 'transparent'}>←</button>
-                    <button onClick={next} style={{ width: '38px', height: '38px', border: '1px solid rgba(201,168,76,0.3)', borderRadius: '50%', background: 'transparent', cursor: 'pointer', color: '#C9A84C', fontSize: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 0.2s' }}
-                      onMouseEnter={e => e.currentTarget.style.background = 'rgba(201,168,76,0.1)'}
-                      onMouseLeave={e => e.currentTarget.style.background = 'transparent'}>→</button>
-                  </div>
-                </div>
-              </motion.div>
-            </AnimatePresence>
+        {/* ─── Pagination ─── */}
+        {totalPages > 1 && (
+          <div className="flex items-center justify-between">
+            <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 300, fontSize: '0.8rem', color: '#B8B0A0' }}>
+              {page + 1} / {totalPages}
+            </p>
+            <div className="flex gap-2">
+              <button
+                onClick={() => { setPage(p => Math.max(0, p - 1)); setActive(Math.max(0, page - 1) * perPage) }}
+                disabled={page === 0}
+                style={{
+                  width: '40px', height: '40px', borderRadius: '50%',
+                  border: '1px solid rgba(201,168,76,0.3)',
+                  background: 'transparent', cursor: page === 0 ? 'not-allowed' : 'pointer',
+                  color: page === 0 ? 'rgba(201,168,76,0.2)' : '#C9A84C',
+                  fontSize: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  transition: 'all 0.2s',
+                }}
+                onMouseEnter={e => { if (page > 0) e.currentTarget.style.background = 'rgba(201,168,76,0.1)' }}
+                onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
+              >←</button>
+              <button
+                onClick={() => { setPage(p => Math.min(totalPages - 1, p + 1)); setActive(Math.min(totalPages - 1, page + 1) * perPage) }}
+                disabled={page === totalPages - 1}
+                style={{
+                  width: '40px', height: '40px', borderRadius: '50%',
+                  border: '1px solid rgba(201,168,76,0.3)',
+                  background: 'transparent', cursor: page === totalPages - 1 ? 'not-allowed' : 'pointer',
+                  color: page === totalPages - 1 ? 'rgba(201,168,76,0.2)' : '#C9A84C',
+                  fontSize: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  transition: 'all 0.2s',
+                }}
+                onMouseEnter={e => { if (page < totalPages - 1) e.currentTarget.style.background = 'rgba(201,168,76,0.1)' }}
+                onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
+              >→</button>
+            </div>
           </div>
-        </div>
+        )}
+
       </div>
     </section>
   )
