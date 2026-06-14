@@ -102,16 +102,16 @@ export default function AboutPage() {
           <motion.div {...fadeUp(0)} className="mb-16 text-center">
             <SectionLabel>La fondatrice</SectionLabel>
             <h2 style={{ fontFamily: 'Jost, sans-serif', fontWeight: 700, fontSize: 'clamp(1.9rem, 3.5vw, 3rem)', color: '#F5F0E8' }}>
-              AndyChris — <span style={{ color: '#C9A84C' }}>l'âme créatrice</span>
+              Christelle FASSINOU — <span style={{ color: '#C9A84C' }}>AndyChris</span>
             </h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
 
             {/* Portrait SVG */}
-            <motion.div {...fadeUp(0.1)} className="relative" style={{ height: '500px', background: '#111111', border: '1px solid rgba(201,168,76,0.15)' }}>
+            <motion.div {...fadeUp(0.1)} className="relative" style={{ height: '520px', background: '#111111', border: '1px solid rgba(201,168,76,0.15)' }}>
               <div className="absolute inset-0 flex items-center justify-center">
-                <svg width="220" height="340" viewBox="0 0 220 340" fill="none" style={{ opacity: 0.09 }}>
+                <svg width="220" height="340" viewBox="0 0 220 340" fill="none" style={{ opacity: 0.08 }}>
                   <ellipse cx="110" cy="70" rx="35" ry="42" stroke="#C9A84C" strokeWidth="1.5" />
                   <path d="M75 108 C60 140 55 185 60 230 L160 230 C165 185 160 140 145 108 Z" stroke="#C9A84C" strokeWidth="1.5" fill="none" />
                   <path d="M60 230 C42 268 36 305 40 330 L180 330 C184 305 178 268 160 230 Z" stroke="#C9A84C" strokeWidth="1.5" fill="none" />
@@ -123,33 +123,67 @@ export default function AboutPage() {
                   <path d="M74 296 Q110 283 146 296" stroke="#C9A84C" strokeWidth="1" strokeDasharray="5 3" />
                 </svg>
               </div>
+              {/* Stats flottantes */}
+              <div className="absolute top-6 right-6 flex flex-col gap-3">
+                <div className="px-4 py-3 text-right" style={{ background: 'rgba(10,10,10,0.9)', border: '1px solid rgba(201,168,76,0.25)' }}>
+                  <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 700, fontSize: '1.5rem', color: '#C9A84C', lineHeight: 1 }}>+10</p>
+                  <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 300, fontSize: '0.65rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#B8B0A0', marginTop: '0.25rem' }}>Événements</p>
+                </div>
+                <div className="px-4 py-3 text-right" style={{ background: 'rgba(10,10,10,0.9)', border: '1px solid rgba(201,168,76,0.25)' }}>
+                  <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 700, fontSize: '1.5rem', color: '#C9A84C', lineHeight: 1 }}>2ème</p>
+                  <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 300, fontSize: '0.65rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#B8B0A0', marginTop: '0.25rem' }}>Trophée Afrique</p>
+                </div>
+              </div>
               <div className="absolute bottom-0 left-0 right-0 px-8 py-5"
-                style={{ borderTop: '1px solid rgba(201,168,76,0.15)', background: 'linear-gradient(to top, rgba(10,10,10,0.95), transparent)' }}>
-                <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 700, fontSize: '1.1rem', color: '#F5F0E8' }}>AndyChris</p>
-                <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 300, fontSize: '0.82rem', color: '#C9A84C', marginTop: '0.2rem', letterSpacing: '0.1em' }}>Fondatrice & Directrice artistique — Senan Concept</p>
+                style={{ borderTop: '1px solid rgba(201,168,76,0.15)', background: 'linear-gradient(to top, rgba(10,10,10,0.98), transparent)' }}>
+                <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 700, fontSize: '1.1rem', color: '#F5F0E8' }}>Christelle FASSINOU</p>
+                <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 300, fontSize: '0.8rem', color: '#C9A84C', marginTop: '0.2rem', letterSpacing: '0.08em' }}>CEO ANDYCHRIS · Porto-Novo, Bénin</p>
               </div>
             </motion.div>
 
             {/* Texte */}
             <motion.div {...fadeUp(0.15)}>
-              <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 700, fontSize: '1.6rem', color: '#C9A84C', marginBottom: '0.5rem' }}>AndyChris</p>
-              <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 400, fontSize: '0.85rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#B8B0A0', marginBottom: '1.5rem' }}>Fondatrice · Directrice artistique · Styliste</p>
+              <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 700, fontSize: '1.6rem', color: '#C9A84C', marginBottom: '0.3rem' }}>Christelle FASSINOU</p>
+              <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 500, fontSize: '0.95rem', color: '#F5F0E8', marginBottom: '0.2rem' }}>dite <em>AndyChris</em></p>
+              <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 400, fontSize: '0.82rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#B8B0A0', marginBottom: '1.5rem' }}>CEO ANDYCHRIS · Styliste · Accessoiriste · Décoratrice</p>
               <div className="divider" />
-              <div className="space-y-5">
+              <div className="space-y-5 mb-8">
                 {[
-                  "Connue sous le nom d'AndyChris, la fondatrice de Senan Concept est une figure incontournable de la création artisanale au Bénin. Sa trajectoire est celle d'une artiste qui a choisi de mettre son talent au service de l'identité culturelle africaine.",
-                  "Formée aux techniques traditionnelles de la couture et de la décoration, AndyChris a rapidement développé un style unique, mêlant la richesse des motifs ancestraux à une sensibilité esthétique moderne et exigeante.",
-                  "Son travail pour la royauté du Bénin — notamment les costumes du Trône de Béhanzin — lui a valu une reconnaissance nationale et internationale. Elle est aujourd'hui la créatrice de référence pour les grandes cérémonies culturelles du pays.",
-                  "Au-delà de son atelier, AndyChris est une militante de la culture béninoise. Elle croit fermement que valoriser l'artisanat, c'est préserver la mémoire d'un peuple et ouvrir un dialogue avec le monde entier.",
+                  "Christelle FASSINOU, de nationalité béninoise, résidant à Porto-Novo, incarne la fusion parfaite entre tradition et modernité. Passionnée par l'art sous toutes ses formes, elle s'est imposée comme une figure incontournable de la mode afro-contemporaine.",
+                  "En tant que CEO d'ANDYCHRIS, elle explore les matières, les textures et les couleurs pour créer des pièces uniques qui racontent une histoire. Son expertise s'étend de la création d'accessoires minutieux à la décoration d'intérieur, en passant par le costume de scène.",
+                  "Sa maîtrise des techniques artisanales traditionnelles, alliée à une vision contemporaine et audacieuse, lui a permis de collaborer avec les plus grandes figures de la culture béninoise — artistes, musiciens, familles royales et organisateurs de festivals.",
                 ].map((p, i) => (
                   <p key={i} style={{ fontFamily: 'Jost, sans-serif', fontWeight: 300, fontSize: '0.95rem', color: '#B8B0A0', lineHeight: 1.9 }}>{p}</p>
                 ))}
               </div>
-              <blockquote className="mt-8 pl-5" style={{ borderLeft: '3px solid #C9A84C' }}>
+
+              {/* Distinctions */}
+              <div className="flex flex-col gap-3 mb-8">
+                <div className="flex items-start gap-4 p-4" style={{ background: '#111111', border: '1px solid rgba(201,168,76,0.15)' }}>
+                  <div style={{ flexShrink: 0, width: '40px', height: '40px', border: '1px solid #C9A84C', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 700, fontSize: '0.85rem', color: '#C9A84C' }}>+10</p>
+                  </div>
+                  <div>
+                    <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 600, fontSize: '0.88rem', color: '#F5F0E8' }}>Événements majeurs</p>
+                    <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 300, fontSize: '0.8rem', color: '#B8B0A0', marginTop: '0.15rem' }}>Participation à des défilés de mode majeurs à travers l'Afrique</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-4 p-4" style={{ background: '#111111', border: '1px solid rgba(201,168,76,0.15)' }}>
+                  <div style={{ flexShrink: 0, width: '40px', height: '40px', border: '1px solid #C9A84C', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 700, fontSize: '0.7rem', color: '#C9A84C', textAlign: 'center', lineHeight: 1.2 }}>2ème</p>
+                  </div>
+                  <div>
+                    <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 600, fontSize: '0.88rem', color: '#F5F0E8' }}>Trophée meilleur accessoiriste d'Afrique</p>
+                    <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 300, fontSize: '0.8rem', color: '#B8B0A0', marginTop: '0.15rem' }}>2ème place — Côte d'Ivoire</p>
+                  </div>
+                </div>
+              </div>
+
+              <blockquote className="pl-5" style={{ borderLeftWidth: '3px', borderLeftStyle: 'solid', borderLeftColor: '#C9A84C' }}>
                 <p style={{ fontFamily: 'Jost, sans-serif', fontStyle: 'italic', fontWeight: 300, fontSize: '1.05rem', color: '#E8D5A0', lineHeight: 1.7 }}>
                   "Je ne crée pas des vêtements. Je crée des histoires que les corps racontent."
                 </p>
-                <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 500, fontSize: '0.78rem', color: '#C9A84C', marginTop: '0.6rem', letterSpacing: '0.1em' }}>— AndyChris</p>
+                <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 500, fontSize: '0.78rem', color: '#C9A84C', marginTop: '0.6rem', letterSpacing: '0.1em' }}>— Christelle FASSINOU, dite AndyChris</p>
               </blockquote>
             </motion.div>
           </div>
