@@ -2,10 +2,15 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useState } from 'react'
 
 const galleryItems = [
+  { src: '/gallery/img16.jpg', category: 'Costumerie' },
+  { src: '/gallery/img17.jpg', category: 'Costumerie' },
+  { src: '/gallery/img15.jpg', category: 'Costumerie' },
+  { src: '/gallery/img18.jpg', category: 'Cérémonie' },
   { src: '/gallery/img6.jpg', category: 'Costumerie' },
   { src: '/gallery/img10.jpg', category: 'Costumerie' },
   { src: '/gallery/img7.jpg', category: 'Costumerie' },
   { src: '/gallery/img8.jpg', category: 'Costumerie' },
+  { src: '/gallery/img20.jpg', category: 'Festival' },
   { src: '/gallery/img1.jpg', category: 'Festival' },
   { src: '/gallery/img5.jpg', category: 'Festival' },
   { src: '/gallery/img2.jpg', category: 'Festival' },
@@ -13,6 +18,7 @@ const galleryItems = [
   { src: '/gallery/img3.jpg', category: 'Cérémonie' },
   { src: '/gallery/img11.jpg', category: 'Cérémonie' },
   { src: '/gallery/img9.jpg', category: 'Accessoires' },
+  { src: '/gallery/img19.jpg', category: 'Accessoires' },
   { src: '/gallery/img12.jpg', category: 'Accessoires' },
   { src: '/gallery/img13.jpg', category: 'Accessoires' },
   { src: '/gallery/img14.jpg', category: 'Accessoires' },

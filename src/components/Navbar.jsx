@@ -59,10 +59,12 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-12 h-16 flex items-center justify-between">
         {/* Logo */}
-        <RouterLink to="/" style={{ textDecoration: 'none' }}>
-          <span style={{ fontFamily: 'Jost, sans-serif', fontWeight: 700, fontSize: '1.3rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#C9A84C' }}>
-            SENAN<span style={{ color: '#F5F0E8', fontWeight: 300 }}> CONCEPT</span>
-          </span>
+        <RouterLink to="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center' }}>
+          <img
+            src="/logo.jpg"
+            alt="Senan Concept"
+            style={{ height: '40px', width: 'auto', objectFit: 'contain', display: 'block' }}
+          />
         </RouterLink>
 
         {/* Desktop nav */}
