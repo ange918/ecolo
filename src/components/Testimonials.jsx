@@ -23,7 +23,7 @@ const testimonials = [
     nom: 'Pepe Oleka',
     titre: 'Artiste musical',
     tag: 'Accessoires & Décors',
-    texte: "Pour mon dernier clip, j'avais besoin d'accessoires et de décors qui parlent d'Afrique sans clichés. Senan Concept a répondu au-delà de mes espérances — des pièces modernes, ancrées dans la tradition. Un travail d'orfèvre.",
+    texte: "Pour mon dernier clip, j'avais besoin d'accessoires et de décors qui parlent d'Afrique sans clichés. Senan Concept a répondu au-delà de mes espérances : des pièces modernes, ancrées dans la tradition. Un travail d'orfèvre.",
   },
   {
     nom: 'Sagbohan Danialou',

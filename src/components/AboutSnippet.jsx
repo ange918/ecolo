@@ -26,7 +26,7 @@ export default function AboutSnippet() {
           </h2>
           <div className="divider" />
           <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 300, fontSize: '0.95rem', color: '#B8B0A0', lineHeight: 1.9, marginBottom: '1.5rem' }}>
-            Fondée à Porto Novo, Senan Concept est une maison de mode d'exception dédiée à la valorisation du patrimoine culturel béninois. Nos créations habillent les plus grandes cérémonies — de la royauté aux événements, festivals culturels et sacrés.
+            Fondée à Porto Novo, Senan Concept est une maison de mode d'exception dédiée à la valorisation du patrimoine culturel béninois. Nos créations habillent les plus grandes cérémonies, de la royauté aux événements, festivals culturels et sacrés.
           </p>
           <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 300, fontSize: '0.95rem', color: '#B8B0A0', lineHeight: 1.9, marginBottom: '2.5rem' }}>
             Sous la direction de sa fondatrice <strong style={{ color: '#F5F0E8' }}>Christelle FASSINOU</strong>, chaque pièce que nous concevons est une œuvre unique, mêlant tradition et savoir-faire contemporain.
@@ -66,7 +66,7 @@ export default function AboutSnippet() {
               "Habiller une culture, c'est honorer une identité."
             </p>
             <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 500, fontSize: '0.75rem', color: '#C9A84C', marginTop: '0.5rem', letterSpacing: '0.1em' }}>
-              — Christelle FASSINOU, Fondatrice
+              Christelle FASSINOU, Fondatrice
             </p>
           </div>
         </motion.div>

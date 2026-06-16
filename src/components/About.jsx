@@ -37,7 +37,7 @@ export default function About() {
           <div className="space-y-5 mb-12">
             {[
               "Fondée au cœur de Cotonou, Senan Concept est une maison artisanale dédiée à la valorisation du patrimoine culturel béninois à travers la création de tenues artistiques d'exception.",
-              "Nos créations ont habillé les plus grandes cérémonies du Bénin — des costumes de cour de la royauté Fon aux tenues rituelles des Vodouns Days, en passant par les parures du Festival des Masques.",
+              "Nos créations ont habillé les plus grandes cérémonies du Bénin : des costumes de cour de la royauté Fon aux tenues rituelles des Vodouns Days, en passant par les parures du Festival des Masques.",
               "Au-delà de la costumerie, Senan Concept investit également la décoration d'intérieure et la fabrication artisanale de poufs, apportant l'authenticité de l'artisanat africain dans vos espaces de vie.",
             ].map((text, i) => (
               <p key={i} style={{ fontFamily: 'Jost, sans-serif', fontWeight: 300, lineHeight: 1.9, fontSize: '0.95rem', color: '#B8B0A0' }}>

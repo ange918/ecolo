@@ -59,9 +59,9 @@ export default function AboutPage() {
             <Divider />
             <div className="space-y-5">
               {[
-                "Senan Concept est née à Porto Novo, au cœur du Bénin, de la vision singulière de Christelle FASSINOU — une créatrice dont le regard sur la culture africaine a toujours été celui de la valorisation, de la beauté et du respect.",
+                "Senan Concept est née à Porto Novo, au cœur du Bénin, de la vision singulière de Christelle FASSINOU, une créatrice dont le regard sur la culture africaine a toujours été celui de la valorisation, de la beauté et du respect.",
                 "Depuis sa création, la maison s'est imposée comme une référence incontournable dans le domaine de la costumerie artistique et de la décoration artisanale au Bénin et au-delà. Chaque pièce que nous créons est un dialogue entre le passé et le présent.",
-                "De la cour du Trône de Béhanzin aux scènes des plus grands festivals du Bénin — Festival des Masques, Vodouns Days — nos créations ont habillé les moments les plus sacrés et les plus festifs de la culture béninoise.",
+                "De la cour du Trône de Béhanzin aux scènes des plus grands festivals du Bénin (Festival des Masques, Vodouns Days), nos créations ont habillé les moments les plus sacrés et les plus festifs de la culture béninoise.",
                 "Aujourd'hui, Senan Concept continue de croître, portée par une équipe d'artisans passionnés et une clientèle qui fait confiance à notre savoir-faire exceptionnel pour les moments qui comptent vraiment.",
               ].map((p, i) => (
                 <p key={i} style={{ fontFamily: 'Jost, sans-serif', fontWeight: 300, fontSize: '0.95rem', color: '#B8B0A0', lineHeight: 1.9 }}>{p}</p>
@@ -102,7 +102,7 @@ export default function AboutPage() {
           <motion.div {...fadeUp(0)} className="mb-16 text-center">
             <SectionLabel>La fondatrice</SectionLabel>
             <h2 style={{ fontFamily: 'Jost, sans-serif', fontWeight: 700, fontSize: 'clamp(1.9rem, 3.5vw, 3rem)', color: '#F5F0E8' }}>
-              Christelle FASSINOU — <span style={{ color: '#C9A84C' }}>Senan Concept</span>
+              Christelle FASSINOU, <span style={{ color: '#C9A84C' }}>Senan Concept</span>
             </h2>
           </motion.div>
 
@@ -150,7 +150,7 @@ export default function AboutPage() {
                 {[
                   "Christelle FASSINOU, de nationalité béninoise, résidant à Porto-Novo, incarne la fusion parfaite entre tradition et modernité. Passionnée par l'art sous toutes ses formes, elle s'est imposée comme une figure incontournable de la mode afro-contemporaine.",
                   "En tant que fondatrice de Senan Concept, elle explore les matières, les textures et les couleurs pour créer des pièces uniques qui racontent une histoire. Son expertise s'étend de la création d'accessoires minutieux à la décoration d'intérieur, en passant par le costume de scène.",
-                  "Sa maîtrise des techniques artisanales traditionnelles, alliée à une vision contemporaine et audacieuse, lui a permis de collaborer avec les plus grandes figures de la culture béninoise — artistes, musiciens, familles royales et organisateurs de festivals.",
+                  "Sa maîtrise des techniques artisanales traditionnelles, alliée à une vision contemporaine et audacieuse, lui a permis de collaborer avec les plus grandes figures de la culture béninoise : artistes, musiciens, familles royales et organisateurs de festivals.",
                 ].map((p, i) => (
                   <p key={i} style={{ fontFamily: 'Jost, sans-serif', fontWeight: 300, fontSize: '0.95rem', color: '#B8B0A0', lineHeight: 1.9 }}>{p}</p>
                 ))}
@@ -173,7 +173,7 @@ export default function AboutPage() {
                   </div>
                   <div>
                     <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 600, fontSize: '0.88rem', color: '#F5F0E8' }}>Trophée meilleur accessoiriste d'Afrique</p>
-                    <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 300, fontSize: '0.8rem', color: '#B8B0A0', marginTop: '0.15rem' }}>2ème place — Côte d'Ivoire</p>
+                    <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 300, fontSize: '0.8rem', color: '#B8B0A0', marginTop: '0.15rem' }}>2ème place, Côte d'Ivoire</p>
                   </div>
                 </div>
               </div>
@@ -182,7 +182,7 @@ export default function AboutPage() {
                 <p style={{ fontFamily: 'Jost, sans-serif', fontStyle: 'italic', fontWeight: 300, fontSize: '1.05rem', color: '#E8D5A0', lineHeight: 1.7 }}>
                   "Je ne crée pas des vêtements. Je crée des histoires que les corps racontent."
                 </p>
-                <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 500, fontSize: '0.78rem', color: '#C9A84C', marginTop: '0.6rem', letterSpacing: '0.1em' }}>— Christelle FASSINOU, Fondatrice de Senan Concept</p>
+                <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 500, fontSize: '0.78rem', color: '#C9A84C', marginTop: '0.6rem', letterSpacing: '0.1em' }}>Christelle FASSINOU, Fondatrice de Senan Concept</p>
               </blockquote>
             </motion.div>
           </div>
@@ -260,7 +260,7 @@ export default function AboutPage() {
                     <div style={{ width: '5px', height: '5px', borderRadius: '50%', background: '#C9A84C', marginTop: '7px', flexShrink: 0 }} />
                     <div>
                       <span style={{ fontFamily: 'Jost, sans-serif', fontWeight: 600, fontSize: '0.88rem', color: '#F5F0E8' }}>{val.v}</span>
-                      <span style={{ fontFamily: 'Jost, sans-serif', fontWeight: 300, fontSize: '0.82rem', color: '#B8B0A0' }}> — {val.d}</span>
+                      <span style={{ fontFamily: 'Jost, sans-serif', fontWeight: 300, fontSize: '0.82rem', color: '#B8B0A0' }}> : {val.d}</span>
                     </div>
                   </div>
                 ))}
@@ -284,8 +284,8 @@ export default function AboutPage() {
             {[
               "Dans un monde en pleine mutation, où la globalisation tend à lisser les identités culturelles, Senan Concept choisit de résister par la beauté. Nous croyons que la mode africaine est l'un des véhicules les plus puissants de la mémoire collective.",
               "Notre vision est celle d'un Bénin fier de son héritage, où chaque costume porté lors d'un festival, chaque décoration d'intérieur et d'événement, chaque formation transmise, raconte une histoire. Une histoire d'Afrique, de fierté, de transmission.",
-              "À travers nos créations, nous tissons des ponts entre les générations — entre les anciens qui ont construit les codes esthétiques de notre culture et les jeunes qui portent cette culture vers l'avenir. Senan Concept est cette passerelle.",
-              "Nous rêvons d'un Senan Concept international, présent dans les grands événements culturels africains et mondiaux, portant avec élégance et conviction le message que l'artisanat africain est une forme d'art à part entière — inestimable et universel.",
+              "À travers nos créations, nous tissons des ponts entre les générations, entre les anciens qui ont construit les codes esthétiques de notre culture et les jeunes qui portent cette culture vers l'avenir. Senan Concept est cette passerelle.",
+              "Nous rêvons d'un Senan Concept international, présent dans les grands événements culturels africains et mondiaux, portant avec élégance et conviction le message que l'artisanat africain est une forme d'art à part entière, inestimable et universel.",
             ].map((p, i) => (
               <p key={i} style={{ fontFamily: 'Jost, sans-serif', fontWeight: 300, fontSize: '0.98rem', color: '#B8B0A0', lineHeight: 1.95 }}>{p}</p>
             ))}

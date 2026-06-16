@@ -39,7 +39,7 @@ export default function Footer() {
               </span>
             </RouterLink>
             <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 300, fontSize: '0.9rem', color: '#B8B0A0', lineHeight: 1.85, marginTop: '1rem', maxWidth: '340px' }}>
-              Maison de mode d'excellence basée à Porto Novo, Bénin. Tenues artistiques sur mesure, décoration d'événements et d'intérieurs à l'africaine et formations — au service des cultures et des mémoires.
+              Maison de mode d'excellence basée à Porto Novo, Bénin. Tenues artistiques sur mesure, décoration d'événements et d'intérieurs à l'africaine et formations, au service des cultures et des mémoires.
             </p>
             <div className="flex gap-4 mt-5">
               {['Facebook', 'Instagram', 'WhatsApp'].map(s => (
@@ -95,7 +95,7 @@ export default function Footer() {
         {/* Bottom */}
         <div className="flex flex-wrap items-center justify-between gap-4">
           <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 300, fontSize: '0.78rem', color: 'rgba(184,176,160,0.5)' }}>
-            © 2026 Senan Concept — Tous droits réservés. Porto Novo, Bénin.
+            © 2026 Senan Concept · Tous droits réservés · Porto Novo, Bénin.
           </p>
           <div className="flex items-center gap-4">
             <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 300, fontSize: '0.78rem', color: 'rgba(184,176,160,0.35)' }}>

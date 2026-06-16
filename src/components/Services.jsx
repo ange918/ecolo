@@ -28,7 +28,7 @@ const services = [
   {
     num: '03',
     titre: 'Formations',
-    desc: "Formations professionnelles dans nos domaines d'intervention — mode africaine, accessoires, décoration. Un centre de formation pour transmettre et perpétuer l'excellence du savoir-faire béninois.",
+    desc: "Formations professionnelles dans nos domaines d'intervention : mode africaine, accessoires, décoration. Un centre de formation pour transmettre et perpétuer l'excellence du savoir-faire béninois.",
     icon: (
       <svg width="44" height="44" viewBox="0 0 44 44" fill="none" stroke="#C9A84C" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M22 6 L38 14 L22 22 L6 14 Z" />
