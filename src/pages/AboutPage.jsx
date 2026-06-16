@@ -96,13 +96,13 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ─── ANDYCHRIS ─── */}
+      {/* ─── FONDATRICE ─── */}
       <section className="py-24 lg:py-32 px-6 lg:px-12" style={{ background: '#0A0A0A' }}>
         <div className="max-w-7xl mx-auto">
           <motion.div {...fadeUp(0)} className="mb-16 text-center">
             <SectionLabel>La fondatrice</SectionLabel>
             <h2 style={{ fontFamily: 'Jost, sans-serif', fontWeight: 700, fontSize: 'clamp(1.9rem, 3.5vw, 3rem)', color: '#F5F0E8' }}>
-              Christelle FASSINOU — <span style={{ color: '#C9A84C' }}>AndyChris</span>
+              Christelle FASSINOU — <span style={{ color: '#C9A84C' }}>Senan Concept</span>
             </h2>
           </motion.div>
 
@@ -137,20 +137,19 @@ export default function AboutPage() {
               <div className="absolute bottom-0 left-0 right-0 px-8 py-5"
                 style={{ borderTop: '1px solid rgba(201,168,76,0.15)', background: 'linear-gradient(to top, rgba(10,10,10,0.98), transparent)' }}>
                 <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 700, fontSize: '1.1rem', color: '#F5F0E8' }}>Christelle FASSINOU</p>
-                <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 300, fontSize: '0.8rem', color: '#C9A84C', marginTop: '0.2rem', letterSpacing: '0.08em' }}>CEO ANDYCHRIS · Porto-Novo, Bénin</p>
+                <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 300, fontSize: '0.8rem', color: '#C9A84C', marginTop: '0.2rem', letterSpacing: '0.08em' }}>Fondatrice Senan Concept · Porto Novo, Bénin</p>
               </div>
             </motion.div>
 
             {/* Texte */}
             <motion.div {...fadeUp(0.15)}>
               <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 700, fontSize: '1.6rem', color: '#C9A84C', marginBottom: '0.3rem' }}>Christelle FASSINOU</p>
-              <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 500, fontSize: '0.95rem', color: '#F5F0E8', marginBottom: '0.2rem' }}>dite <em>AndyChris</em></p>
-              <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 400, fontSize: '0.82rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#B8B0A0', marginBottom: '1.5rem' }}>CEO ANDYCHRIS · Styliste · Accessoiriste · Décoratrice</p>
+              <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 400, fontSize: '0.82rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#B8B0A0', marginBottom: '1.5rem' }}>Fondatrice Senan Concept · Styliste · Accessoiriste · Décoratrice</p>
               <div className="divider" />
               <div className="space-y-5 mb-8">
                 {[
                   "Christelle FASSINOU, de nationalité béninoise, résidant à Porto-Novo, incarne la fusion parfaite entre tradition et modernité. Passionnée par l'art sous toutes ses formes, elle s'est imposée comme une figure incontournable de la mode afro-contemporaine.",
-                  "En tant que CEO d'ANDYCHRIS, elle explore les matières, les textures et les couleurs pour créer des pièces uniques qui racontent une histoire. Son expertise s'étend de la création d'accessoires minutieux à la décoration d'intérieur, en passant par le costume de scène.",
+                  "En tant que fondatrice de Senan Concept, elle explore les matières, les textures et les couleurs pour créer des pièces uniques qui racontent une histoire. Son expertise s'étend de la création d'accessoires minutieux à la décoration d'intérieur, en passant par le costume de scène.",
                   "Sa maîtrise des techniques artisanales traditionnelles, alliée à une vision contemporaine et audacieuse, lui a permis de collaborer avec les plus grandes figures de la culture béninoise — artistes, musiciens, familles royales et organisateurs de festivals.",
                 ].map((p, i) => (
                   <p key={i} style={{ fontFamily: 'Jost, sans-serif', fontWeight: 300, fontSize: '0.95rem', color: '#B8B0A0', lineHeight: 1.9 }}>{p}</p>
@@ -183,7 +182,7 @@ export default function AboutPage() {
                 <p style={{ fontFamily: 'Jost, sans-serif', fontStyle: 'italic', fontWeight: 300, fontSize: '1.05rem', color: '#E8D5A0', lineHeight: 1.7 }}>
                   "Je ne crée pas des vêtements. Je crée des histoires que les corps racontent."
                 </p>
-                <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 500, fontSize: '0.78rem', color: '#C9A84C', marginTop: '0.6rem', letterSpacing: '0.1em' }}>— Christelle FASSINOU, dite AndyChris</p>
+                <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 500, fontSize: '0.78rem', color: '#C9A84C', marginTop: '0.6rem', letterSpacing: '0.1em' }}>— Christelle FASSINOU, Fondatrice de Senan Concept</p>
               </blockquote>
             </motion.div>
           </div>

@@ -10,7 +10,7 @@ const steps = [
   {
     num: '02',
     titre: 'Conception & esquisse',
-    desc: "AndyChris et son équipe élaborent des esquisses détaillées de votre création. Les matières, couleurs et motifs sont sélectionnés avec soin selon la tradition.",
+    desc: "Christelle FASSINOU et son équipe élaborent des esquisses détaillées de votre création. Les matières, couleurs et motifs sont sélectionnés avec soin selon la tradition.",
     duree: '3 – 5 jours',
   },
   {
