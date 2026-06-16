@@ -95,11 +95,24 @@ export default function Footer() {
         {/* Bottom */}
         <div className="flex flex-wrap items-center justify-between gap-4">
           <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 300, fontSize: '0.78rem', color: 'rgba(184,176,160,0.5)' }}>
-            © 2025 Senan Concept — Tous droits réservés. Porto Novo, Bénin.
+            © 2026 Senan Concept — Tous droits réservés. Porto Novo, Bénin.
           </p>
-          <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 300, fontSize: '0.78rem', color: 'rgba(184,176,160,0.35)' }}>
-            Fondée par Christelle FASSINOU
-          </p>
+          <div className="flex items-center gap-4">
+            <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 300, fontSize: '0.78rem', color: 'rgba(184,176,160,0.35)' }}>
+              Fondée par Christelle FASSINOU
+            </p>
+            <span style={{ color: 'rgba(184,176,160,0.2)', fontSize: '0.78rem' }}>·</span>
+            <a
+              href="https://angeakonde-dev.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ fontFamily: 'Jost, sans-serif', fontWeight: 300, fontSize: '0.78rem', color: 'rgba(184,176,160,0.35)', textDecoration: 'none', transition: 'color 0.2s' }}
+              onMouseEnter={e => e.currentTarget.style.color = '#C9A84C'}
+              onMouseLeave={e => e.currentTarget.style.color = 'rgba(184,176,160,0.35)'}
+            >
+              Réalisé par Ange Akonde
+            </a>
+          </div>
         </div>
 
       </div>
