@@ -3,9 +3,9 @@ import { useState } from 'react'
 
 const realisations = [
   {
-    tag: 'Costumerie royale',
+    tag: 'Comédie musicale',
     titre: 'Trône de Béhanzin',
-    sousTitre: 'Costumes de cour de la royauté Fon',
+    sousTitre: 'Costumes & décors pour la comédie musicale',
     svg: (
       <svg width="180" height="280" viewBox="0 0 180 280" fill="none" stroke="#C9A84C" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
         <ellipse cx="90" cy="50" rx="22" ry="28" />

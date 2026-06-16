@@ -8,7 +8,7 @@ const faqs = [
   },
   {
     q: "Travaillez-vous uniquement au Bénin ?",
-    a: "Nous sommes basés à Cotonou, Bénin, mais nous acceptons des commandes depuis l'international. La livraison à l'étranger est possible selon les modalités à convenir ensemble. Certaines cérémonies de prise de mesure peuvent se faire par visioconférence avec guide de mensuration.",
+    a: "Nous sommes basés à Porto Novo, Bénin, mais nous acceptons des commandes depuis l'international. La livraison à l'étranger est possible selon les modalités à convenir ensemble. Certaines cérémonies de prise de mesure peuvent se faire par visioconférence avec guide de mensuration.",
   },
   {
     q: "Quels types d'événements couvrez-vous ?",
@@ -16,7 +16,7 @@ const faqs = [
   },
   {
     q: "Est-il possible de visiter votre atelier ?",
-    a: "Oui, nous vous accueillons sur rendez-vous dans notre atelier à Cotonou. C'est même recommandé pour les projets importants. Vous pourrez découvrir notre processus de création, toucher les matières et échanger directement avec AndyChris.",
+    a: "Oui, nous vous accueillons sur rendez-vous dans notre atelier. C'est même recommandé pour les projets importants. Vous pourrez découvrir notre processus de création, toucher les matières et échanger directement avec Christelle FASSINOU.",
   },
   {
     q: "Proposez-vous des retouches après livraison ?",
@@ -28,11 +28,11 @@ const faqs = [
   },
   {
     q: "Comment se déroule la première consultation ?",
-    a: "La première consultation peut se faire en personne à Cotonou ou par visioconférence. Nous discutons de votre projet, de l'événement, de vos inspirations. Aucun frais n'est demandé pour ce premier échange. Un devis est ensuite établi dans les 48h.",
+    a: "La première consultation peut se faire en personne ou par visioconférence. Nous discutons de votre projet, de l'événement, de vos inspirations. Aucun frais n'est demandé pour ce premier échange. Un devis est ensuite établi dans les 48h.",
   },
   {
-    q: "Réalisez-vous aussi des poufs et décorations en commande groupée ?",
-    a: "Oui, nous acceptons les commandes groupées pour les poufs artisanaux et les éléments de décoration. Des tarifs préférentiels sont appliqués à partir de 5 pièces. Contactez-nous pour un devis personnalisé selon votre projet.",
+    q: "Acceptez-vous les commandes groupées ?",
+    a: "Oui, nous acceptons les commandes groupées pour tous nos articles. Des tarifs préférentiels sont appliqués à partir de 12 pièces. Contactez-nous pour un devis personnalisé selon votre projet.",
   },
 ]
 

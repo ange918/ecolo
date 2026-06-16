@@ -48,7 +48,7 @@ const reasons = [
   {
     num: '05',
     titre: 'Accompagnement personnalisé',
-    desc: "De la première consultation à la livraison finale, AndyChris et son équipe vous accompagnent à chaque étape pour une expérience unique et mémorable.",
+    desc: "De la première consultation à la livraison finale, Christelle FASSINOU et son équipe vous accompagnent à chaque étape pour une expérience unique et mémorable.",
     icon: (
       <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="#C9A84C" strokeWidth="1.4" strokeLinecap="round">
         <circle cx="16" cy="12" r="5" /><circle cx="28" cy="16" r="4" />
@@ -88,7 +88,7 @@ export default function WhyUs() {
             Ce qui nous rend <span style={{ color: '#C9A84C' }}>uniques</span>
           </h2>
           <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 300, fontSize: '0.95rem', color: '#B8B0A0', lineHeight: 1.85, marginTop: '1rem' }}>
-            Depuis plus de 15 ans, Senan Concept s'est imposée comme la maison artisanale de référence pour les créations culturelles au Bénin.
+            Depuis plus de 5 ans, Senan Concept s'est imposée comme la maison de mode de référence pour les créations culturelles au Bénin.
           </p>
         </motion.div>
 

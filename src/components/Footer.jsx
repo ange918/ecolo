@@ -39,7 +39,7 @@ export default function Footer() {
               </span>
             </RouterLink>
             <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 300, fontSize: '0.9rem', color: '#B8B0A0', lineHeight: 1.85, marginTop: '1rem', maxWidth: '340px' }}>
-              Maison artisanale d'excellence basée à Cotonou, Bénin. Tenues artistiques sur-mesure, décoration d'intérieure et poufs artisanaux — au service des cultures et des mémoires.
+              Maison de mode d'excellence basée à Porto Novo, Bénin. Tenues artistiques sur mesure, décoration d'événements et d'intérieurs à l'africaine et formations — au service des cultures et des mémoires.
             </p>
             <div className="flex gap-4 mt-5">
               {['Facebook', 'Instagram', 'WhatsApp'].map(s => (
@@ -78,9 +78,9 @@ export default function Footer() {
             </p>
             <div className="flex flex-col gap-3">
               {[
-                { label: 'Cotonou, Bénin' },
-                { label: 'contact@senanconcept.com' },
-                { label: '+229 XX XX XX XX' },
+                { label: 'Porto Novo, Bénin' },
+                { label: 'contacts@senanconcept.com' },
+                { label: '+229 0161791627' },
                 { label: 'Lun – Ven · 8h – 18h' },
               ].map((item, i) => (
                 <p key={i} style={{ fontFamily: 'Jost, sans-serif', fontWeight: 300, fontSize: '0.88rem', color: '#B8B0A0' }}>{item.label}</p>
@@ -95,10 +95,10 @@ export default function Footer() {
         {/* Bottom */}
         <div className="flex flex-wrap items-center justify-between gap-4">
           <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 300, fontSize: '0.78rem', color: 'rgba(184,176,160,0.5)' }}>
-            © 2025 Senan Concept — Tous droits réservés. Cotonou, Bénin.
+            © 2025 Senan Concept — Tous droits réservés. Porto Novo, Bénin.
           </p>
           <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 300, fontSize: '0.78rem', color: 'rgba(184,176,160,0.35)' }}>
-            Fondée par AndyChris
+            Fondée par Christelle FASSINOU
           </p>
         </div>
 

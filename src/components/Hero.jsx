@@ -46,7 +46,7 @@ export default function Hero() {
           className="text-texte max-w-2xl mx-auto mb-10"
           style={{ fontFamily: 'Jost, sans-serif', fontWeight: 300, fontSize: '1.05rem', lineHeight: 1.8 }}
         >
-          Senan Concept crée des tenues artistiques sur-mesure, des décors d'intérieure uniques et des poufs artisanaux — au service des rois, des festivals et de la mémoire culturelle du Bénin.
+          Senan Concept crée des tenues artistiques sur mesure, des accessoires de déco, des décors d'événements et d'intérieurs uniques et des formations — au service de la royauté, des événements, festivals culturels et sacrés.
         </motion.p>
 
         {/* Boutons */}

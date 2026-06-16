@@ -2,9 +2,9 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 
 const contactInfos = [
-  { label: 'Localisation', value: 'Cotonou, Bénin' },
-  { label: 'Email', value: 'contact@senanconcept.com' },
-  { label: 'Téléphone', value: '+229 XX XX XX XX' },
+  { label: 'Localisation', value: 'Porto Novo, Bénin' },
+  { label: 'Email', value: 'contacts@senanconcept.com' },
+  { label: 'Téléphone', value: '+229 0161791627' },
   { label: 'Disponibilité', value: 'Lun – Ven, 8h – 18h' },
 ]
 
@@ -66,7 +66,7 @@ export default function Contact() {
           </h2>
           <div className="divider" />
           <p className="mb-10" style={{ fontFamily: 'Jost, sans-serif', fontWeight: 300, fontSize: '0.95rem', color: '#B8B0A0', lineHeight: 1.9 }}>
-            Que vous rêviez d'un costume d'exception, d'un espace décoré avec âme ou d'un pouf artisanal unique, nous sommes à votre écoute pour donner vie à votre vision.
+            Que vous rêviez d'un costume d'exception, d'un espace décoré avec âme ou d'une formation de qualité dans nos domaines d'intervention, nous sommes à votre écoute pour donner vie à votre vision.
           </p>
 
           <div className="space-y-6">
@@ -129,7 +129,7 @@ export default function Contact() {
                   <option value="" style={{ background: '#0A0A0A' }}>— Sélectionner —</option>
                   <option value="tenue" style={{ background: '#0A0A0A' }}>Tenue artistique</option>
                   <option value="deco" style={{ background: '#0A0A0A' }}>Décoration d'intérieure</option>
-                  <option value="pouf" style={{ background: '#0A0A0A' }}>Réalisation de poufs</option>
+                  <option value="formation" style={{ background: '#0A0A0A' }}>Formation</option>
                   <option value="festival" style={{ background: '#0A0A0A' }}>Événement & Festival</option>
                   <option value="autre" style={{ background: '#0A0A0A' }}>Autre</option>
                 </select>

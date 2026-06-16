@@ -41,7 +41,7 @@ export default function AboutPage() {
             {...fadeUp(0.4)}
             style={{ fontFamily: 'Jost, sans-serif', fontWeight: 300, fontSize: '1rem', color: '#B8B0A0', lineHeight: 1.9, maxWidth: '580px', marginTop: '1.5rem' }}
           >
-            Senan Concept est bien plus qu'une maison artisanale. C'est un engagement, une passion, un hommage au patrimoine culturel du Bénin.
+            Senan Concept est bien plus qu'une maison de mode. C'est un engagement, une passion, un hommage au patrimoine culturel du Bénin.
           </motion.p>
         </div>
       </section>
@@ -59,7 +59,7 @@ export default function AboutPage() {
             <Divider />
             <div className="space-y-5">
               {[
-                "Senan Concept est née à Cotonou, au cœur du Bénin, de la vision singulière d'AndyChris — une créatrice dont le regard sur la culture africaine a toujours été celui de la valorisation, de la beauté et du respect.",
+                "Senan Concept est née à Porto Novo, au cœur du Bénin, de la vision singulière de Christelle FASSINOU — une créatrice dont le regard sur la culture africaine a toujours été celui de la valorisation, de la beauté et du respect.",
                 "Depuis sa création, la maison s'est imposée comme une référence incontournable dans le domaine de la costumerie artistique et de la décoration artisanale au Bénin et au-delà. Chaque pièce que nous créons est un dialogue entre le passé et le présent.",
                 "De la cour du Trône de Béhanzin aux scènes des plus grands festivals du Bénin — Festival des Masques, Vodouns Days — nos créations ont habillé les moments les plus sacrés et les plus festifs de la culture béninoise.",
                 "Aujourd'hui, Senan Concept continue de croître, portée par une équipe d'artisans passionnés et une clientèle qui fait confiance à notre savoir-faire exceptionnel pour les moments qui comptent vraiment.",
@@ -73,7 +73,7 @@ export default function AboutPage() {
             {/* Stats visuelles */}
             <div className="grid grid-cols-2 gap-px mb-4" style={{ background: 'rgba(201,168,76,0.15)' }}>
               {[
-                { v: '15+', l: "Années d'expérience" },
+                { v: '8+', l: "Années d'expérience" },
                 { v: '100%', l: 'Fait à la main' },
                 { v: '3', l: 'Festivals majeurs' },
                 { v: '∞', l: 'Passion & dévouement' },
@@ -89,7 +89,7 @@ export default function AboutPage() {
               <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#C9A84C', marginTop: '6px', flexShrink: 0 }} />
               <div>
                 <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 600, fontSize: '0.8rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#C9A84C', marginBottom: '0.3rem' }}>Siège</p>
-                <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 300, fontSize: '0.95rem', color: '#F5F0E8' }}>Cotonou, République du Bénin, Afrique de l'Ouest</p>
+                <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 300, fontSize: '0.95rem', color: '#F5F0E8' }}>Porto Novo, République du Bénin, Afrique de l'Ouest</p>
               </div>
             </div>
           </motion.div>
@@ -283,8 +283,8 @@ export default function AboutPage() {
           </motion.div>
           <motion.div {...fadeUp(0.1)} className="space-y-5 mb-12">
             {[
-              "Dans un monde en pleine mutation, où la globalisation tend à lisser les identités culturelles, Senan Concept choisit de résister par la beauté. Nous croyons que l'artisanat est l'un des véhicules les plus puissants de la mémoire collective.",
-              "Notre vision est celle d'un Bénin fier de son héritage, où chaque costume porté lors d'un festival, chaque pouf artisanal dans un salon, chaque décoration murale, raconte une histoire. Une histoire d'Afrique, de fierté, de transmission.",
+              "Dans un monde en pleine mutation, où la globalisation tend à lisser les identités culturelles, Senan Concept choisit de résister par la beauté. Nous croyons que la mode africaine est l'un des véhicules les plus puissants de la mémoire collective.",
+              "Notre vision est celle d'un Bénin fier de son héritage, où chaque costume porté lors d'un festival, chaque décoration d'intérieur et d'événement, chaque formation transmise, raconte une histoire. Une histoire d'Afrique, de fierté, de transmission.",
               "À travers nos créations, nous tissons des ponts entre les générations — entre les anciens qui ont construit les codes esthétiques de notre culture et les jeunes qui portent cette culture vers l'avenir. Senan Concept est cette passerelle.",
               "Nous rêvons d'un Senan Concept international, présent dans les grands événements culturels africains et mondiaux, portant avec élégance et conviction le message que l'artisanat africain est une forme d'art à part entière — inestimable et universel.",
             ].map((p, i) => (

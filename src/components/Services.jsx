@@ -27,14 +27,16 @@ const services = [
   },
   {
     num: '03',
-    titre: 'Réalisation de poufs',
-    desc: "Poufs artisanaux fabriqués à la main, ornés de motifs traditionnels africains — une touche d'authenticité chaleureuse pour vos intérieurs.",
+    titre: 'Formations',
+    desc: "Formations professionnelles dans nos domaines d'intervention — mode africaine, accessoires, décoration. Un centre de formation pour transmettre et perpétuer l'excellence du savoir-faire béninois.",
     icon: (
       <svg width="44" height="44" viewBox="0 0 44 44" fill="none" stroke="#C9A84C" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <ellipse cx="22" cy="20" rx="16" ry="10" /><ellipse cx="22" cy="28" rx="16" ry="6" />
-        <path d="M6 20 L6 28" /><path d="M38 20 L38 28" />
-        <ellipse cx="22" cy="20" rx="8" ry="5" strokeDasharray="3 2" />
-        <path d="M14 16 Q22 14 30 16" strokeDasharray="3 2" />
+        <path d="M22 6 L38 14 L22 22 L6 14 Z" />
+        <path d="M6 14 L6 28 M38 14 L38 28" />
+        <path d="M12 18 L12 30 C12 34 17 37 22 37 C27 37 32 34 32 30 L32 18" />
+        <path d="M22 22 L22 37" />
+        <circle cx="38" cy="28" r="3" />
+        <path d="M38 31 L38 38" />
       </svg>
     ),
   },

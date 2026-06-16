@@ -2,52 +2,52 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
 const collaborators = [
-  { nom: 'EFAMBE', role: 'Artiste & Performeur' },
+  { nom: 'EFAMBE', role: 'Créateur de contenu' },
   { nom: 'Pepe Oleka', role: 'Artiste musical' },
   { nom: 'Sagbohan Danialou', role: 'Musicien traditionnel' },
-  { nom: 'Stéphanie MONTCHO', role: 'Événementiel' },
-  { nom: 'Maeva Gomez', role: 'Mode artisanale' },
-  { nom: 'Trône de Béhanzin', role: 'Maison royale du Bénin' },
+  { nom: 'Stéphanie MONTCHO', role: 'Animatrice' },
+  { nom: 'Maeva Gomez', role: 'Créatrice de contenus & entrepreneur' },
+  { nom: 'Trône de Béhanzin', role: 'Comédie musicale' },
   { nom: 'Festival des Masques', role: 'Festival culturel' },
-  { nom: 'Vodouns Days', role: 'Cérémonie spirituelle' },
+  { nom: 'Vision Days', role: 'Festival culturel et spirituel' },
 ]
 
 const testimonials = [
   {
     nom: 'EFAMBE',
-    titre: 'Artiste & Performeur',
+    titre: 'Créateur de contenu',
     tag: 'Tenue artistique',
-    texte: "Senan Concept a transformé ma vision artistique en réalité. Les tenues créées pour ma performance étaient d'une précision et d'une beauté à couper le souffle. AndyChris a su capturer l'essence de mon univers.",
+    texte: "Senan Concept a transformé ma vision artistique en réalité. Les tenues créées pour ma performance étaient d'une précision et d'une beauté à couper le souffle. Christelle FASSINOU a su capturer l'essence de mon univers.",
   },
   {
     nom: 'Pepe Oleka',
     titre: 'Artiste musical',
-    tag: 'Costumerie',
-    texte: "Pour mon dernier clip, j'avais besoin de costumes qui parlent d'Afrique sans clichés. Senan Concept a répondu au-delà de mes espérances — des pièces modernes, ancrées dans la tradition. Un travail d'orfèvre.",
+    tag: 'Accessoires & Décors',
+    texte: "Pour mon dernier clip, j'avais besoin d'accessoires et de décors qui parlent d'Afrique sans clichés. Senan Concept a répondu au-delà de mes espérances — des pièces modernes, ancrées dans la tradition. Un travail d'orfèvre.",
   },
   {
     nom: 'Sagbohan Danialou',
     titre: 'Musicien traditionnel',
-    tag: 'Tenue de scène',
-    texte: "Les tenues réalisées pour mes prestations scéniques incarnent parfaitement la fierté culturelle du Bénin. Senan Concept comprend la profondeur de notre héritage et sait le magnifier avec talent et respect.",
+    tag: 'Accessoires & Décors',
+    texte: "Les accessoires et décors réalisés pour mes prestations scéniques incarnent parfaitement la fierté culturelle du Bénin. Senan Concept comprend la profondeur de notre héritage et sait le magnifier avec talent et respect.",
   },
   {
     nom: 'Stéphanie MONTCHO',
-    titre: 'Organisatrice d\'événements',
+    titre: 'Animatrice',
     tag: 'Événementiel',
-    texte: "J'ai fait appel à Senan Concept pour plusieurs événements haut de gamme. Chaque fois, la qualité est irréprochable, les délais respectés. C'est ma référence absolue pour la costumerie au Bénin.",
+    texte: "J'ai fait appel à Senan Concept pour un événement haut de gamme. La qualité est irréprochable, les délais respectés. C'est ma référence absolue pour la costumerie au Bénin.",
   },
   {
     nom: 'Maeva Gomez',
-    titre: 'Créatrice de mode',
+    titre: 'Créatrice de contenus & entrepreneur',
     tag: 'Mode artisanale',
-    texte: "En tant que professionnelle du secteur, je suis exigeante. Senan Concept m'a impressionnée par la finesse de ses finitions et surtout par la créativité débordante d'AndyChris. Un talent rare.",
+    texte: "En tant que professionnelle du secteur, je suis exigeante. Senan Concept m'a impressionnée par la finesse de ses finitions et surtout par la créativité débordante de Christelle FASSINOU. Un talent rare.",
   },
   {
     nom: 'Trône de Béhanzin',
-    titre: 'Maison royale du Bénin',
-    tag: 'Costumerie royale',
-    texte: "Les costumes de cour réalisés par Senan Concept honorent dignement notre royauté. Chaque pièce témoigne d'une connaissance profonde et d'un respect sincère pour notre histoire millénaire.",
+    titre: 'Comédie musicale',
+    tag: 'Costumerie de scène',
+    texte: "Les costumes réalisés par Senan Concept honorent dignement notre production. Chaque pièce témoigne d'une connaissance profonde et d'un respect sincère pour notre histoire millénaire.",
   },
   {
     nom: 'Festival des Masques',
@@ -56,10 +56,10 @@ const testimonials = [
     texte: "Depuis notre collaboration avec Senan Concept, nos participants se présentent avec des tenues qui racontent une histoire. L'authenticité des créations contribue à l'âme même de notre festival.",
   },
   {
-    nom: 'Vodouns Days',
-    titre: 'Comité d\'organisation',
+    nom: 'Vision Days',
+    titre: 'Festival culturel et spirituel',
     tag: 'Cérémonie spirituelle',
-    texte: "Les parures et tenues cérémonielles créées pour les Vodouns Days ont élevé notre célébration à un niveau de beauté et de sacralité inédit. AndyChris comprend le spirituel autant que l'esthétique.",
+    texte: "Les parures et tenues cérémonielles créées pour Vision Days ont élevé notre célébration à un niveau de beauté et de sacralité inédit. Christelle FASSINOU comprend le spirituel autant que l'esthétique.",
   },
 ]
 
