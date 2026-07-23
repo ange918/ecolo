@@ -175,9 +175,9 @@ export default function Hero() {
             style={{ borderRadius: '24px', aspectRatio: '16/9' }}
           >
             <img
-              src="/gallery/img16.jpg"
+              src="/gallery/img18.jpg"
               alt="Création artistique Senan Concept"
-              style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+              style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '52% 34%', display: 'block' }}
             />
           </div>
 
