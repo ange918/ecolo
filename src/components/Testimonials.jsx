@@ -72,6 +72,7 @@ function TestimonialCard({ t, isActive, onClick }) {
         padding: '2rem',
         background: isActive ? '#1A1A1A' : 'rgba(26,26,26,0.4)',
         border: `1px solid ${isActive ? 'rgba(201,168,76,0.4)' : 'rgba(201,168,76,0.1)'}`,
+        borderRadius: '20px',
         height: '100%',
         minHeight: '260px',
       }}
@@ -151,8 +152,8 @@ export default function Testimonials() {
           className="mb-16"
         >
           <p className="section-label">Témoignages</p>
-          <h2 style={{ fontFamily: 'Jost, sans-serif', fontWeight: 700, fontSize: 'clamp(1.9rem, 3.5vw, 3rem)', color: '#F5F0E8' }}>
-            Ce que disent <span style={{ color: '#C9A84C' }}>nos clients</span>
+          <h2 style={{ fontFamily: 'Cormorant Garamond, serif', fontWeight: 600, fontSize: 'clamp(2.2rem, 4.2vw, 3.6rem)', color: '#F5F0E8', lineHeight: 1.08, letterSpacing: '-0.01em' }}>
+            Ce que disent <span style={{ color: '#C9A84C', fontStyle: 'italic' }}>nos clients</span>
           </h2>
         </motion.div>
 
@@ -163,7 +164,7 @@ export default function Testimonials() {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.1 }}
           className="mb-16 p-8"
-          style={{ background: '#111111', border: '1px solid rgba(201,168,76,0.1)' }}
+          style={{ background: '#111111', border: '1px solid rgba(201,168,76,0.12)', borderRadius: '24px' }}
         >
           <p style={{
             fontFamily: 'Jost, sans-serif', fontWeight: 600, fontSize: '0.7rem',
@@ -185,6 +186,7 @@ export default function Testimonials() {
                   padding: '0.6rem 1.2rem',
                   background: '#1A1A1A',
                   border: '1px solid rgba(201,168,76,0.15)',
+                  borderRadius: '12px',
                 }}
               >
                 <span style={{ fontFamily: 'Jost, sans-serif', fontWeight: 600, fontSize: '0.88rem', color: '#F5F0E8' }}>

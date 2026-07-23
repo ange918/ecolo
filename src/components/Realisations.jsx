@@ -69,7 +69,7 @@ function Card({ item, delay }) {
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       className="relative overflow-hidden"
-      style={{ aspectRatio: '3/4', background: '#1A1A1A', cursor: 'default' }}
+      style={{ aspectRatio: '3/4', background: '#1A1A1A', cursor: 'default', borderRadius: '20px' }}
     >
       <div className="absolute inset-0 flex items-center justify-center transition-all duration-500"
         style={{ opacity: hovered ? 0.18 : 0.07 }}>
@@ -105,8 +105,8 @@ export default function Realisations() {
           transition={{ duration: 0.6 }}
         >
           <p className="section-label">Portfolio</p>
-          <h2 style={{ fontFamily: 'Jost, sans-serif', fontWeight: 700, fontSize: 'clamp(1.9rem, 3.5vw, 3rem)', color: '#F5F0E8', marginBottom: '1rem' }}>
-            Nos réalisations <span style={{ color: '#C9A84C' }}>emblématiques</span>
+          <h2 style={{ fontFamily: 'Cormorant Garamond, serif', fontWeight: 600, fontSize: 'clamp(2.2rem, 4.2vw, 3.6rem)', color: '#F5F0E8', marginBottom: '1rem', lineHeight: 1.08, letterSpacing: '-0.01em' }}>
+            Nos réalisations <span style={{ color: '#C9A84C', fontStyle: 'italic' }}>emblématiques</span>
           </h2>
           <p className="max-w-2xl mb-14" style={{ fontFamily: 'Jost, sans-serif', fontWeight: 300, fontSize: '0.95rem', color: '#B8B0A0', lineHeight: 1.8 }}>
             De la cour royale de Béhanzin aux festivals sacrés, nos créations ont marqué les plus grands évènements culturels du Bénin.

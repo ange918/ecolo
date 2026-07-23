@@ -42,8 +42,8 @@ export default function Gallery() {
           className="mb-12"
         >
           <p className="section-label">Galerie</p>
-          <h2 style={{ fontFamily: 'Jost, sans-serif', fontWeight: 700, fontSize: 'clamp(1.9rem, 3.5vw, 3rem)', color: '#F5F0E8', marginBottom: '1.5rem' }}>
-            Notre <span style={{ color: '#C9A84C' }}>univers</span> en images
+          <h2 style={{ fontFamily: 'Cormorant Garamond, serif', fontWeight: 600, fontSize: 'clamp(2.2rem, 4.2vw, 3.6rem)', color: '#F5F0E8', marginBottom: '1.5rem', lineHeight: 1.08, letterSpacing: '-0.01em' }}>
+            Notre <span style={{ color: '#C9A84C', fontStyle: 'italic' }}>univers</span> en images
           </h2>
 
           <div className="flex flex-wrap gap-2">
@@ -82,7 +82,7 @@ export default function Gallery() {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.4, delay: i * 0.04 }}
                 className="overflow-hidden"
-                style={{ aspectRatio: '3/4' }}
+                style={{ aspectRatio: '3/4', borderRadius: '14px' }}
               >
                 <img
                   src={item.src}

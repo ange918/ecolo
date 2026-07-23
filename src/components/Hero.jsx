@@ -7,6 +7,30 @@ const fadeUp = (delay) => ({
   transition: { duration: 0.8, ease: 'easeOut', delay },
 })
 
+// Cartes affichées dans le carrousel mobile
+const mobileCards = [
+  {
+    img: '/gallery/img17.jpg',
+    title: 'Créations sur mesure',
+    text: 'Des tenues artistiques uniques, façonnées à la main pour sublimer chaque occasion.',
+  },
+  {
+    img: '/gallery/img12.jpg',
+    title: 'Décor & accessoires',
+    text: 'Chaque pièce enrichit votre univers avec harmonie et sophistication.',
+  },
+  {
+    img: '/gallery/img5.jpg',
+    title: "Décors d'événements",
+    text: 'Des scénographies immersives pour festivals, cérémonies et célébrations sacrées.',
+  },
+  {
+    img: '/gallery/img10.jpg',
+    title: 'Formations',
+    text: "Transmettre l'excellence du savoir-faire artisanal béninois à la nouvelle génération.",
+  },
+]
+
 const ArrowRight = ({ size = 16, color = '#0A0A0A' }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color}
     strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -204,22 +228,28 @@ export default function Hero() {
           </div>
         </motion.div>
 
-        {/* Cartes empilées sur mobile (sous l'image) */}
-        <div className="md:hidden mt-6 grid gap-4">
-          <FloatingCard
-            img="/gallery/img17.jpg"
-            title="Créations sur mesure"
-            text="Des tenues artistiques uniques, façonnées à la main pour sublimer chaque occasion."
-            delay={0.1}
-            align="left"
-          />
-          <FloatingCard
-            img="/gallery/img12.jpg"
-            title="Décor & accessoires"
-            text="Chaque pièce enrichit votre univers avec harmonie et sophistication."
-            delay={0.2}
-            align="right"
-          />
+        {/* Carrousel de cartes sur mobile (sous l'image) */}
+        <div className="md:hidden mt-6 -mx-4 sm:-mx-6">
+          <div
+            className="hide-scrollbar flex gap-4 overflow-x-auto px-4 sm:px-6 pb-2"
+            style={{ scrollSnapType: 'x mandatory', WebkitOverflowScrolling: 'touch' }}
+          >
+            {mobileCards.map((card, i) => (
+              <div key={i} className="shrink-0" style={{ scrollSnapAlign: 'center' }}>
+                <FloatingCard {...card} delay={0.05 * i} />
+              </div>
+            ))}
+          </div>
+          {/* Indice de défilement */}
+          <div className="flex items-center justify-center gap-1.5 mt-3">
+            {mobileCards.map((_, i) => (
+              <span key={i} style={{
+                width: i === 0 ? '18px' : '6px', height: '6px', borderRadius: '9999px',
+                background: i === 0 ? '#C9A84C' : 'rgba(201,168,76,0.3)',
+                transition: 'all 0.3s',
+              }} />
+            ))}
+          </div>
         </div>
       </div>
     </section>

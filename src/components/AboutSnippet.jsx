@@ -20,9 +20,9 @@ export default function AboutSnippet() {
           transition={{ duration: 0.7 }}
         >
           <p className="section-label">À propos</p>
-          <h2 style={{ fontFamily: 'Jost, sans-serif', fontWeight: 700, fontSize: 'clamp(1.9rem, 3.5vw, 3rem)', color: '#F5F0E8', lineHeight: 1.15 }}>
+          <h2 style={{ fontFamily: 'Cormorant Garamond, serif', fontWeight: 600, fontSize: 'clamp(2.2rem, 4.2vw, 3.6rem)', color: '#F5F0E8', lineHeight: 1.05, letterSpacing: '-0.01em' }}>
             L'artisanat béninois<br />
-            au service de la <span style={{ color: '#C9A84C' }}>culture</span>
+            au service de la <span style={{ color: '#C9A84C', fontStyle: 'italic' }}>culture</span>
           </h2>
           <div className="divider" />
           <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 300, fontSize: '0.95rem', color: '#B8B0A0', lineHeight: 1.9, marginBottom: '1.5rem' }}>
@@ -53,7 +53,7 @@ export default function AboutSnippet() {
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.15 }}
         >
-          <div className="grid grid-cols-2 gap-px" style={{ background: 'rgba(201,168,76,0.15)' }}>
+          <div className="grid grid-cols-2 gap-px" style={{ background: 'rgba(201,168,76,0.15)', borderRadius: '24px', overflow: 'hidden' }}>
             {stats.map((s, i) => (
               <div key={i} className="p-8" style={{ background: '#1A1A1A' }}>
                 <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 700, fontSize: '2.8rem', color: '#C9A84C', lineHeight: 1 }}>{s.value}</p>
@@ -61,7 +61,7 @@ export default function AboutSnippet() {
               </div>
             ))}
           </div>
-          <div className="mt-4 p-6" style={{ background: '#1A1A1A', borderLeft: '3px solid #C9A84C' }}>
+          <div className="mt-4 p-6" style={{ background: '#1A1A1A', borderLeft: '3px solid #C9A84C', borderRadius: '18px' }}>
             <p style={{ fontFamily: 'Jost, sans-serif', fontStyle: 'italic', fontWeight: 300, fontSize: '1rem', color: '#E8D5A0', lineHeight: 1.7 }}>
               "Habiller une culture, c'est honorer une identité."
             </p>

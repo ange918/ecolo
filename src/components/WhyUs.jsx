@@ -84,15 +84,15 @@ export default function WhyUs() {
           className="mb-16 max-w-2xl"
         >
           <p className="section-label">Pourquoi nous choisir</p>
-          <h2 style={{ fontFamily: 'Jost, sans-serif', fontWeight: 700, fontSize: 'clamp(1.9rem, 3.5vw, 3rem)', color: '#F5F0E8' }}>
-            Ce qui nous rend <span style={{ color: '#C9A84C' }}>uniques</span>
+          <h2 style={{ fontFamily: 'Cormorant Garamond, serif', fontWeight: 600, fontSize: 'clamp(2.2rem, 4.2vw, 3.6rem)', color: '#F5F0E8', lineHeight: 1.08, letterSpacing: '-0.01em' }}>
+            Ce qui nous rend <span style={{ color: '#C9A84C', fontStyle: 'italic' }}>uniques</span>
           </h2>
           <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 300, fontSize: '0.95rem', color: '#B8B0A0', lineHeight: 1.85, marginTop: '1rem' }}>
             Depuis plus de 5 ans, Senan Concept s'est imposée comme la maison de mode de référence pour les créations culturelles au Bénin.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px" style={{ background: 'rgba(201,168,76,0.1)' }}>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px" style={{ background: 'rgba(201,168,76,0.1)', borderRadius: '24px', overflow: 'hidden' }}>
           {reasons.map((r, i) => (
             <motion.div
               key={i}
