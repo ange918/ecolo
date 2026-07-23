@@ -61,8 +61,8 @@ export default function Contact() {
           transition={{ duration: 0.7, ease: 'easeOut' }}
         >
           <p className="section-label">Travaillons ensemble</p>
-          <h2 style={{ fontFamily: 'Jost, sans-serif', fontWeight: 700, fontSize: 'clamp(1.9rem, 3.5vw, 3rem)', color: '#F5F0E8', lineHeight: 1.15, marginBottom: '0.5rem' }}>
-            Concrétisez<br />votre <span style={{ color: '#C9A84C' }}>projet</span>
+          <h2 style={{ fontFamily: 'Cormorant Garamond, serif', fontWeight: 600, fontSize: 'clamp(2.2rem, 4.2vw, 3.6rem)', color: '#F5F0E8', lineHeight: 1.05, letterSpacing: '-0.01em', marginBottom: '0.5rem' }}>
+            Concrétisez<br />votre <span style={{ color: '#C9A84C', fontStyle: 'italic' }}>projet</span>
           </h2>
           <div className="divider" />
           <p className="mb-10" style={{ fontFamily: 'Jost, sans-serif', fontWeight: 300, fontSize: '0.95rem', color: '#B8B0A0', lineHeight: 1.9 }}>
@@ -92,11 +92,17 @@ export default function Contact() {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, ease: 'easeOut', delay: 0.15 }}
+          style={{
+            background: '#111111',
+            border: '1px solid rgba(201,168,76,0.12)',
+            borderRadius: '28px',
+            padding: 'clamp(1.75rem, 4vw, 2.75rem)',
+          }}
         >
           {sent ? (
             <div className="flex flex-col items-start justify-center h-full gap-4">
               <div style={{ width: '40px', height: '2px', background: '#C9A84C' }} />
-              <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 700, fontSize: '2rem', color: '#F5F0E8' }}>Message envoyé !</p>
+              <p style={{ fontFamily: 'Cormorant Garamond, serif', fontWeight: 600, fontSize: '2.6rem', color: '#F5F0E8', lineHeight: 1.1 }}>Message envoyé !</p>
               <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 300, fontSize: '0.92rem', color: '#B8B0A0', lineHeight: 1.8 }}>
                 Merci pour votre demande. Nous vous répondrons dans les meilleurs délais.
               </p>

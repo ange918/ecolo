@@ -1,11 +1,36 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-scroll'
+import { useState } from 'react'
 
 const fadeUp = (delay) => ({
   initial: { opacity: 0, y: 30 },
   animate: { opacity: 1, y: 0 },
   transition: { duration: 0.8, ease: 'easeOut', delay },
 })
+
+// Cartes affichées dans le carrousel mobile
+const mobileCards = [
+  {
+    img: '/gallery/img17.jpg',
+    title: 'Créations sur mesure',
+    text: 'Des tenues artistiques uniques, façonnées à la main pour sublimer chaque occasion.',
+  },
+  {
+    img: '/gallery/img12.jpg',
+    title: 'Décor & accessoires',
+    text: 'Chaque pièce enrichit votre univers avec harmonie et sophistication.',
+  },
+  {
+    img: '/gallery/img5.jpg',
+    title: "Décors d'événements",
+    text: 'Des scénographies immersives pour festivals, cérémonies et célébrations sacrées.',
+  },
+  {
+    img: '/gallery/img10.jpg',
+    title: 'Formations',
+    text: "Transmettre l'excellence du savoir-faire artisanal béninois à la nouvelle génération.",
+  },
+]
 
 const ArrowRight = ({ size = 16, color = '#0A0A0A' }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color}
@@ -15,14 +40,10 @@ const ArrowRight = ({ size = 16, color = '#0A0A0A' }) => (
   </svg>
 )
 
-// Petites cartes flottantes qui chevauchent l'image
-function FloatingCard({ img, title, text, delay, align }) {
+// Contenu visuel d'une carte (sans animation) — utilisé tel quel dans la bande roulante
+function CardBox({ img, title, text }) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.7, ease: 'easeOut', delay }}
+    <div
       style={{
         background: 'rgba(17,17,17,0.92)',
         border: '1px solid rgba(201,168,76,0.18)',
@@ -60,11 +81,27 @@ function FloatingCard({ img, title, text, delay, align }) {
           <ArrowRight size={15} color="#0A0A0A" />
         </span>
       </div>
+    </div>
+  )
+}
+
+// Carte flottante animée (apparition), pour l'affichage desktop sur l'image
+function FloatingCard({ img, title, text, delay }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.7, ease: 'easeOut', delay }}
+    >
+      <CardBox img={img} title={title} text={text} />
     </motion.div>
   )
 }
 
 export default function Hero() {
+  const [paused, setPaused] = useState(false)
+
   return (
     <section
       id="hero"
@@ -204,22 +241,48 @@ export default function Hero() {
           </div>
         </motion.div>
 
-        {/* Cartes empilées sur mobile (sous l'image) */}
-        <div className="md:hidden mt-6 grid gap-4">
-          <FloatingCard
-            img="/gallery/img17.jpg"
-            title="Créations sur mesure"
-            text="Des tenues artistiques uniques, façonnées à la main pour sublimer chaque occasion."
-            delay={0.1}
-            align="left"
-          />
-          <FloatingCard
-            img="/gallery/img12.jpg"
-            title="Décor & accessoires"
-            text="Chaque pièce enrichit votre univers avec harmonie et sophistication."
-            delay={0.2}
-            align="right"
-          />
+        {/* Bande roulante de cartes sur mobile (sous l'image) */}
+        <div className="md:hidden mt-6 -mx-4 sm:-mx-6">
+          <div className="marquee-viewport">
+            <div
+              className={`marquee-track to-left ${paused ? 'marquee-paused' : ''}`}
+              style={{ '--marquee-dur': '26s' }}
+            >
+              {[...mobileCards, ...mobileCards].map((card, i) => (
+                <div key={i} className="shrink-0" style={{ marginRight: '1rem' }}>
+                  <CardBox {...card} />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Bouton pause / lecture */}
+          <div className="flex items-center justify-center mt-4 px-4">
+            <button
+              onClick={() => setPaused(p => !p)}
+              aria-label={paused ? 'Reprendre le défilement' : 'Mettre en pause'}
+              className="inline-flex items-center gap-2 transition-all duration-300"
+              style={{
+                background: 'transparent',
+                border: '1px solid rgba(201,168,76,0.4)',
+                color: '#C9A84C',
+                fontFamily: 'Jost, sans-serif',
+                fontWeight: 500,
+                fontSize: '0.78rem',
+                letterSpacing: '0.05em',
+                borderRadius: '9999px',
+                padding: '0.45rem 1.1rem',
+                cursor: 'pointer',
+              }}
+            >
+              {paused ? (
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="#C9A84C"><polygon points="6 4 20 12 6 20 6 4" /></svg>
+              ) : (
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="#C9A84C"><rect x="6" y="4" width="4" height="16" rx="1" /><rect x="14" y="4" width="4" height="16" rx="1" /></svg>
+              )}
+              {paused ? 'Lecture' : 'Pause'}
+            </button>
+          </div>
         </div>
       </div>
     </section>

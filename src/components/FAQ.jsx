@@ -51,12 +51,15 @@ export default function FAQ() {
           className="mb-14 text-center"
         >
           <p className="section-label" style={{ textAlign: 'center' }}>Questions fréquentes</p>
-          <h2 style={{ fontFamily: 'Jost, sans-serif', fontWeight: 700, fontSize: 'clamp(1.9rem, 3.5vw, 3rem)', color: '#F5F0E8' }}>
-            Tout ce que vous <span style={{ color: '#C9A84C' }}>voulez savoir</span>
+          <h2 style={{ fontFamily: 'Cormorant Garamond, serif', fontWeight: 600, fontSize: 'clamp(2.2rem, 4.2vw, 3.6rem)', color: '#F5F0E8', lineHeight: 1.08, letterSpacing: '-0.01em' }}>
+            Tout ce que vous <span style={{ color: '#C9A84C', fontStyle: 'italic' }}>voulez savoir</span>
           </h2>
         </motion.div>
 
-        <div className="flex flex-col">
+        <div
+          className="flex flex-col px-6 sm:px-10"
+          style={{ background: '#111111', border: '1px solid rgba(201,168,76,0.12)', borderRadius: '28px' }}
+        >
           {faqs.map((faq, i) => (
             <motion.div
               key={i}
@@ -64,7 +67,7 @@ export default function FAQ() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.05 }}
-              style={{ borderBottom: '1px solid rgba(201,168,76,0.1)' }}
+              style={{ borderBottom: i < faqs.length - 1 ? '1px solid rgba(201,168,76,0.1)' : 'none' }}
             >
               <button
                 onClick={() => setOpen(open === i ? null : i)}

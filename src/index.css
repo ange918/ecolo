@@ -30,3 +30,31 @@ h1, h2, h3, h4 { font-family: 'Cormorant Garamond', serif; }
 }
 
 .scroll-line { animation: scrollLine 2s ease-in-out infinite; }
+
+/* Carrousel mobile : masquer la barre de défilement */
+.hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+.hide-scrollbar::-webkit-scrollbar { display: none; }
+
+/* Bandes roulantes (marquee / tapis roulant) */
+@keyframes marquee-left {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@keyframes marquee-right {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+.marquee-viewport { overflow: hidden; }
+.marquee-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+}
+.marquee-track.to-left  { animation: marquee-left  var(--marquee-dur, 30s) linear infinite; }
+.marquee-track.to-right { animation: marquee-right var(--marquee-dur, 30s) linear infinite; }
+.marquee-paused { animation-play-state: paused !important; }
+.marquee-hover-pause:hover { animation-play-state: paused; }
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none !important; }
+}

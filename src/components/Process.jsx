@@ -52,8 +52,8 @@ export default function Process() {
           className="mb-16"
         >
           <p className="section-label">Comment on travaille</p>
-          <h2 style={{ fontFamily: 'Jost, sans-serif', fontWeight: 700, fontSize: 'clamp(1.9rem, 3.5vw, 3rem)', color: '#F5F0E8' }}>
-            Notre <span style={{ color: '#C9A84C' }}>processus</span> de création
+          <h2 style={{ fontFamily: 'Cormorant Garamond, serif', fontWeight: 600, fontSize: 'clamp(2.2rem, 4.2vw, 3.6rem)', color: '#F5F0E8', lineHeight: 1.08, letterSpacing: '-0.01em' }}>
+            Notre <span style={{ color: '#C9A84C', fontStyle: 'italic' }}>processus</span> de création
           </h2>
         </motion.div>
 
