@@ -1,5 +1,4 @@
-import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 
 const collaborators = [
   { nom: 'EFAMBE', role: 'Créateur de contenu' },
@@ -63,18 +62,18 @@ const testimonials = [
   },
 ]
 
-function TestimonialCard({ t, isActive, onClick }) {
+function TestimonialCard({ t, isActive = true }) {
   return (
     <div
-      onClick={onClick}
-      className="flex flex-col justify-between cursor-pointer transition-all duration-300"
+      className="flex flex-col justify-between"
       style={{
         padding: '2rem',
         background: isActive ? '#1A1A1A' : 'rgba(26,26,26,0.4)',
         border: `1px solid ${isActive ? 'rgba(201,168,76,0.4)' : 'rgba(201,168,76,0.1)'}`,
         borderRadius: '20px',
-        height: '100%',
+        width: 'min(360px, 84vw)',
         minHeight: '260px',
+        whiteSpace: 'normal',
       }}
     >
       {/* Quote top */}
@@ -133,11 +132,9 @@ function TestimonialCard({ t, isActive, onClick }) {
 }
 
 export default function Testimonials() {
-  const [page, setPage] = useState(0)
-  const perPage = 4
-  const totalPages = Math.ceil(testimonials.length / perPage)
-  const visible = testimonials.slice(page * perPage, page * perPage + perPage)
-  const [active, setActive] = useState(0)
+  const mid = Math.ceil(testimonials.length / 2)
+  const rowTop = testimonials.slice(0, mid)
+  const rowBottom = testimonials.slice(mid)
 
   return (
     <section id="temoignages" className="py-24 lg:py-32 px-6 lg:px-12" style={{ background: '#0A0A0A' }}>
@@ -200,65 +197,30 @@ export default function Testimonials() {
           </div>
         </motion.div>
 
-        {/* ─── Grille des témoignages ─── */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={page}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.4 }}
-            className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8"
-          >
-            {visible.map((t, i) => (
-              <TestimonialCard
-                key={i}
-                t={t}
-                isActive={active === (page * perPage + i)}
-                onClick={() => setActive(page * perPage + i)}
-              />
-            ))}
-          </motion.div>
-        </AnimatePresence>
-
-        {/* ─── Pagination ─── */}
-        {totalPages > 1 && (
-          <div className="flex items-center justify-between">
-            <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 300, fontSize: '0.8rem', color: '#B8B0A0' }}>
-              {page + 1} / {totalPages}
-            </p>
-            <div className="flex gap-2">
-              <button
-                onClick={() => { setPage(p => Math.max(0, p - 1)); setActive(Math.max(0, page - 1) * perPage) }}
-                disabled={page === 0}
-                style={{
-                  width: '40px', height: '40px', borderRadius: '50%',
-                  border: '1px solid rgba(201,168,76,0.3)',
-                  background: 'transparent', cursor: page === 0 ? 'not-allowed' : 'pointer',
-                  color: page === 0 ? 'rgba(201,168,76,0.2)' : '#C9A84C',
-                  fontSize: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  transition: 'all 0.2s',
-                }}
-                onMouseEnter={e => { if (page > 0) e.currentTarget.style.background = 'rgba(201,168,76,0.1)' }}
-                onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
-              >←</button>
-              <button
-                onClick={() => { setPage(p => Math.min(totalPages - 1, p + 1)); setActive(Math.min(totalPages - 1, page + 1) * perPage) }}
-                disabled={page === totalPages - 1}
-                style={{
-                  width: '40px', height: '40px', borderRadius: '50%',
-                  border: '1px solid rgba(201,168,76,0.3)',
-                  background: 'transparent', cursor: page === totalPages - 1 ? 'not-allowed' : 'pointer',
-                  color: page === totalPages - 1 ? 'rgba(201,168,76,0.2)' : '#C9A84C',
-                  fontSize: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  transition: 'all 0.2s',
-                }}
-                onMouseEnter={e => { if (page < totalPages - 1) e.currentTarget.style.background = 'rgba(201,168,76,0.1)' }}
-                onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
-              >→</button>
+        {/* ─── Bandes roulantes de témoignages ─── */}
+        <div className="-mx-6 lg:-mx-12 flex flex-col gap-4">
+          {/* Ligne du haut : défile de gauche à droite */}
+          <div className="marquee-viewport">
+            <div className="marquee-track to-right marquee-hover-pause" style={{ '--marquee-dur': '48s' }}>
+              {[...rowTop, ...rowTop].map((t, i) => (
+                <div key={i} className="shrink-0" style={{ marginRight: '1rem' }}>
+                  <TestimonialCard t={t} />
+                </div>
+              ))}
             </div>
           </div>
-        )}
+
+          {/* Ligne du bas : défile de droite à gauche */}
+          <div className="marquee-viewport">
+            <div className="marquee-track to-left marquee-hover-pause" style={{ '--marquee-dur': '48s' }}>
+              {[...rowBottom, ...rowBottom].map((t, i) => (
+                <div key={i} className="shrink-0" style={{ marginRight: '1rem' }}>
+                  <TestimonialCard t={t} />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
 
       </div>
     </section>

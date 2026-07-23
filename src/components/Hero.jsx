@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-scroll'
+import { useState } from 'react'
 
 const fadeUp = (delay) => ({
   initial: { opacity: 0, y: 30 },
@@ -39,14 +40,10 @@ const ArrowRight = ({ size = 16, color = '#0A0A0A' }) => (
   </svg>
 )
 
-// Petites cartes flottantes qui chevauchent l'image
-function FloatingCard({ img, title, text, delay, align }) {
+// Contenu visuel d'une carte (sans animation) — utilisé tel quel dans la bande roulante
+function CardBox({ img, title, text }) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.7, ease: 'easeOut', delay }}
+    <div
       style={{
         background: 'rgba(17,17,17,0.92)',
         border: '1px solid rgba(201,168,76,0.18)',
@@ -84,11 +81,27 @@ function FloatingCard({ img, title, text, delay, align }) {
           <ArrowRight size={15} color="#0A0A0A" />
         </span>
       </div>
+    </div>
+  )
+}
+
+// Carte flottante animée (apparition), pour l'affichage desktop sur l'image
+function FloatingCard({ img, title, text, delay }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.7, ease: 'easeOut', delay }}
+    >
+      <CardBox img={img} title={title} text={text} />
     </motion.div>
   )
 }
 
 export default function Hero() {
+  const [paused, setPaused] = useState(false)
+
   return (
     <section
       id="hero"
@@ -228,27 +241,47 @@ export default function Hero() {
           </div>
         </motion.div>
 
-        {/* Carrousel de cartes sur mobile (sous l'image) */}
+        {/* Bande roulante de cartes sur mobile (sous l'image) */}
         <div className="md:hidden mt-6 -mx-4 sm:-mx-6">
-          <div
-            className="hide-scrollbar flex gap-4 overflow-x-auto px-4 sm:px-6 pb-2"
-            style={{ scrollSnapType: 'x mandatory', WebkitOverflowScrolling: 'touch' }}
-          >
-            {mobileCards.map((card, i) => (
-              <div key={i} className="shrink-0" style={{ scrollSnapAlign: 'center' }}>
-                <FloatingCard {...card} delay={0.05 * i} />
-              </div>
-            ))}
+          <div className="marquee-viewport">
+            <div
+              className={`marquee-track to-left ${paused ? 'marquee-paused' : ''}`}
+              style={{ '--marquee-dur': '26s' }}
+            >
+              {[...mobileCards, ...mobileCards].map((card, i) => (
+                <div key={i} className="shrink-0" style={{ marginRight: '1rem' }}>
+                  <CardBox {...card} />
+                </div>
+              ))}
+            </div>
           </div>
-          {/* Indice de défilement */}
-          <div className="flex items-center justify-center gap-1.5 mt-3">
-            {mobileCards.map((_, i) => (
-              <span key={i} style={{
-                width: i === 0 ? '18px' : '6px', height: '6px', borderRadius: '9999px',
-                background: i === 0 ? '#C9A84C' : 'rgba(201,168,76,0.3)',
-                transition: 'all 0.3s',
-              }} />
-            ))}
+
+          {/* Bouton pause / lecture */}
+          <div className="flex items-center justify-center mt-4 px-4">
+            <button
+              onClick={() => setPaused(p => !p)}
+              aria-label={paused ? 'Reprendre le défilement' : 'Mettre en pause'}
+              className="inline-flex items-center gap-2 transition-all duration-300"
+              style={{
+                background: 'transparent',
+                border: '1px solid rgba(201,168,76,0.4)',
+                color: '#C9A84C',
+                fontFamily: 'Jost, sans-serif',
+                fontWeight: 500,
+                fontSize: '0.78rem',
+                letterSpacing: '0.05em',
+                borderRadius: '9999px',
+                padding: '0.45rem 1.1rem',
+                cursor: 'pointer',
+              }}
+            >
+              {paused ? (
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="#C9A84C"><polygon points="6 4 20 12 6 20 6 4" /></svg>
+              ) : (
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="#C9A84C"><rect x="6" y="4" width="4" height="16" rx="1" /><rect x="14" y="4" width="4" height="16" rx="1" /></svg>
+              )}
+              {paused ? 'Lecture' : 'Pause'}
+            </button>
           </div>
         </div>
       </div>
