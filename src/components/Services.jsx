@@ -94,7 +94,7 @@ export default function Services() {
           className="mb-16"
         >
           <p className="section-label">Ce que nous faisons</p>
-          <h2 style={{ fontFamily: 'Syncopate, sans-serif', fontWeight: 600, fontSize: 'clamp(2.2rem, 4.2vw, 3.6rem)', color: '#F5F0E8', lineHeight: 1.08, letterSpacing: '-0.01em' }}>
+          <h2 style={{ fontFamily: 'Syncopate, sans-serif', fontWeight: 600, fontSize: 'clamp(1.55rem, 5vw, 3.6rem)', color: '#F5F0E8', lineHeight: 1.08, letterSpacing: '-0.01em' }}>
             Nos domaines de <span style={{ color: '#C9A84C', fontStyle: 'italic' }}>création</span>
           </h2>
         </motion.div>

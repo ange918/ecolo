@@ -3,114 +3,143 @@ import { motion } from 'framer-motion'
 const reasons = [
   {
     num: '01',
+    tag: 'Tradition',
     titre: 'Savoir-faire ancestral',
     desc: "Chaque création puise dans des techniques transmises de génération en génération, garantissant une authenticité et une qualité irréprochables.",
-    icon: (
-      <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="#C9A84C" strokeWidth="1.4" strokeLinecap="round">
-        <path d="M20 4 L24 14 L35 14 L26 21 L29 32 L20 25 L11 32 L14 21 L5 14 L16 14 Z" />
-      </svg>
-    ),
   },
   {
     num: '02',
+    tag: 'Sur-mesure',
     titre: 'Créations 100% sur-mesure',
     desc: "Nous n'utilisons aucun patron standard. Chaque pièce est pensée, discutée et façonnée exclusivement pour vous, selon vos besoins et votre vision.",
-    icon: (
-      <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="#C9A84C" strokeWidth="1.4" strokeLinecap="round">
-        <path d="M8 32 L32 8" /><path d="M14 8 L32 8 L32 26" />
-        <circle cx="10" cy="30" r="4" /><circle cx="30" cy="10" r="4" />
-      </svg>
-    ),
   },
   {
     num: '03',
+    tag: 'Légitimité',
     titre: 'Référence culturelle reconnue',
     desc: "Nos réalisations pour le Trône de Béhanzin, le Festival des Masques et les Vodouns Days témoignent de notre légitimité au cœur du patrimoine béninois.",
-    icon: (
-      <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="#C9A84C" strokeWidth="1.4" strokeLinecap="round">
-        <path d="M20 4 L22 10 L28 10 L23 14 L25 20 L20 16 L15 20 L17 14 L12 10 L18 10 Z" />
-        <path d="M10 28 L30 28 L32 36 L8 36 Z" /><path d="M14 28 L14 22 M20 28 L20 20 M26 28 L26 22" />
-      </svg>
-    ),
   },
   {
     num: '04',
+    tag: 'Fiabilité',
     titre: 'Délais respectés',
     desc: "Que ce soit pour un festival, une cérémonie royale ou un événement privé, nous livrons dans les délais convenus, sans jamais sacrifier la qualité.",
-    icon: (
-      <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="#C9A84C" strokeWidth="1.4" strokeLinecap="round">
-        <circle cx="20" cy="20" r="14" />
-        <path d="M20 10 L20 20 L27 24" />
-        <path d="M20 6 L20 4 M34 20 L36 20 M20 34 L20 36 M6 20 L4 20" />
-      </svg>
-    ),
   },
   {
     num: '05',
+    tag: 'Proximité',
     titre: 'Accompagnement personnalisé',
     desc: "De la première consultation à la livraison finale, Christelle FASSINOU et son équipe vous accompagnent à chaque étape pour une expérience unique et mémorable.",
-    icon: (
-      <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="#C9A84C" strokeWidth="1.4" strokeLinecap="round">
-        <circle cx="16" cy="12" r="5" /><circle cx="28" cy="16" r="4" />
-        <path d="M6 34 C6 26 10 22 16 22 C22 22 26 26 26 34" />
-        <path d="M28 22 C32 22 35 25 35 30" />
-      </svg>
-    ),
   },
   {
     num: '06',
+    tag: 'Qualité',
     titre: 'Matières nobles & durables',
     desc: "Nous sélectionnons rigoureusement des tissus de qualité, des fils brodés et des matériaux durables pour des créations qui traversent le temps.",
-    icon: (
-      <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="#C9A84C" strokeWidth="1.4" strokeLinecap="round">
-        <path d="M8 20 Q14 8 20 20 Q26 32 32 20" />
-        <path d="M8 28 Q14 16 20 28 Q26 40 32 28" />
-        <path d="M8 12 Q14 0 20 12 Q26 24 32 12" />
-      </svg>
-    ),
   },
 ]
+
+function StairCard({ r, i }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 26 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.55, ease: 'easeOut', delay: i * 0.07 }}
+      className="stair-card"
+      style={{ '--indent': `${i * 2.1}rem`, position: 'relative', zIndex: i + 1 }}
+    >
+      <div
+        className="flex flex-col sm:flex-row overflow-hidden"
+        style={{ background: '#141414', border: '1px solid rgba(201,168,76,0.16)', borderRadius: '18px' }}
+      >
+        {/* Tuile numéro */}
+        <div
+          className="relative flex flex-col justify-between shrink-0"
+          style={{
+            background: 'linear-gradient(150deg, #C9A84C 0%, #9A7A32 100%)',
+            padding: '1.3rem 1.5rem',
+            minHeight: '120px',
+          }}
+        >
+          <span style={{ fontFamily: 'Jost, sans-serif', fontWeight: 600, fontSize: '0.6rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: 'rgba(10,10,10,0.55)' }}>
+            Point
+          </span>
+          <span style={{ fontFamily: 'Syncopate, sans-serif', fontWeight: 700, fontSize: '2.6rem', lineHeight: 1, color: '#0A0A0A' }}>
+            {r.num}
+          </span>
+          <div style={{ height: '3px', background: 'rgba(10,10,10,0.18)', borderRadius: '9999px', marginTop: '0.6rem', minWidth: '96px' }}>
+            <div style={{ height: '100%', width: `${Math.round(((i + 1) / reasons.length) * 100)}%`, background: '#0A0A0A', borderRadius: '9999px' }} />
+          </div>
+        </div>
+
+        {/* Texte */}
+        <div className="flex-1" style={{ padding: '1.5rem 1.7rem' }}>
+          <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 500, fontSize: '0.6rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#C9A84C', marginBottom: '0.6rem' }}>
+            ● {r.tag}
+          </p>
+          <h3 style={{ fontFamily: 'Jost, sans-serif', fontWeight: 600, fontSize: '1.15rem', color: '#F5F0E8', marginBottom: '0.5rem', letterSpacing: '0.01em' }}>
+            {r.titre}
+          </h3>
+          <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 300, fontSize: '0.88rem', color: '#B8B0A0', lineHeight: 1.8 }}>
+            {r.desc}
+          </p>
+        </div>
+      </div>
+    </motion.div>
+  )
+}
 
 export default function WhyUs() {
   return (
     <section id="pourquoi-nous" className="py-24 lg:py-32 px-6 lg:px-12" style={{ background: '#0A0A0A' }}>
       <div className="max-w-7xl mx-auto">
 
+        {/* En-tête */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mb-16 max-w-2xl"
+          className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-6 lg:gap-16 items-end mb-14"
         >
-          <p className="section-label">Pourquoi nous choisir</p>
-          <h2 style={{ fontFamily: 'Syncopate, sans-serif', fontWeight: 600, fontSize: 'clamp(2.2rem, 4.2vw, 3.6rem)', color: '#F5F0E8', lineHeight: 1.08, letterSpacing: '-0.01em' }}>
-            Ce qui nous rend <span style={{ color: '#C9A84C', fontStyle: 'italic' }}>uniques</span>
-          </h2>
-          <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 300, fontSize: '0.95rem', color: '#B8B0A0', lineHeight: 1.85, marginTop: '1rem' }}>
-            Depuis plus de 5 ans, Senan Concept s'est imposée comme la maison de mode de référence pour les créations culturelles au Bénin.
+          <div>
+            <p className="section-label">Pourquoi nous choisir</p>
+            <h2 style={{ fontFamily: 'Syncopate, sans-serif', fontWeight: 700, fontSize: 'clamp(1.55rem, 5vw, 3.6rem)', color: '#F5F0E8', lineHeight: 1.14, letterSpacing: '-0.01em' }}>
+              Ce qui nous rend <span style={{ color: '#C9A84C', fontStyle: 'italic' }}>uniques</span>
+            </h2>
+          </div>
+          <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 300, fontSize: '0.95rem', color: '#B8B0A0', lineHeight: 1.85, maxWidth: '360px' }}>
+            Depuis plus de 5 ans, Senan Concept s'est imposée comme la maison de mode
+            de référence pour les créations culturelles au Bénin.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px" style={{ background: 'rgba(201,168,76,0.1)', borderRadius: '24px', overflow: 'hidden' }}>
-          {reasons.map((r, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.08 }}
-              className="group p-8 transition-colors duration-300"
-              style={{ background: '#0A0A0A' }}
-              onMouseEnter={e => e.currentTarget.style.background = '#111111'}
-              onMouseLeave={e => e.currentTarget.style.background = '#0A0A0A'}
-            >
-              <p style={{ fontSize: '0.62rem', letterSpacing: '0.2em', color: 'rgba(201,168,76,0.5)', marginBottom: '1.2rem', fontFamily: 'Jost' }}>{r.num}</p>
-              <div style={{ marginBottom: '1.2rem' }}>{r.icon}</div>
-              <h3 style={{ fontFamily: 'Jost, sans-serif', fontWeight: 600, fontSize: '1.05rem', color: '#F5F0E8', marginBottom: '0.6rem' }}>{r.titre}</h3>
-              <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 300, fontSize: '0.87rem', color: '#B8B0A0', lineHeight: 1.85 }}>{r.desc}</p>
-            </motion.div>
-          ))}
+        {/* Panneau avec cartes en escalier */}
+        <div
+          style={{ background: '#111111', border: '1px solid rgba(201,168,76,0.12)', borderRadius: '28px', padding: 'clamp(1.2rem, 3vw, 2rem)' }}
+        >
+          {/* Barre d'en-tête du panneau */}
+          <div className="flex items-center justify-between flex-wrap gap-3 mb-8 pb-5" style={{ borderBottom: '1px solid rgba(201,168,76,0.1)' }}>
+            <div className="flex items-center gap-3">
+              <span className="flex items-center justify-center shrink-0" style={{ width: '38px', height: '38px', borderRadius: '10px', border: '1px solid rgba(201,168,76,0.3)', color: '#C9A84C', fontFamily: 'Syncopate, sans-serif', fontWeight: 700, fontSize: '0.7rem' }}>SC</span>
+              <div>
+                <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 600, fontSize: '0.82rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: '#F5F0E8' }}>Le savoir-faire Senan</p>
+                <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 300, fontSize: '0.68rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: '#787068' }}>Excellence artisanale</p>
+              </div>
+            </div>
+            <span className="flex items-center gap-2" style={{ fontFamily: 'Jost, sans-serif', fontWeight: 500, fontSize: '0.62rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: '#C9A84C', border: '1px solid rgba(201,168,76,0.3)', borderRadius: '9999px', padding: '0.35rem 0.9rem' }}>
+              <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#C9A84C', display: 'inline-block' }} />
+              Maison d'exception
+            </span>
+          </div>
+
+          {/* Cartes */}
+          <div className="flex flex-col gap-4">
+            {reasons.map((r, i) => (
+              <StairCard key={i} r={r} i={i} />
+            ))}
+          </div>
         </div>
       </div>
     </section>

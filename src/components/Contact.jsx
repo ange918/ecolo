@@ -61,7 +61,7 @@ export default function Contact() {
           transition={{ duration: 0.7, ease: 'easeOut' }}
         >
           <p className="section-label">Travaillons ensemble</p>
-          <h2 style={{ fontFamily: 'Syncopate, sans-serif', fontWeight: 600, fontSize: 'clamp(2.2rem, 4.2vw, 3.6rem)', color: '#F5F0E8', lineHeight: 1.05, letterSpacing: '-0.01em', marginBottom: '0.5rem' }}>
+          <h2 style={{ fontFamily: 'Syncopate, sans-serif', fontWeight: 600, fontSize: 'clamp(1.55rem, 5vw, 3.6rem)', color: '#F5F0E8', lineHeight: 1.05, letterSpacing: '-0.01em', marginBottom: '0.5rem' }}>
             Concrétisez<br />votre <span style={{ color: '#C9A84C', fontStyle: 'italic' }}>projet</span>
           </h2>
           <div className="divider" />
