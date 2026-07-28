@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-scroll'
 import { useState } from 'react'
+import { trackClick } from '../lib/supabase'
 
 const fadeUp = (delay) => ({
   initial: { opacity: 0, y: 30 },
@@ -155,6 +156,7 @@ export default function Hero() {
               duration={600}
               offset={-64}
               className="cursor-pointer inline-flex items-center gap-2.5 px-7 py-3.5 transition-all duration-300"
+              onClick={() => trackClick('cta:decouvrir-la-collection')}
               style={{
                 background: '#C9A84C',
                 color: '#0A0A0A',
@@ -176,6 +178,7 @@ export default function Hero() {
               duration={600}
               offset={-64}
               className="cursor-pointer px-7 py-3.5 transition-all duration-300"
+              onClick={() => trackClick('cta:prendre-contact')}
               style={{
                 background: 'transparent',
                 border: '2px solid #F5F0E8',

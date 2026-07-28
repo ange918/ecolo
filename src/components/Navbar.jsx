@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { Link as ScrollLink } from 'react-scroll'
 import { Link as RouterLink, useLocation } from 'react-router-dom'
+import { trackClick } from '../lib/supabase'
 
 const NAV_SECTIONS = [
   { label: 'Services', to: 'services' },
@@ -73,10 +74,12 @@ export default function Navbar() {
             <SectionLink key={link.to} to={link.to} label={link.label}
               style={linkStyle}
               className="hover:text-blanc"
+              onClick={() => trackClick('nav:' + link.to)}
             />
           ))}
           <RouterLink to="/qui-sommes-nous"
             style={{ ...linkStyle, color: location.pathname === '/qui-sommes-nous' ? '#C9A84C' : '#B8B0A0' }}
+            onClick={() => trackClick('nav:qui-sommes-nous')}
           >
             Qui sommes-nous
           </RouterLink>
@@ -85,6 +88,7 @@ export default function Navbar() {
         {/* CTA */}
         <div className="hidden md:block">
           <SectionLink to="contact" label="Contactez-nous"
+            onClick={() => trackClick('cta:contactez-nous')}
             style={{
               border: '1.5px solid #C9A84C', color: '#C9A84C',
               fontFamily: 'Jost, sans-serif', fontWeight: 500, fontSize: '0.88rem',
@@ -108,9 +112,9 @@ export default function Navbar() {
         <div className="md:hidden px-6 pb-6 flex flex-col gap-5" style={{ background: 'rgba(10,10,10,0.98)' }}>
           {NAV_SECTIONS.map(link => (
             <SectionLink key={link.to} to={link.to} label={link.label}
-              style={linkStyle} onClick={() => setMenuOpen(false)} />
+              style={linkStyle} onClick={() => { trackClick('nav:' + link.to); setMenuOpen(false) }} />
           ))}
-          <RouterLink to="/qui-sommes-nous" onClick={() => setMenuOpen(false)}
+          <RouterLink to="/qui-sommes-nous" onClick={() => { trackClick('nav:qui-sommes-nous'); setMenuOpen(false) }}
             style={{ ...linkStyle, color: '#B8B0A0', textDecoration: 'none' }}>
             Qui sommes-nous
           </RouterLink>
@@ -121,7 +125,7 @@ export default function Navbar() {
               borderRadius: '9999px', padding: '0.5rem 1.2rem',
               textAlign: 'center', textDecoration: 'none', display: 'block',
             }}
-            onClick={() => setMenuOpen(false)}
+            onClick={() => { trackClick('cta:contactez-nous'); setMenuOpen(false) }}
           />
         </div>
       )}

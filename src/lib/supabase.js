@@ -14,18 +14,45 @@ const fnHeaders = {
   Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
 }
 
-// Enregistre une visite de page (best-effort, silencieux en cas d'échec)
-export async function trackVisit(page = 'accueil') {
+// Identifiant de session (visiteur) persistant
+function getSessionId() {
+  try {
+    let id = localStorage.getItem('sc_session_id')
+    if (!id) {
+      id = (crypto?.randomUUID?.() || String(Date.now()) + Math.random().toString(36).slice(2))
+      localStorage.setItem('sc_session_id', id)
+    }
+    return id
+  } catch (_e) {
+    return null
+  }
+}
+
+function getDevice() {
+  if (typeof window === 'undefined') return 'Inconnu'
+  return window.innerWidth < 768 ? 'Mobile' : 'Ordinateur'
+}
+
+// Enregistre un événement (visite ou clic), best-effort
+export async function trackEvent({ type = 'visit', page = 'accueil', label = null }) {
   try {
     await fetch(`${FN_BASE}/track-visit`, {
       method: 'POST',
       headers: fnHeaders,
-      body: JSON.stringify({ page }),
+      body: JSON.stringify({ type, page, label, device: getDevice(), session_id: getSessionId() }),
       keepalive: true,
     })
   } catch (_e) {
     // ignore
   }
+}
+
+export function trackVisit(page = 'accueil') {
+  return trackEvent({ type: 'visit', page })
+}
+
+export function trackClick(label, page = 'accueil') {
+  return trackEvent({ type: 'click', page, label })
 }
 
 // Appel authentifié par PIN vers la fonction "admin"
