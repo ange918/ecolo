@@ -1,3 +1,5 @@
+import { useEffect } from 'react'
+import { trackVisit } from '../lib/supabase'
 import Hero from '../components/Hero'
 import AboutSnippet from '../components/AboutSnippet'
 import Services from '../components/Services'
@@ -10,6 +12,8 @@ import FAQ from '../components/FAQ'
 import Contact from '../components/Contact'
 
 export default function HomePage() {
+  useEffect(() => { trackVisit('accueil') }, [])
+
   return (
     <>
       <Hero />

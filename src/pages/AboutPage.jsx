@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { Link as RouterLink } from 'react-router-dom'
 import { useEffect } from 'react'
+import { trackVisit } from '../lib/supabase'
 
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 30 },
@@ -18,7 +19,7 @@ function Divider() {
 }
 
 export default function AboutPage() {
-  useEffect(() => { window.scrollTo(0, 0) }, [])
+  useEffect(() => { window.scrollTo(0, 0); trackVisit('qui-sommes-nous') }, [])
 
   return (
     <div style={{ background: '#0A0A0A' }}>
@@ -32,7 +33,7 @@ export default function AboutPage() {
           </motion.div>
           <motion.h1
             {...fadeUp(0.25)}
-            style={{ fontFamily: 'Jost, sans-serif', fontWeight: 700, fontSize: 'clamp(2.2rem, 6vw, 5rem)', color: '#F5F0E8', lineHeight: 1.1, maxWidth: '800px' }}
+            style={{ fontFamily: 'Bodoni Moda, serif', fontWeight: 600, fontSize: 'clamp(2.2rem, 6vw, 5rem)', color: '#F5F0E8', lineHeight: 1.1, maxWidth: '800px' }}
           >
             L'âme d'un peuple,<br />
             la main d'une <span style={{ color: '#C9A84C' }}>artiste</span>
@@ -52,7 +53,7 @@ export default function AboutPage() {
 
           <motion.div {...fadeUp(0)}>
             <SectionLabel>Notre histoire</SectionLabel>
-            <h2 style={{ fontFamily: 'Jost, sans-serif', fontWeight: 700, fontSize: 'clamp(1.8rem, 3vw, 2.6rem)', color: '#F5F0E8', lineHeight: 1.2 }}>
+            <h2 style={{ fontFamily: 'Bodoni Moda, serif', fontWeight: 600, fontSize: 'clamp(1.8rem, 3vw, 2.6rem)', color: '#F5F0E8', lineHeight: 1.2 }}>
               Née d'une passion,<br />
               forgée par la <span style={{ color: '#C9A84C' }}>tradition</span>
             </h2>
@@ -101,7 +102,7 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto">
           <motion.div {...fadeUp(0)} className="mb-16 text-center">
             <SectionLabel>La fondatrice</SectionLabel>
-            <h2 style={{ fontFamily: 'Jost, sans-serif', fontWeight: 700, fontSize: 'clamp(1.9rem, 3.5vw, 3rem)', color: '#F5F0E8' }}>
+            <h2 style={{ fontFamily: 'Bodoni Moda, serif', fontWeight: 600, fontSize: 'clamp(1.9rem, 3.5vw, 3rem)', color: '#F5F0E8' }}>
               Christelle FASSINOU, <span style={{ color: '#C9A84C' }}>Senan Concept</span>
             </h2>
           </motion.div>
@@ -194,7 +195,7 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto">
           <motion.div {...fadeUp(0)} className="mb-16">
             <SectionLabel>Notre ADN</SectionLabel>
-            <h2 style={{ fontFamily: 'Jost, sans-serif', fontWeight: 700, fontSize: 'clamp(1.9rem, 3.5vw, 3rem)', color: '#F5F0E8' }}>
+            <h2 style={{ fontFamily: 'Bodoni Moda, serif', fontWeight: 600, fontSize: 'clamp(1.9rem, 3.5vw, 3rem)', color: '#F5F0E8' }}>
               Mission, Vision & <span style={{ color: '#C9A84C' }}>Valeurs</span>
             </h2>
           </motion.div>
@@ -275,7 +276,7 @@ export default function AboutPage() {
         <div className="max-w-4xl mx-auto text-center">
           <motion.div {...fadeUp(0)}>
             <SectionLabel>Vision globale</SectionLabel>
-            <h2 style={{ fontFamily: 'Jost, sans-serif', fontWeight: 700, fontSize: 'clamp(1.9rem, 3.5vw, 3rem)', color: '#F5F0E8', marginBottom: '2rem' }}>
+            <h2 style={{ fontFamily: 'Bodoni Moda, serif', fontWeight: 600, fontSize: 'clamp(1.9rem, 3.5vw, 3rem)', color: '#F5F0E8', marginBottom: '2rem' }}>
               L'artisanat béninois,<br />
               <span style={{ color: '#C9A84C' }}>ambassadeur d'une culture</span>
             </h2>

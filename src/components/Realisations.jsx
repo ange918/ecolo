@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { supabase } from '../lib/supabase'
 
 const realisations = [
   {
@@ -71,10 +72,20 @@ function Card({ item, delay }) {
       className="relative overflow-hidden"
       style={{ aspectRatio: '3/4', background: '#1A1A1A', cursor: 'default', borderRadius: '20px' }}
     >
-      <div className="absolute inset-0 flex items-center justify-center transition-all duration-500"
-        style={{ opacity: hovered ? 0.18 : 0.07 }}>
-        {item.svg}
-      </div>
+      {item.image_url ? (
+        <img
+          src={item.image_url}
+          alt={item.titre}
+          loading="lazy"
+          className="absolute inset-0 transition-transform duration-500"
+          style={{ width: '100%', height: '100%', objectFit: 'cover', transform: hovered ? 'scale(1.05)' : 'scale(1)' }}
+        />
+      ) : (
+        <div className="absolute inset-0 flex items-center justify-center transition-all duration-500"
+          style={{ opacity: hovered ? 0.18 : 0.07 }}>
+          {item.svg}
+        </div>
+      )}
       <div
         className="absolute bottom-0 left-0 right-0 px-6 py-5"
         style={{ borderTop: '1px solid rgba(201,168,76,0.2)', background: 'linear-gradient(to top, rgba(10,10,10,0.95) 60%, transparent)' }}
@@ -94,6 +105,24 @@ function Card({ item, delay }) {
 }
 
 export default function Realisations() {
+  const [dbItems, setDbItems] = useState([])
+
+  useEffect(() => {
+    let active = true
+    supabase
+      .from('realisations')
+      .select('titre, sous_titre, tag, image_url')
+      .order('created_at', { ascending: false })
+      .then(({ data }) => {
+        if (active && data) {
+          setDbItems(data.map(d => ({ titre: d.titre, sousTitre: d.sous_titre, tag: d.tag, image_url: d.image_url })))
+        }
+      })
+    return () => { active = false }
+  }, [])
+
+  const allItems = [...dbItems, ...realisations]
+
   return (
     <section id="realisations" className="py-24 lg:py-32 px-6 lg:px-12" style={{ background: '#111111' }}>
       <div className="max-w-7xl mx-auto">
@@ -105,7 +134,7 @@ export default function Realisations() {
           transition={{ duration: 0.6 }}
         >
           <p className="section-label">Portfolio</p>
-          <h2 style={{ fontFamily: 'Cormorant Garamond, serif', fontWeight: 600, fontSize: 'clamp(2.2rem, 4.2vw, 3.6rem)', color: '#F5F0E8', marginBottom: '1rem', lineHeight: 1.08, letterSpacing: '-0.01em' }}>
+          <h2 style={{ fontFamily: 'Bodoni Moda, serif', fontWeight: 600, fontSize: 'clamp(2.2rem, 4.2vw, 3.6rem)', color: '#F5F0E8', marginBottom: '1rem', lineHeight: 1.08, letterSpacing: '-0.01em' }}>
             Nos réalisations <span style={{ color: '#C9A84C', fontStyle: 'italic' }}>emblématiques</span>
           </h2>
           <p className="max-w-2xl mb-14" style={{ fontFamily: 'Jost, sans-serif', fontWeight: 300, fontSize: '0.95rem', color: '#B8B0A0', lineHeight: 1.8 }}>
@@ -114,7 +143,7 @@ export default function Realisations() {
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {realisations.map((item, i) => (
+          {allItems.map((item, i) => (
             <Card key={i} item={item} delay={i * 0.12} />
           ))}
         </div>
