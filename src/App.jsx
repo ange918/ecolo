@@ -7,7 +7,7 @@ import AdminPage from './pages/AdminPage'
 
 function Shell() {
   const { pathname } = useLocation()
-  const isAdmin = pathname.startsWith('/admin')
+  const isAdmin = pathname.startsWith('/andychris')
 
   return (
     <>
@@ -15,7 +15,7 @@ function Shell() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/qui-sommes-nous" element={<AboutPage />} />
-        <Route path="/admin" element={<AdminPage />} />
+        <Route path="/andychris" element={<AdminPage />} />
       </Routes>
       {!isAdmin && <Footer />}
     </>

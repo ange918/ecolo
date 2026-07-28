@@ -131,9 +131,9 @@ function PinGate({ onOk }) {
         </p>
         <label style={label}>Code d'accès</label>
         <input
-          type="password" inputMode="numeric" value={pin} autoFocus
+          type="password" value={pin} autoFocus autoCapitalize="none" autoCorrect="off"
           onChange={e => setPin(e.target.value)}
-          style={{ ...input, letterSpacing: '0.3em', textAlign: 'center', fontSize: '1.2rem' }}
+          style={{ ...input, letterSpacing: '0.2em', textAlign: 'center', fontSize: '1.1rem' }}
         />
         {err && <p style={{ color: '#E27B7B', fontFamily: 'Jost', fontSize: '0.8rem', marginTop: '0.7rem' }}>{err}</p>}
         <button type="submit" disabled={loading} style={{ ...btn(), width: '100%', marginTop: '1.5rem', padding: '0.8rem', opacity: loading ? 0.6 : 1 }}>
@@ -366,13 +366,13 @@ function SettingsTab({ pin, onPinChange }) {
     setMsg('')
     const res = await adminCall(pin, 'change_pin', { newPin })
     if (res.ok) { setMsg('Code mis à jour ✓'); onPinChange(newPin); setNewPin('') }
-    else setMsg('Erreur : ' + (res.error === 'pin_too_short' ? '4 chiffres minimum' : res.error))
+    else setMsg('Erreur : ' + (res.error === 'pin_too_short' ? '4 caractères minimum' : res.error))
   }
   return (
     <form onSubmit={save} style={{ ...card, maxWidth: 420 }}>
       <h3 style={{ fontFamily: 'Bodoni Moda, serif', fontWeight: 600, fontSize: '1.3rem', color: '#F5F0E8', marginBottom: '1.2rem' }}>Modifier le code d'accès</h3>
-      <label style={label}>Nouveau code (min. 4 chiffres)</label>
-      <input type="password" inputMode="numeric" value={newPin} onChange={e => setNewPin(e.target.value)} required style={input} />
+      <label style={label}>Nouveau code (min. 4 caractères)</label>
+      <input type="password" value={newPin} autoCapitalize="none" autoCorrect="off" onChange={e => setNewPin(e.target.value)} required style={input} />
       <div className="flex items-center gap-4 mt-4">
         <button type="submit" style={btn()}>Enregistrer</button>
         {msg && <span style={{ fontFamily: 'Jost', fontSize: '0.85rem', color: msg.startsWith('Erreur') ? '#E27B7B' : OR }}>{msg}</span>}
