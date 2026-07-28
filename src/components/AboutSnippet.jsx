@@ -48,7 +48,7 @@ export default function AboutSnippet() {
             </p>
           </motion.div>
 
-          {/* Colonne droite : couverture magazine sur fond taupe */}
+          {/* Colonne droite : couverture magazine qui s'ouvre comme un livre */}
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -57,48 +57,71 @@ export default function AboutSnippet() {
             className="flex items-center justify-center"
             style={{ background: '#C7BDAE', padding: 'clamp(2rem, 5vw, 3.5rem)' }}
           >
-            <div
-              className="w-full flex flex-col"
-              style={{
-                maxWidth: '400px', background: '#0E0E0E', borderRadius: '10px',
-                padding: 'clamp(1.2rem, 3vw, 1.8rem)',
-                boxShadow: '0 30px 60px -20px rgba(0,0,0,0.5)',
-              }}
+            {/* Livre */}
+            <motion.div
+              initial="closed"
+              whileInView="open"
+              viewport={{ once: true, amount: 0.5 }}
+              style={{ perspective: '1700px', width: '100%', maxWidth: '380px' }}
             >
-              {/* En-tête de la couverture */}
-              <p style={{
-                fontFamily: 'Syncopate, sans-serif', fontWeight: 500, fontSize: 'clamp(2.4rem, 6vw, 3.4rem)',
-                color: '#F5F0E8', lineHeight: 1, letterSpacing: '0.02em',
-              }}>
-                senan<span style={{ color: '#C9A84C' }}>.</span>
-              </p>
-              <div className="flex items-center justify-between mt-3 pb-3" style={{ borderBottom: '1px solid rgba(245,240,232,0.15)' }}>
-                <span style={{ fontFamily: 'Jost, sans-serif', fontWeight: 400, fontSize: '0.56rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: '#B8B0A0' }}>
-                  Maison de mode · Costumerie
-                </span>
-                <span style={{ fontFamily: 'Jost, sans-serif', fontWeight: 500, fontSize: '0.56rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: '#C9A84C' }}>
-                  N°01
-                </span>
-              </div>
+              <div style={{ position: 'relative', width: '100%', aspectRatio: '3/3.85', transformStyle: 'preserve-3d' }}>
 
-              {/* Visuel */}
-              <div className="mt-4 overflow-hidden" style={{ borderRadius: '4px', aspectRatio: '3/3.6' }}>
-                <img
-                  src="/gallery/img16.jpg"
-                  alt="Création Senan Concept"
-                  style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', filter: 'grayscale(0.15)' }}
-                />
-              </div>
+                {/* Page intérieure révélée par l'ouverture */}
+                <div style={{ position: 'absolute', inset: 0, borderRadius: '10px', overflow: 'hidden', background: '#0E0E0E', boxShadow: '0 30px 60px -22px rgba(0,0,0,0.55)' }}>
+                  <img
+                    src="/gallery/img17.jpg"
+                    alt="Création Senan Concept"
+                    style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                  />
+                  {/* Reliure côté gauche */}
+                  <div style={{ position: 'absolute', top: 0, bottom: 0, left: 0, width: '14px', background: 'linear-gradient(to right, rgba(0,0,0,0.5), rgba(0,0,0,0))' }} />
+                  <div className="flex items-center justify-between" style={{ position: 'absolute', left: 0, right: 0, bottom: 0, padding: '0.9rem 1.1rem', background: 'linear-gradient(to top, rgba(10,10,10,0.92), transparent)' }}>
+                    <span style={{ fontFamily: 'Jost, sans-serif', fontWeight: 300, fontSize: '0.6rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#D8D0C2' }}>Édition Héritage</span>
+                    <span style={{ fontFamily: 'Jost, sans-serif', fontWeight: 400, fontSize: '0.6rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#C9A84C' }}>Porto Novo · BJ</span>
+                  </div>
+                  {/* Ombre de la couverture qui se lève */}
+                  <motion.div
+                    variants={{ closed: { opacity: 0.55 }, open: { opacity: 0 } }}
+                    transition={{ duration: 1.4, ease: 'easeInOut', delay: 0.4 }}
+                    style={{ position: 'absolute', inset: 0, background: 'linear-gradient(105deg, rgba(0,0,0,0.65), rgba(0,0,0,0) 55%)', pointerEvents: 'none' }}
+                  />
+                </div>
 
-              <div className="flex items-center justify-between mt-4">
-                <span style={{ fontFamily: 'Jost, sans-serif', fontWeight: 300, fontSize: '0.62rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#787068' }}>
-                  Édition Héritage
-                </span>
-                <span style={{ fontFamily: 'Jost, sans-serif', fontWeight: 300, fontSize: '0.62rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#787068' }}>
-                  Porto Novo · BJ
-                </span>
+                {/* Couverture qui s'ouvre (pivote sur la reliure) */}
+                <motion.div
+                  variants={{ closed: { rotateY: 0 }, open: { rotateY: -158 } }}
+                  transition={{ duration: 1.6, ease: [0.33, 0.9, 0.28, 1], delay: 0.4 }}
+                  style={{
+                    position: 'absolute', inset: 0, transformOrigin: 'left center',
+                    transformStyle: 'preserve-3d', backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden',
+                    borderRadius: '10px', background: 'linear-gradient(135deg, #161616, #0A0A0A)',
+                    border: '1px solid rgba(201,168,76,0.16)',
+                    padding: 'clamp(1.2rem, 3vw, 1.8rem)', display: 'flex', flexDirection: 'column',
+                    boxShadow: '0 30px 60px -20px rgba(0,0,0,0.6)',
+                  }}
+                >
+                  {/* Reliure */}
+                  <div style={{ position: 'absolute', top: 0, bottom: 0, left: 0, width: '12px', background: 'linear-gradient(to right, rgba(0,0,0,0.55), rgba(0,0,0,0))', borderTopLeftRadius: '10px', borderBottomLeftRadius: '10px' }} />
+
+                  <p style={{ fontFamily: 'Syncopate, sans-serif', fontWeight: 500, fontSize: 'clamp(2.2rem, 5.5vw, 3.2rem)', color: '#F5F0E8', lineHeight: 1, letterSpacing: '0.02em' }}>
+                    senan<span style={{ color: '#C9A84C' }}>.</span>
+                  </p>
+                  <div className="flex items-center justify-between mt-3 pb-3" style={{ borderBottom: '1px solid rgba(245,240,232,0.15)' }}>
+                    <span style={{ fontFamily: 'Jost, sans-serif', fontWeight: 400, fontSize: '0.56rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: '#B8B0A0' }}>Maison de mode · Costumerie</span>
+                    <span style={{ fontFamily: 'Jost, sans-serif', fontWeight: 500, fontSize: '0.56rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: '#C9A84C' }}>N°01</span>
+                  </div>
+
+                  <div className="mt-4 overflow-hidden" style={{ borderRadius: '4px', flex: 1 }}>
+                    <img src="/gallery/img16.jpg" alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', filter: 'grayscale(0.15) brightness(0.94)' }} />
+                  </div>
+
+                  <div className="flex items-center justify-between mt-4">
+                    <span style={{ fontFamily: 'Jost, sans-serif', fontWeight: 300, fontSize: '0.62rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#787068' }}>Édition Héritage</span>
+                    <span style={{ fontFamily: 'Jost, sans-serif', fontWeight: 300, fontSize: '0.62rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#787068' }}>Porto Novo · BJ</span>
+                  </div>
+                </motion.div>
               </div>
-            </div>
+            </motion.div>
           </motion.div>
         </div>
 
