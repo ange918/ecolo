@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-scroll'
 import { useState } from 'react'
+import { trackClick } from '../lib/supabase'
 
 const fadeUp = (delay) => ({
   initial: { opacity: 0, y: 30 },
@@ -117,87 +118,83 @@ export default function Hero() {
           padding: 'clamp(1.5rem, 4vw, 3.5rem)',
         }}
       >
-        {/* Bloc titre + intro */}
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-end mb-10 lg:mb-14">
-          {/* Colonne gauche : titre */}
-          <div>
-            <motion.p {...fadeUp(0.1)} className="section-label mb-6">
-              Art · Costume · Décoration
-            </motion.p>
-            <motion.h1
-              {...fadeUp(0.3)}
+        {/* Bloc titre + intro (centré) */}
+        <div className="text-center max-w-4xl mx-auto mb-10 lg:mb-14">
+          <motion.p {...fadeUp(0.1)} className="section-label mb-6">
+            Art · Costume · Décoration
+          </motion.p>
+          <motion.h1
+            {...fadeUp(0.3)}
+            style={{
+              fontFamily: 'Syncopate, sans-serif',
+              fontWeight: 700,
+              fontSize: 'clamp(1.35rem, 4.6vw, 3.8rem)',
+              lineHeight: 1.2,
+              letterSpacing: '-0.02em',
+              overflowWrap: 'break-word',
+            }}
+            className="text-blanc"
+          >
+            Transformez votre vision en{' '}
+            <span style={{ color: '#C9A84C', fontStyle: 'italic' }}>artisanat africain</span>
+          </motion.h1>
+
+          <motion.p
+            {...fadeUp(0.5)}
+            className="text-texte mt-6 mb-9 mx-auto"
+            style={{ fontFamily: 'Jost, sans-serif', fontWeight: 300, fontSize: '1.02rem', lineHeight: 1.75, maxWidth: '38rem' }}
+          >
+            Senan Concept crée des tenues artistiques sur mesure, des accessoires
+            de déco et des décors d'événements uniques. Au service de la royauté,
+            des festivals culturels et sacrés.
+          </motion.p>
+
+          <motion.div {...fadeUp(0.7)} className="flex flex-wrap items-center justify-center gap-4">
+            <Link
+              to="realisations"
+              smooth
+              duration={600}
+              offset={-64}
+              className="cursor-pointer inline-flex items-center gap-2.5 px-7 py-3.5 transition-all duration-300"
+              onClick={() => trackClick('cta:decouvrir-la-collection')}
               style={{
-                fontFamily: 'Bodoni Moda, serif',
+                background: '#C9A84C',
+                color: '#0A0A0A',
+                fontFamily: 'Jost, sans-serif',
                 fontWeight: 600,
-                fontSize: 'clamp(2.6rem, 6vw, 5.2rem)',
-                lineHeight: 1.02,
-                letterSpacing: '-0.01em',
+                fontSize: '0.9rem',
+                letterSpacing: '0.03em',
+                borderRadius: '9999px',
               }}
-              className="text-blanc"
+              onMouseEnter={e => { e.currentTarget.style.background = '#E8D5A0' }}
+              onMouseLeave={e => { e.currentTarget.style.background = '#C9A84C' }}
             >
-              Transformez votre vision
-              <br />
-              en <span style={{ color: '#C9A84C', fontStyle: 'italic' }}>artisanat africain</span>
-            </motion.h1>
-          </div>
-
-          {/* Colonne droite : sous-titre + CTA */}
-          <div className="lg:pb-2">
-            <motion.p
-              {...fadeUp(0.5)}
-              className="text-texte mb-8 max-w-md"
-              style={{ fontFamily: 'Jost, sans-serif', fontWeight: 300, fontSize: '1.02rem', lineHeight: 1.75 }}
+              Découvrir la collection
+              <ArrowRight size={16} color="#0A0A0A" />
+            </Link>
+            <Link
+              to="contact"
+              smooth
+              duration={600}
+              offset={-64}
+              className="cursor-pointer px-7 py-3.5 transition-all duration-300"
+              onClick={() => trackClick('cta:prendre-contact')}
+              style={{
+                background: 'transparent',
+                border: '2px solid #F5F0E8',
+                color: '#F5F0E8',
+                fontFamily: 'Jost, sans-serif',
+                fontWeight: 500,
+                fontSize: '0.9rem',
+                letterSpacing: '0.03em',
+                borderRadius: '9999px',
+              }}
+              onMouseEnter={e => { e.currentTarget.style.borderColor = '#C9A84C'; e.currentTarget.style.color = '#C9A84C' }}
+              onMouseLeave={e => { e.currentTarget.style.borderColor = '#F5F0E8'; e.currentTarget.style.color = '#F5F0E8' }}
             >
-              Senan Concept crée des tenues artistiques sur mesure, des accessoires
-              de déco et des décors d'événements uniques. Au service de la royauté,
-              des festivals culturels et sacrés.
-            </motion.p>
-
-            <motion.div {...fadeUp(0.7)} className="flex flex-wrap items-center gap-4">
-              <Link
-                to="realisations"
-                smooth
-                duration={600}
-                offset={-64}
-                className="cursor-pointer inline-flex items-center gap-2.5 px-7 py-3.5 transition-all duration-300"
-                style={{
-                  background: '#C9A84C',
-                  color: '#0A0A0A',
-                  fontFamily: 'Jost, sans-serif',
-                  fontWeight: 600,
-                  fontSize: '0.9rem',
-                  letterSpacing: '0.03em',
-                  borderRadius: '9999px',
-                }}
-                onMouseEnter={e => { e.currentTarget.style.background = '#E8D5A0' }}
-                onMouseLeave={e => { e.currentTarget.style.background = '#C9A84C' }}
-              >
-                Découvrir la collection
-                <ArrowRight size={16} color="#0A0A0A" />
-              </Link>
-              <Link
-                to="contact"
-                smooth
-                duration={600}
-                offset={-64}
-                className="cursor-pointer px-7 py-3.5 transition-all duration-300"
-                style={{
-                  background: 'transparent',
-                  border: '2px solid #F5F0E8',
-                  color: '#F5F0E8',
-                  fontFamily: 'Jost, sans-serif',
-                  fontWeight: 500,
-                  fontSize: '0.9rem',
-                  letterSpacing: '0.03em',
-                  borderRadius: '9999px',
-                }}
-                onMouseEnter={e => { e.currentTarget.style.borderColor = '#C9A84C'; e.currentTarget.style.color = '#C9A84C' }}
-                onMouseLeave={e => { e.currentTarget.style.borderColor = '#F5F0E8'; e.currentTarget.style.color = '#F5F0E8' }}
-              >
-                Prendre contact
-              </Link>
-            </motion.div>
-          </div>
+              Prendre contact
+            </Link>
+          </motion.div>
         </div>
 
         {/* Image principale + cartes flottantes */}

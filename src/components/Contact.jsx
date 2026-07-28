@@ -61,7 +61,7 @@ export default function Contact() {
           transition={{ duration: 0.7, ease: 'easeOut' }}
         >
           <p className="section-label">Travaillons ensemble</p>
-          <h2 style={{ fontFamily: 'Bodoni Moda, serif', fontWeight: 600, fontSize: 'clamp(2.2rem, 4.2vw, 3.6rem)', color: '#F5F0E8', lineHeight: 1.05, letterSpacing: '-0.01em', marginBottom: '0.5rem' }}>
+          <h2 style={{ fontFamily: 'Syncopate, sans-serif', fontWeight: 600, fontSize: 'clamp(1.55rem, 5vw, 3.6rem)', color: '#F5F0E8', lineHeight: 1.05, letterSpacing: '-0.01em', marginBottom: '0.5rem' }}>
             Concrétisez<br />votre <span style={{ color: '#C9A84C', fontStyle: 'italic' }}>projet</span>
           </h2>
           <div className="divider" />
@@ -102,7 +102,7 @@ export default function Contact() {
           {sent ? (
             <div className="flex flex-col items-start justify-center h-full gap-4">
               <div style={{ width: '40px', height: '2px', background: '#C9A84C' }} />
-              <p style={{ fontFamily: 'Bodoni Moda, serif', fontWeight: 600, fontSize: '2.6rem', color: '#F5F0E8', lineHeight: 1.1 }}>Message envoyé !</p>
+              <p style={{ fontFamily: 'Syncopate, sans-serif', fontWeight: 600, fontSize: '2.6rem', color: '#F5F0E8', lineHeight: 1.1 }}>Message envoyé !</p>
               <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 300, fontSize: '0.92rem', color: '#B8B0A0', lineHeight: 1.8 }}>
                 Merci pour votre demande. Nous vous répondrons dans les meilleurs délais.
               </p>

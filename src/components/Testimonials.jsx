@@ -64,6 +64,12 @@ const testimonials = [
   },
 ]
 
+const initials = (name) => {
+  const parts = name.trim().split(/\s+/)
+  if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase()
+  return (parts[0][0] + parts[1][0]).toUpperCase()
+}
+
 function TestimonialCard({ t, isActive = true }) {
   return (
     <div
@@ -164,7 +170,7 @@ export default function Testimonials() {
           className="mb-16"
         >
           <p className="section-label">Témoignages</p>
-          <h2 style={{ fontFamily: 'Bodoni Moda, serif', fontWeight: 600, fontSize: 'clamp(2.2rem, 4.2vw, 3.6rem)', color: '#F5F0E8', lineHeight: 1.08, letterSpacing: '-0.01em' }}>
+          <h2 style={{ fontFamily: 'Syncopate, sans-serif', fontWeight: 600, fontSize: 'clamp(1.55rem, 5vw, 3.6rem)', color: '#F5F0E8', lineHeight: 1.08, letterSpacing: '-0.01em' }}>
             Ce que disent <span style={{ color: '#C9A84C', fontStyle: 'italic' }}>nos clients</span>
           </h2>
         </motion.div>
@@ -185,26 +191,35 @@ export default function Testimonials() {
           }}>
             Nous avons déjà collaboré avec
           </p>
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-wrap gap-x-6 gap-y-8 justify-center sm:justify-start">
             {collaborators.map((c, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, scale: 0.9 }}
+                initial={{ opacity: 0, scale: 0.85 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.3, delay: i * 0.06 }}
-                className="flex flex-col"
-                style={{
-                  padding: '0.6rem 1.2rem',
-                  background: '#1A1A1A',
-                  border: '1px solid rgba(201,168,76,0.15)',
-                  borderRadius: '12px',
-                }}
+                transition={{ duration: 0.35, delay: i * 0.06 }}
+                className="flex flex-col items-center text-center"
+                style={{ width: '96px' }}
               >
-                <span style={{ fontFamily: 'Jost, sans-serif', fontWeight: 600, fontSize: '0.88rem', color: '#F5F0E8' }}>
+                {/* Cercle (photo / monogramme) */}
+                <div
+                  className="flex items-center justify-center"
+                  style={{
+                    width: '72px', height: '72px', borderRadius: '50%',
+                    background: 'radial-gradient(circle at 30% 25%, #1F1B12, #0C0C0C)',
+                    border: '1px solid rgba(201,168,76,0.35)',
+                    boxShadow: 'inset 0 0 0 3px rgba(10,10,10,0.6)',
+                    color: '#C9A84C', fontFamily: 'Syncopate, sans-serif', fontWeight: 700, fontSize: '0.9rem',
+                    overflow: 'hidden',
+                  }}
+                >
+                  {initials(c.nom)}
+                </div>
+                <span style={{ fontFamily: 'Jost, sans-serif', fontWeight: 600, fontSize: '0.75rem', color: '#F5F0E8', marginTop: '0.7rem', lineHeight: 1.25 }}>
                   {c.nom}
                 </span>
-                <span style={{ fontFamily: 'Jost, sans-serif', fontWeight: 300, fontSize: '0.68rem', color: '#C9A84C', marginTop: '0.1rem' }}>
+                <span style={{ fontFamily: 'Jost, sans-serif', fontWeight: 300, fontSize: '0.62rem', color: '#B8B0A0', marginTop: '0.15rem', lineHeight: 1.2 }}>
                   {c.role}
                 </span>
               </motion.div>

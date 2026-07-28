@@ -2,11 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Police auto-hébergée : Syncopate */
+@font-face {
+  font-family: 'Syncopate';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/Syncopate-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Syncopate';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/Syncopate-Bold.ttf') format('truetype');
+}
+
 * { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; overflow-x: hidden; max-width: 100%; }
-body { background: #0A0A0A; color: #F5F0E8; font-family: 'Jost', sans-serif; overflow-x: hidden; max-width: 100%; }
-#root { overflow-x: hidden; }
-h1, h2, h3, h4 { font-family: 'Bodoni Moda', serif; }
+html { scroll-behavior: smooth; overflow-x: clip; max-width: 100%; }
+body { background: #0A0A0A; color: #F5F0E8; font-family: 'Jost', sans-serif; overflow-x: clip; max-width: 100%; }
+#root { overflow-x: clip; }
+h1, h2, h3, h4 { font-family: 'Syncopate', sans-serif; overflow-wrap: break-word; }
 
 .section-label {
   font-size: 0.68rem;
@@ -30,6 +46,14 @@ h1, h2, h3, h4 { font-family: 'Bodoni Moda', serif; }
 }
 
 .scroll-line { animation: scrollLine 2s ease-in-out infinite; }
+
+/* Section « Ce qui nous rend unique »
+   - Mobile : cartes empilées au scroll (sticky, l'une par-dessus l'autre)
+   - Ordinateur : cartes en escalier (statiques, décalées) */
+.stack-card { position: sticky; top: var(--stick-top, 84px); margin-bottom: 1.4rem; }
+@media (min-width: 768px) {
+  .stack-card { position: static; top: auto; margin-left: var(--indent, 0); }
+}
 
 /* Carrousel mobile : masquer la barre de défilement */
 .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
