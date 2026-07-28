@@ -51,7 +51,7 @@ export default function FAQ() {
           className="mb-14 text-center"
         >
           <p className="section-label" style={{ textAlign: 'center' }}>Questions fréquentes</p>
-          <h2 style={{ fontFamily: 'Bodoni Moda, serif', fontWeight: 600, fontSize: 'clamp(2.2rem, 4.2vw, 3.6rem)', color: '#F5F0E8', lineHeight: 1.08, letterSpacing: '-0.01em' }}>
+          <h2 style={{ fontFamily: 'Fraunces, serif', fontWeight: 600, fontSize: 'clamp(2.2rem, 4.2vw, 3.6rem)', color: '#F5F0E8', lineHeight: 1.08, letterSpacing: '-0.01em' }}>
             Tout ce que vous <span style={{ color: '#C9A84C', fontStyle: 'italic' }}>voulez savoir</span>
           </h2>
         </motion.div>

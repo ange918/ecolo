@@ -134,7 +134,7 @@ export default function Realisations() {
           transition={{ duration: 0.6 }}
         >
           <p className="section-label">Portfolio</p>
-          <h2 style={{ fontFamily: 'Bodoni Moda, serif', fontWeight: 600, fontSize: 'clamp(2.2rem, 4.2vw, 3.6rem)', color: '#F5F0E8', marginBottom: '1rem', lineHeight: 1.08, letterSpacing: '-0.01em' }}>
+          <h2 style={{ fontFamily: 'Fraunces, serif', fontWeight: 600, fontSize: 'clamp(2.2rem, 4.2vw, 3.6rem)', color: '#F5F0E8', marginBottom: '1rem', lineHeight: 1.08, letterSpacing: '-0.01em' }}>
             Nos réalisations <span style={{ color: '#C9A84C', fontStyle: 'italic' }}>emblématiques</span>
           </h2>
           <p className="max-w-2xl mb-14" style={{ fontFamily: 'Jost, sans-serif', fontWeight: 300, fontSize: '0.95rem', color: '#B8B0A0', lineHeight: 1.8 }}>

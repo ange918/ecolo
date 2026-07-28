@@ -123,7 +123,7 @@ function PinGate({ onOk }) {
   return (
     <div className="min-h-screen flex items-center justify-center px-6" style={{ background: '#0A0A0A' }}>
       <form onSubmit={submit} style={{ ...card, width: '100%', maxWidth: 380, padding: '2.5rem' }}>
-        <p style={{ fontFamily: 'Bodoni Moda, serif', fontWeight: 600, fontSize: '2rem', color: '#F5F0E8', marginBottom: '0.3rem' }}>
+        <p style={{ fontFamily: 'Fraunces, serif', fontWeight: 600, fontSize: '2rem', color: '#F5F0E8', marginBottom: '0.3rem' }}>
           Tableau de bord
         </p>
         <p style={{ fontFamily: 'Jost', fontWeight: 300, fontSize: '0.9rem', color: '#B8B0A0', marginBottom: '1.8rem' }}>
@@ -160,11 +160,11 @@ function Analytics({ analytics }) {
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div style={card}>
-          <h3 style={{ fontFamily: 'Bodoni Moda, serif', fontWeight: 600, fontSize: '1.3rem', color: '#F5F0E8', marginBottom: '1.2rem' }}>Visites par page</h3>
+          <h3 style={{ fontFamily: 'Fraunces, serif', fontWeight: 600, fontSize: '1.3rem', color: '#F5F0E8', marginBottom: '1.2rem' }}>Visites par page</h3>
           <Donut data={pageData} />
         </div>
         <div style={card}>
-          <h3 style={{ fontFamily: 'Bodoni Moda, serif', fontWeight: 600, fontSize: '1.3rem', color: '#F5F0E8', marginBottom: '1.2rem' }}>Visites · 7 derniers jours</h3>
+          <h3 style={{ fontFamily: 'Fraunces, serif', fontWeight: 600, fontSize: '1.3rem', color: '#F5F0E8', marginBottom: '1.2rem' }}>Visites · 7 derniers jours</h3>
           <Bars data={dayData} />
         </div>
       </div>
@@ -199,7 +199,7 @@ function GalleryTab({ pin, photos, reload }) {
   return (
     <div className="flex flex-col gap-6">
       <form onSubmit={add} style={card}>
-        <h3 style={{ fontFamily: 'Bodoni Moda, serif', fontWeight: 600, fontSize: '1.3rem', color: '#F5F0E8', marginBottom: '1.2rem' }}>Ajouter une photo</h3>
+        <h3 style={{ fontFamily: 'Fraunces, serif', fontWeight: 600, fontSize: '1.3rem', color: '#F5F0E8', marginBottom: '1.2rem' }}>Ajouter une photo</h3>
         <div className="grid sm:grid-cols-2 gap-4">
           <div>
             <label style={label}>Image</label>
@@ -266,7 +266,7 @@ function TestimonialsTab({ pin, testimonials, reload }) {
   return (
     <div className="flex flex-col gap-6">
       <form onSubmit={add} style={card}>
-        <h3 style={{ fontFamily: 'Bodoni Moda, serif', fontWeight: 600, fontSize: '1.3rem', color: '#F5F0E8', marginBottom: '1.2rem' }}>Ajouter un témoignage</h3>
+        <h3 style={{ fontFamily: 'Fraunces, serif', fontWeight: 600, fontSize: '1.3rem', color: '#F5F0E8', marginBottom: '1.2rem' }}>Ajouter un témoignage</h3>
         <div className="grid sm:grid-cols-3 gap-4 mb-4">
           <div><label style={label}>Nom</label><input value={form.nom} onChange={ch('nom')} required style={input} /></div>
           <div><label style={label}>Titre / rôle</label><input value={form.titre} onChange={ch('titre')} style={input} /></div>
@@ -326,7 +326,7 @@ function RealisationsTab({ pin, realisations, reload }) {
   return (
     <div className="flex flex-col gap-6">
       <form onSubmit={add} style={card}>
-        <h3 style={{ fontFamily: 'Bodoni Moda, serif', fontWeight: 600, fontSize: '1.3rem', color: '#F5F0E8', marginBottom: '1.2rem' }}>Ajouter une réalisation</h3>
+        <h3 style={{ fontFamily: 'Fraunces, serif', fontWeight: 600, fontSize: '1.3rem', color: '#F5F0E8', marginBottom: '1.2rem' }}>Ajouter une réalisation</h3>
         <div className="grid sm:grid-cols-3 gap-4 mb-4">
           <div><label style={label}>Titre</label><input value={form.titre} onChange={ch('titre')} required style={input} /></div>
           <div><label style={label}>Sous-titre</label><input value={form.sous_titre} onChange={ch('sous_titre')} style={input} /></div>
@@ -370,7 +370,7 @@ function SettingsTab({ pin, onPinChange }) {
   }
   return (
     <form onSubmit={save} style={{ ...card, maxWidth: 420 }}>
-      <h3 style={{ fontFamily: 'Bodoni Moda, serif', fontWeight: 600, fontSize: '1.3rem', color: '#F5F0E8', marginBottom: '1.2rem' }}>Modifier le code d'accès</h3>
+      <h3 style={{ fontFamily: 'Fraunces, serif', fontWeight: 600, fontSize: '1.3rem', color: '#F5F0E8', marginBottom: '1.2rem' }}>Modifier le code d'accès</h3>
       <label style={label}>Nouveau code (min. 4 caractères)</label>
       <input type="password" value={newPin} autoCapitalize="none" autoCorrect="off" onChange={e => setNewPin(e.target.value)} required style={input} />
       <div className="flex items-center gap-4 mt-4">
@@ -416,7 +416,7 @@ export default function AdminPage() {
     <div className="min-h-screen" style={{ background: '#0A0A0A' }}>
       {/* Barre supérieure */}
       <div className="flex items-center justify-between px-5 lg:px-10 h-16" style={{ borderBottom: '1px solid rgba(201,168,76,0.12)', position: 'sticky', top: 0, background: 'rgba(10,10,10,0.95)', backdropFilter: 'blur(8px)', zIndex: 20 }}>
-        <p style={{ fontFamily: 'Bodoni Moda, serif', fontWeight: 600, fontSize: '1.3rem', color: '#F5F0E8' }}>
+        <p style={{ fontFamily: 'Fraunces, serif', fontWeight: 600, fontSize: '1.3rem', color: '#F5F0E8' }}>
           Senan <span style={{ color: OR, fontStyle: 'italic' }}>Admin</span>
         </p>
         <div className="flex items-center gap-3">
