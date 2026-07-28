@@ -84,7 +84,7 @@ export default function WhyUs() {
           className="mb-16 max-w-2xl"
         >
           <p className="section-label">Pourquoi nous choisir</p>
-          <h2 style={{ fontFamily: 'Fraunces, serif', fontWeight: 600, fontSize: 'clamp(2.2rem, 4.2vw, 3.6rem)', color: '#F5F0E8', lineHeight: 1.08, letterSpacing: '-0.01em' }}>
+          <h2 style={{ fontFamily: 'Syncopate, sans-serif', fontWeight: 600, fontSize: 'clamp(2.2rem, 4.2vw, 3.6rem)', color: '#F5F0E8', lineHeight: 1.08, letterSpacing: '-0.01em' }}>
             Ce qui nous rend <span style={{ color: '#C9A84C', fontStyle: 'italic' }}>uniques</span>
           </h2>
           <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 300, fontSize: '0.95rem', color: '#B8B0A0', lineHeight: 1.85, marginTop: '1rem' }}>

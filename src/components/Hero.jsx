@@ -127,7 +127,7 @@ export default function Hero() {
             <motion.h1
               {...fadeUp(0.3)}
               style={{
-                fontFamily: 'Fraunces, serif',
+                fontFamily: 'Syncopate, sans-serif',
                 fontWeight: 600,
                 fontSize: 'clamp(2.6rem, 6vw, 5.2rem)',
                 lineHeight: 1.02,

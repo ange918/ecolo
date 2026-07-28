@@ -2,11 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Police auto-hébergée : Syncopate */
+@font-face {
+  font-family: 'Syncopate';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/Syncopate-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Syncopate';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/Syncopate-Bold.ttf') format('truetype');
+}
+
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; overflow-x: hidden; max-width: 100%; }
 body { background: #0A0A0A; color: #F5F0E8; font-family: 'Jost', sans-serif; overflow-x: hidden; max-width: 100%; }
 #root { overflow-x: hidden; }
-h1, h2, h3, h4 { font-family: 'Fraunces', serif; }
+h1, h2, h3, h4 { font-family: 'Syncopate', sans-serif; }
 
 .section-label {
   font-size: 0.68rem;

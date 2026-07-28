@@ -60,7 +60,7 @@ export default function Gallery() {
           className="mb-12"
         >
           <p className="section-label">Galerie</p>
-          <h2 style={{ fontFamily: 'Fraunces, serif', fontWeight: 600, fontSize: 'clamp(2.2rem, 4.2vw, 3.6rem)', color: '#F5F0E8', marginBottom: '1.5rem', lineHeight: 1.08, letterSpacing: '-0.01em' }}>
+          <h2 style={{ fontFamily: 'Syncopate, sans-serif', fontWeight: 600, fontSize: 'clamp(2.2rem, 4.2vw, 3.6rem)', color: '#F5F0E8', marginBottom: '1.5rem', lineHeight: 1.08, letterSpacing: '-0.01em' }}>
             Notre <span style={{ color: '#C9A84C', fontStyle: 'italic' }}>univers</span> en images
           </h2>
 

@@ -2,12 +2,12 @@ import { motion } from 'framer-motion'
 import { Link as RouterLink } from 'react-router-dom'
 
 const DISPLAY = {
-  fontFamily: 'Fraunces, serif',
-  fontWeight: 500,
+  fontFamily: 'Syncopate, sans-serif',
+  fontWeight: 700,
   color: '#F5F0E8',
-  lineHeight: 0.92,
-  letterSpacing: '0.01em',
-  fontSize: 'clamp(3.2rem, 8vw, 6.5rem)',
+  lineHeight: 1.14,
+  letterSpacing: '-0.02em',
+  fontSize: 'clamp(1.7rem, 4vw, 3.2rem)',
   textTransform: 'uppercase',
   margin: 0,
 }
@@ -67,7 +67,7 @@ export default function AboutSnippet() {
             >
               {/* En-tête de la couverture */}
               <p style={{
-                fontFamily: 'Fraunces, serif', fontWeight: 500, fontSize: 'clamp(2.4rem, 6vw, 3.4rem)',
+                fontFamily: 'Syncopate, sans-serif', fontWeight: 500, fontSize: 'clamp(2.4rem, 6vw, 3.4rem)',
                 color: '#F5F0E8', lineHeight: 1, letterSpacing: '0.02em',
               }}>
                 senan<span style={{ color: '#C9A84C' }}>.</span>
