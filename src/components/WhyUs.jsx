@@ -39,46 +39,44 @@ const reasons = [
   },
 ]
 
-function StairCard({ r, i }) {
+function StackCard({ r, i, total }) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 26 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.55, ease: 'easeOut', delay: i * 0.07 }}
-      className="stair-card"
-      style={{ '--indent': `${i * 2.1}rem`, position: 'relative', zIndex: i + 1 }}
+    <div
+      className="stack-card"
+      style={{ '--stick-top': `calc(84px + ${i * 16}px)`, '--indent': `${i * 2.1}rem`, zIndex: i + 1 }}
     >
       <div
         className="flex flex-col sm:flex-row overflow-hidden"
-        style={{ background: '#141414', border: '1px solid rgba(201,168,76,0.16)', borderRadius: '18px' }}
+        style={{
+          background: '#141414', border: '1px solid rgba(201,168,76,0.18)', borderRadius: '18px',
+          minHeight: '180px', boxShadow: '0 -8px 44px -14px rgba(0,0,0,0.7)',
+        }}
       >
         {/* Tuile numéro */}
         <div
-          className="relative flex flex-col justify-between shrink-0"
+          className="relative flex flex-col justify-between shrink-0 sm:w-[180px]"
           style={{
             background: 'linear-gradient(150deg, #C9A84C 0%, #9A7A32 100%)',
             padding: '1.3rem 1.5rem',
-            minHeight: '120px',
           }}
         >
           <span style={{ fontFamily: 'Jost, sans-serif', fontWeight: 600, fontSize: '0.6rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: 'rgba(10,10,10,0.55)' }}>
             Point
           </span>
-          <span style={{ fontFamily: 'Syncopate, sans-serif', fontWeight: 700, fontSize: '2.6rem', lineHeight: 1, color: '#0A0A0A' }}>
+          <span style={{ fontFamily: 'Syncopate, sans-serif', fontWeight: 700, fontSize: '2.8rem', lineHeight: 1, color: '#0A0A0A' }}>
             {r.num}
           </span>
           <div style={{ height: '3px', background: 'rgba(10,10,10,0.18)', borderRadius: '9999px', marginTop: '0.6rem', minWidth: '96px' }}>
-            <div style={{ height: '100%', width: `${Math.round(((i + 1) / reasons.length) * 100)}%`, background: '#0A0A0A', borderRadius: '9999px' }} />
+            <div style={{ height: '100%', width: `${Math.round(((i + 1) / total) * 100)}%`, background: '#0A0A0A', borderRadius: '9999px' }} />
           </div>
         </div>
 
         {/* Texte */}
-        <div className="flex-1" style={{ padding: '1.5rem 1.7rem' }}>
+        <div className="flex-1 flex flex-col justify-center" style={{ padding: '1.5rem 1.7rem' }}>
           <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 500, fontSize: '0.6rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#C9A84C', marginBottom: '0.6rem' }}>
             ● {r.tag}
           </p>
-          <h3 style={{ fontFamily: 'Jost, sans-serif', fontWeight: 600, fontSize: '1.15rem', color: '#F5F0E8', marginBottom: '0.5rem', letterSpacing: '0.01em' }}>
+          <h3 style={{ fontFamily: 'Jost, sans-serif', fontWeight: 600, fontSize: '1.2rem', color: '#F5F0E8', marginBottom: '0.5rem', letterSpacing: '0.01em' }}>
             {r.titre}
           </h3>
           <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 300, fontSize: '0.88rem', color: '#B8B0A0', lineHeight: 1.8 }}>
@@ -86,7 +84,7 @@ function StairCard({ r, i }) {
           </p>
         </div>
       </div>
-    </motion.div>
+    </div>
   )
 }
 
@@ -115,31 +113,26 @@ export default function WhyUs() {
           </p>
         </motion.div>
 
-        {/* Panneau avec cartes en escalier */}
-        <div
-          style={{ background: '#111111', border: '1px solid rgba(201,168,76,0.12)', borderRadius: '28px', padding: 'clamp(1.2rem, 3vw, 2rem)' }}
-        >
-          {/* Barre d'en-tête du panneau */}
-          <div className="flex items-center justify-between flex-wrap gap-3 mb-8 pb-5" style={{ borderBottom: '1px solid rgba(201,168,76,0.1)' }}>
-            <div className="flex items-center gap-3">
-              <span className="flex items-center justify-center shrink-0" style={{ width: '38px', height: '38px', borderRadius: '10px', border: '1px solid rgba(201,168,76,0.3)', color: '#C9A84C', fontFamily: 'Syncopate, sans-serif', fontWeight: 700, fontSize: '0.7rem' }}>SC</span>
-              <div>
-                <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 600, fontSize: '0.82rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: '#F5F0E8' }}>Le savoir-faire Senan</p>
-                <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 300, fontSize: '0.68rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: '#787068' }}>Excellence artisanale</p>
-              </div>
+        {/* Barre d'en-tête */}
+        <div className="flex items-center justify-between flex-wrap gap-3 mb-8 pb-5" style={{ borderBottom: '1px solid rgba(201,168,76,0.12)' }}>
+          <div className="flex items-center gap-3">
+            <span className="flex items-center justify-center shrink-0" style={{ width: '38px', height: '38px', borderRadius: '10px', border: '1px solid rgba(201,168,76,0.3)', color: '#C9A84C', fontFamily: 'Syncopate, sans-serif', fontWeight: 700, fontSize: '0.7rem' }}>SC</span>
+            <div>
+              <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 600, fontSize: '0.82rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: '#F5F0E8' }}>Le savoir-faire Senan</p>
+              <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 300, fontSize: '0.68rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: '#787068' }}>Excellence artisanale</p>
             </div>
-            <span className="flex items-center gap-2" style={{ fontFamily: 'Jost, sans-serif', fontWeight: 500, fontSize: '0.62rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: '#C9A84C', border: '1px solid rgba(201,168,76,0.3)', borderRadius: '9999px', padding: '0.35rem 0.9rem' }}>
-              <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#C9A84C', display: 'inline-block' }} />
-              Maison d'exception
-            </span>
           </div>
+          <span className="flex items-center gap-2" style={{ fontFamily: 'Jost, sans-serif', fontWeight: 500, fontSize: '0.62rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: '#C9A84C', border: '1px solid rgba(201,168,76,0.3)', borderRadius: '9999px', padding: '0.35rem 0.9rem' }}>
+            <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#C9A84C', display: 'inline-block' }} />
+            Maison d'exception
+          </span>
+        </div>
 
-          {/* Cartes */}
-          <div className="flex flex-col gap-4">
-            {reasons.map((r, i) => (
-              <StairCard key={i} r={r} i={i} />
-            ))}
-          </div>
+        {/* Cartes empilées au scroll */}
+        <div className="relative">
+          {reasons.map((r, i) => (
+            <StackCard key={i} r={r} i={i} total={reasons.length} />
+          ))}
         </div>
       </div>
     </section>
