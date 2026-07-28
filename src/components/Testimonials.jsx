@@ -1,4 +1,6 @@
 import { motion } from 'framer-motion'
+import { useState, useEffect } from 'react'
+import { supabase } from '../lib/supabase'
 
 const collaborators = [
   { nom: 'EFAMBE', role: 'Créateur de contenu' },
@@ -132,9 +134,22 @@ function TestimonialCard({ t, isActive = true }) {
 }
 
 export default function Testimonials() {
-  const mid = Math.ceil(testimonials.length / 2)
-  const rowTop = testimonials.slice(0, mid)
-  const rowBottom = testimonials.slice(mid)
+  const [dbItems, setDbItems] = useState([])
+
+  useEffect(() => {
+    let active = true
+    supabase
+      .from('testimonials')
+      .select('nom, titre, tag, texte')
+      .order('created_at', { ascending: false })
+      .then(({ data }) => { if (active && data) setDbItems(data) })
+    return () => { active = false }
+  }, [])
+
+  const all = [...dbItems, ...testimonials]
+  const mid = Math.ceil(all.length / 2)
+  const rowTop = all.slice(0, mid)
+  const rowBottom = all.slice(mid)
 
   return (
     <section id="temoignages" className="py-24 lg:py-32 px-6 lg:px-12" style={{ background: '#0A0A0A' }}>
@@ -149,7 +164,7 @@ export default function Testimonials() {
           className="mb-16"
         >
           <p className="section-label">Témoignages</p>
-          <h2 style={{ fontFamily: 'Cormorant Garamond, serif', fontWeight: 600, fontSize: 'clamp(2.2rem, 4.2vw, 3.6rem)', color: '#F5F0E8', lineHeight: 1.08, letterSpacing: '-0.01em' }}>
+          <h2 style={{ fontFamily: 'Bodoni Moda, serif', fontWeight: 600, fontSize: 'clamp(2.2rem, 4.2vw, 3.6rem)', color: '#F5F0E8', lineHeight: 1.08, letterSpacing: '-0.01em' }}>
             Ce que disent <span style={{ color: '#C9A84C', fontStyle: 'italic' }}>nos clients</span>
           </h2>
         </motion.div>

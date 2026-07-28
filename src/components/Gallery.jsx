@@ -1,5 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { supabase } from '../lib/supabase'
 
 const galleryItems = [
   { src: '/gallery/img16.jpg', category: 'Costumerie' },
@@ -28,7 +29,24 @@ const categories = ['Tout', 'Costumerie', 'Festival', 'Cérémonie', 'Accessoire
 
 export default function Gallery() {
   const [filter, setFilter] = useState('Tout')
-  const filtered = filter === 'Tout' ? galleryItems : galleryItems.filter(i => i.category === filter)
+  const [dbItems, setDbItems] = useState([])
+
+  useEffect(() => {
+    let active = true
+    supabase
+      .from('gallery_photos')
+      .select('image_url, category')
+      .order('created_at', { ascending: false })
+      .then(({ data }) => {
+        if (active && data) {
+          setDbItems(data.map(d => ({ src: d.image_url, category: d.category })))
+        }
+      })
+    return () => { active = false }
+  }, [])
+
+  const allItems = [...dbItems, ...galleryItems]
+  const filtered = filter === 'Tout' ? allItems : allItems.filter(i => i.category === filter)
 
   return (
     <section id="galerie" className="py-24 lg:py-32 px-6 lg:px-12" style={{ background: '#111111' }}>
@@ -42,7 +60,7 @@ export default function Gallery() {
           className="mb-12"
         >
           <p className="section-label">Galerie</p>
-          <h2 style={{ fontFamily: 'Cormorant Garamond, serif', fontWeight: 600, fontSize: 'clamp(2.2rem, 4.2vw, 3.6rem)', color: '#F5F0E8', marginBottom: '1.5rem', lineHeight: 1.08, letterSpacing: '-0.01em' }}>
+          <h2 style={{ fontFamily: 'Bodoni Moda, serif', fontWeight: 600, fontSize: 'clamp(2.2rem, 4.2vw, 3.6rem)', color: '#F5F0E8', marginBottom: '1.5rem', lineHeight: 1.08, letterSpacing: '-0.01em' }}>
             Notre <span style={{ color: '#C9A84C', fontStyle: 'italic' }}>univers</span> en images
           </h2>
 
