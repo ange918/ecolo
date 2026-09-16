@@ -30,7 +30,7 @@ export const FALLBACK_COLLECTIONS = [
     slug: 'trone-de-behanzin',
     titre: 'Trône de Béhanzin',
     tag: 'Comédie musicale',
-    cover_url: '/gallery/img16.jpg',
+    cover_url: '/gallery/behanzin/cover.jpg',
     description:
       "Hommage au roi Béhanzin du Dahomey : costumes et décors de scène pour une production célébrant la mémoire royale.",
   },
@@ -49,6 +49,6 @@ export const FALLBACK_PHOTOS = {
   'vodun-days': ['/gallery/vodun/1.jpg', '/gallery/vodun/2.jpg', '/gallery/vodun/3.jpg', '/gallery/vodun/4.jpg', '/gallery/vodun/5.jpg', '/gallery/vodun/6.jpg', '/gallery/vodun/7.jpg'],
   'festival-des-masques': ['/gallery/img5.jpg', '/gallery/img1.jpg', '/gallery/img2.jpg', '/gallery/img20.jpg'],
   'gaani': ['/gallery/img20.jpg', '/gallery/img1.jpg', '/gallery/img5.jpg', '/gallery/img2.jpg'],
-  'trone-de-behanzin': ['/gallery/img16.jpg', '/gallery/img17.jpg', '/gallery/img15.jpg', '/gallery/img6.jpg'],
+  'trone-de-behanzin': ['/gallery/behanzin/1.jpg', '/gallery/behanzin/2.jpg', '/gallery/behanzin/3.jpg', '/gallery/behanzin/4.jpg', '/gallery/behanzin/5.jpg', '/gallery/behanzin/6.jpg', '/gallery/behanzin/7.jpg', '/gallery/behanzin/8.jpg', '/gallery/behanzin/9.jpg', '/gallery/behanzin/10.jpg', '/gallery/behanzin/11.jpg', '/gallery/behanzin/12.jpg', '/gallery/behanzin/13.jpg', '/gallery/behanzin/14.jpg', '/gallery/behanzin/15.jpg'],
   'collaborations-diverses': ['/gallery/img9.jpg', '/gallery/img12.jpg', '/gallery/img13.jpg', '/gallery/img14.jpg', '/gallery/img19.jpg'],
 }
