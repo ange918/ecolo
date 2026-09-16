@@ -6,7 +6,7 @@ export const FALLBACK_COLLECTIONS = [
     slug: 'vodun-days',
     titre: 'Vodun Days',
     tag: 'Cérémonie spirituelle',
-    cover_url: '/gallery/img18.jpg',
+    cover_url: '/gallery/vodun/cover.jpg',
     description:
       "Célébration internationale des religions endogènes et de la spiritualité vodun à Ouidah. Senan Concept y signe parures et tenues cérémonielles qui honorent le sacré.",
   },
@@ -46,7 +46,7 @@ export const FALLBACK_COLLECTIONS = [
 
 // Quelques photos de repli par événement (placeholders, en attendant l'upload réel)
 export const FALLBACK_PHOTOS = {
-  'vodun-days': ['/gallery/img18.jpg', '/gallery/img4.jpg', '/gallery/img3.jpg', '/gallery/img11.jpg'],
+  'vodun-days': ['/gallery/vodun/1.jpg', '/gallery/vodun/2.jpg', '/gallery/vodun/3.jpg', '/gallery/vodun/4.jpg', '/gallery/vodun/5.jpg', '/gallery/vodun/6.jpg', '/gallery/vodun/7.jpg'],
   'festival-des-masques': ['/gallery/img5.jpg', '/gallery/img1.jpg', '/gallery/img2.jpg', '/gallery/img20.jpg'],
   'gaani': ['/gallery/img20.jpg', '/gallery/img1.jpg', '/gallery/img5.jpg', '/gallery/img2.jpg'],
   'trone-de-behanzin': ['/gallery/img16.jpg', '/gallery/img17.jpg', '/gallery/img15.jpg', '/gallery/img6.jpg'],

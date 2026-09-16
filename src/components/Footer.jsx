@@ -61,7 +61,6 @@ export default function Footer() {
               <SLink to="services">Nos services</SLink>
               <SLink to="realisations">Réalisations</SLink>
               <SLink to="temoignages">Témoignages</SLink>
-              <SLink to="galerie">Galerie</SLink>
               <SLink to="faq">FAQ</SLink>
               <RouterLink to="/qui-sommes-nous" style={scrollStyle}
                 onMouseEnter={e => e.currentTarget.style.color = '#C9A84C'}
