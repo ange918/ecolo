@@ -4,6 +4,7 @@ import Footer from './components/Footer'
 import HomePage from './pages/HomePage'
 import AboutPage from './pages/AboutPage'
 import CollectionPage from './pages/CollectionPage'
+import EvenementielPage from './pages/EvenementielPage'
 import AdminPage from './pages/AdminPage'
 
 function Shell() {
@@ -17,6 +18,7 @@ function Shell() {
         <Route path="/" element={<HomePage />} />
         <Route path="/qui-sommes-nous" element={<AboutPage />} />
         <Route path="/galerie/:slug" element={<CollectionPage />} />
+        <Route path="/evenementiel" element={<EvenementielPage />} />
         <Route path="/andychris" element={<AdminPage />} />
       </Routes>
       {!isAdmin && <Footer />}

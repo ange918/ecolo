@@ -385,6 +385,181 @@ function CollectionsTab({ pin, collections, reload }) {
   )
 }
 
+/* ─────────────────────────  Onglet Événementiel  ───────────────────────── */
+const STATUTS = [{ v: 'a_venir', l: 'À venir' }, { v: 'passe', l: 'Passé' }]
+
+function EvenementManager({ pin, evenement, reload }) {
+  const [form, setForm] = useState({
+    nom: evenement.nom || '', theme: evenement.theme || '', sous_titre: evenement.sous_titre || '',
+    date_texte: evenement.date_texte || '', date_iso: evenement.date_iso || '', lieu: evenement.lieu || '',
+    statut: evenement.statut || 'a_venir', description: evenement.description || '',
+  })
+  const [coverFile, setCoverFile] = useState(null)
+  const [photoFile, setPhotoFile] = useState(null)
+  const [busy, setBusy] = useState('')
+  const [msg, setMsg] = useState('')
+  const ch = (k) => (e) => setForm({ ...form, [k]: e.target.value })
+  const photos = evenement.photos || []
+
+  const saveInfos = async (e) => {
+    e.preventDefault()
+    setBusy('infos'); setMsg('')
+    let imageBase64, filename, contentType
+    if (coverFile) { imageBase64 = await fileToBase64(coverFile); filename = coverFile.name; contentType = coverFile.type }
+    const res = await adminCall(pin, 'update_evenement', { id: evenement.id, ...form, imageBase64, filename, contentType })
+    setBusy('')
+    if (res.ok) { setMsg('Enregistré ✓'); setCoverFile(null); reload() }
+    else setMsg('Erreur : ' + (res.error || 'inconnue'))
+  }
+  const addPhoto = async (e) => {
+    e.preventDefault()
+    if (!photoFile) return
+    setBusy('photo'); setMsg('')
+    const imageBase64 = await fileToBase64(photoFile)
+    const res = await adminCall(pin, 'add_evenement_photo', { evenement_id: evenement.id, imageBase64, filename: photoFile.name, contentType: photoFile.type })
+    setBusy('')
+    if (res.ok) { setPhotoFile(null); reload() }
+    else setMsg('Erreur : ' + (res.error || 'inconnue'))
+  }
+  const delPhoto = async (p) => {
+    if (!confirm('Supprimer cette photo ?')) return
+    await adminCall(pin, 'delete_evenement_photo', { id: p.id, image_url: p.image_url })
+    reload()
+  }
+
+  return (
+    <div style={{ ...card, borderColor: 'rgba(201,168,76,0.3)' }} className="flex flex-col gap-5">
+      <form onSubmit={saveInfos} className="flex flex-col gap-4">
+        <div className="grid sm:grid-cols-2 gap-4">
+          <div><label style={label}>Nom de l'événement</label><input value={form.nom} onChange={ch('nom')} style={input} /></div>
+          <div><label style={label}>Thème de l'édition</label><input value={form.theme} onChange={ch('theme')} style={input} /></div>
+        </div>
+        <div><label style={label}>Sous-titre / accroche</label><input value={form.sous_titre} onChange={ch('sous_titre')} style={input} /></div>
+        <div className="grid sm:grid-cols-3 gap-4">
+          <div><label style={label}>Date (texte)</label><input value={form.date_texte} onChange={ch('date_texte')} placeholder="Ex : Janvier 2027" style={input} /></div>
+          <div><label style={label}>Date exacte (option — compte à rebours)</label><input type="date" value={form.date_iso || ''} onChange={ch('date_iso')} style={input} /></div>
+          <div><label style={label}>Statut</label><select value={form.statut} onChange={ch('statut')} style={input}>{STATUTS.map(s => <option key={s.v} value={s.v}>{s.l}</option>)}</select></div>
+        </div>
+        <div><label style={label}>Lieu (optionnel)</label><input value={form.lieu} onChange={ch('lieu')} style={input} /></div>
+        <div><label style={label}>Description</label><textarea rows={4} value={form.description} onChange={ch('description')} style={{ ...input, resize: 'vertical' }} /></div>
+        <div><label style={label}>Changer la couverture (optionnel)</label><input type="file" accept="image/*" onChange={e => setCoverFile(e.target.files?.[0] || null)} style={{ ...input, padding: '0.5rem' }} /></div>
+        <div className="flex items-center gap-4">
+          <button type="submit" disabled={busy === 'infos'} style={{ ...btn(), opacity: busy === 'infos' ? 0.6 : 1 }}>{busy === 'infos' ? 'Enregistrement…' : 'Enregistrer les infos'}</button>
+          {msg && <span style={{ fontFamily: 'Jost', fontSize: '0.85rem', color: msg.startsWith('Erreur') ? '#E27B7B' : OR }}>{msg}</span>}
+        </div>
+      </form>
+
+      <form onSubmit={addPhoto} className="flex items-end gap-4 flex-wrap pt-4" style={{ borderTop: '1px solid rgba(201,168,76,0.12)' }}>
+        <div className="flex-1" style={{ minWidth: 200 }}>
+          <label style={label}>Ajouter une photo à cette édition</label>
+          <input type="file" accept="image/*" onChange={e => setPhotoFile(e.target.files?.[0] || null)} style={{ ...input, padding: '0.5rem' }} />
+        </div>
+        <button type="submit" disabled={busy === 'photo' || !photoFile} style={{ ...btn(), opacity: busy === 'photo' || !photoFile ? 0.6 : 1 }}>{busy === 'photo' ? 'Envoi…' : 'Ajouter la photo'}</button>
+      </form>
+
+      <div>
+        <p style={{ fontFamily: 'Jost', fontWeight: 500, fontSize: '0.78rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#B8B0A0', marginBottom: '0.9rem' }}>Photos ({photos.length})</p>
+        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-3">
+          {photos.map(p => (
+            <div key={p.id} className="relative overflow-hidden" style={{ borderRadius: 10, aspectRatio: '1/1', background: '#1A1A1A' }}>
+              <img src={p.image_url} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              <button onClick={() => delPhoto(p)} style={{ position: 'absolute', top: 4, right: 4, width: 24, height: 24, borderRadius: '50%', background: 'rgba(10,10,10,0.8)', border: '1px solid rgba(226,123,123,0.6)', color: '#E27B7B', cursor: 'pointer', fontSize: '0.75rem' }}>✕</button>
+            </div>
+          ))}
+          {photos.length === 0 && <p style={{ color: '#787068', fontFamily: 'Jost', fontSize: '0.85rem' }}>Aucune photo pour cette édition.</p>}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function EvenementsTab({ pin, evenements, reload }) {
+  const [form, setForm] = useState({ nom: '', theme: '', sous_titre: '', date_texte: '', date_iso: '', lieu: '', statut: 'a_venir', description: '' })
+  const [coverFile, setCoverFile] = useState(null)
+  const [busy, setBusy] = useState(false)
+  const [msg, setMsg] = useState('')
+  const [openId, setOpenId] = useState(null)
+  const ch = (k) => (e) => setForm({ ...form, [k]: e.target.value })
+
+  const add = async (e) => {
+    e.preventDefault()
+    if (!form.nom) return
+    setBusy(true); setMsg('')
+    let imageBase64, filename, contentType
+    if (coverFile) { imageBase64 = await fileToBase64(coverFile); filename = coverFile.name; contentType = coverFile.type }
+    const res = await adminCall(pin, 'add_evenement', { ...form, imageBase64, filename, contentType })
+    setBusy(false)
+    if (res.ok) { setForm({ nom: '', theme: '', sous_titre: '', date_texte: '', date_iso: '', lieu: '', statut: 'a_venir', description: '' }); setCoverFile(null); setMsg('Édition créée ✓'); reload() }
+    else setMsg('Erreur : ' + (res.error || 'inconnue'))
+  }
+  const del = async (ev) => {
+    if (!confirm(`Supprimer l'édition « ${ev.theme || ev.nom} » et toutes ses photos ?`)) return
+    if (openId === ev.id) setOpenId(null)
+    await adminCall(pin, 'delete_evenement', { id: ev.id, cover_url: ev.cover_url })
+    reload()
+  }
+
+  return (
+    <div className="flex flex-col gap-6">
+      <h2 style={{ ...h3, fontSize: '1.2rem' }}>Événementiel</h2>
+
+      <form onSubmit={add} style={card}>
+        <h3 style={{ ...h3, fontSize: '1rem', marginBottom: '1.2rem' }}>Créer une édition</h3>
+        <div className="grid sm:grid-cols-2 gap-4 mb-4">
+          <div><label style={label}>Nom de l'événement</label><input value={form.nom} onChange={ch('nom')} required placeholder="Ex : IFA" style={input} /></div>
+          <div><label style={label}>Thème de l'édition</label><input value={form.theme} onChange={ch('theme')} placeholder="Ex : OFFIN" style={input} /></div>
+        </div>
+        <label style={label}>Sous-titre / accroche</label>
+        <input value={form.sous_titre} onChange={ch('sous_titre')} style={input} />
+        <div className="grid sm:grid-cols-3 gap-4 mt-4">
+          <div><label style={label}>Date (texte)</label><input value={form.date_texte} onChange={ch('date_texte')} placeholder="Ex : Janvier 2027" style={input} /></div>
+          <div><label style={label}>Date exacte (option)</label><input type="date" value={form.date_iso} onChange={ch('date_iso')} style={input} /></div>
+          <div><label style={label}>Statut</label><select value={form.statut} onChange={ch('statut')} style={input}>{STATUTS.map(s => <option key={s.v} value={s.v}>{s.l}</option>)}</select></div>
+        </div>
+        <label style={{ ...label, marginTop: '1rem' }}>Lieu (optionnel)</label>
+        <input value={form.lieu} onChange={ch('lieu')} style={input} />
+        <label style={{ ...label, marginTop: '1rem' }}>Description</label>
+        <textarea rows={3} value={form.description} onChange={ch('description')} style={{ ...input, resize: 'vertical' }} />
+        <label style={{ ...label, marginTop: '1rem' }}>Photo de couverture (optionnel)</label>
+        <input type="file" accept="image/*" onChange={e => setCoverFile(e.target.files?.[0] || null)} style={{ ...input, padding: '0.5rem' }} />
+        <div className="flex items-center gap-4 mt-4">
+          <button type="submit" disabled={busy} style={{ ...btn(), opacity: busy ? 0.6 : 1 }}>{busy ? 'Création…' : 'Créer l’édition'}</button>
+          {msg && <span style={{ fontFamily: 'Jost', fontSize: '0.85rem', color: msg.startsWith('Erreur') ? '#E27B7B' : OR }}>{msg}</span>}
+        </div>
+      </form>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {evenements.map(ev => (
+          <div key={ev.id} className="flex flex-col overflow-hidden" style={{ ...card, padding: 0 }}>
+            <div className="flex items-center justify-center" style={{ aspectRatio: '16/9', background: ev.cover_url ? '#1A1A1A' : 'radial-gradient(circle at 30% 25%, #1C1810, #0E0E0E)' }}>
+              {ev.cover_url
+                ? <img src={ev.cover_url} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                : <span style={{ fontFamily: 'Syncopate, sans-serif', fontWeight: 700, fontSize: '1.1rem', color: OR }}>{ev.theme || ev.nom}</span>}
+            </div>
+            <div className="flex flex-col flex-1" style={{ padding: '1rem 1.1rem' }}>
+              <p style={{ fontFamily: 'Jost', fontWeight: 600, fontSize: '0.98rem', color: '#F5F0E8' }}>{ev.nom} <span style={{ color: OR, fontWeight: 400 }}>· {ev.theme}</span></p>
+              <p style={{ fontFamily: 'Jost', fontWeight: 300, fontSize: '0.72rem', color: '#787068', marginTop: '0.15rem' }}>
+                {ev.statut === 'passe' ? 'Passé' : 'À venir'} · {ev.date_texte || '—'} · {(ev.photos || []).length} photo(s)
+              </p>
+              <div className="flex gap-2 mt-3">
+                <button onClick={() => setOpenId(openId === ev.id ? null : ev.id)} style={{ ...btn(openId === ev.id ? OR : 'transparent', openId === ev.id ? '#0A0A0A' : OR), border: '1px solid rgba(201,168,76,0.4)', fontSize: '0.76rem', padding: '0.45rem 1rem' }}>
+                  {openId === ev.id ? 'Fermer' : 'Gérer'}
+                </button>
+                <button onClick={() => del(ev)} style={{ ...btn('transparent', '#E27B7B'), border: '1px solid rgba(226,123,123,0.5)', fontSize: '0.76rem', padding: '0.45rem 1rem' }}>Supprimer</button>
+              </div>
+            </div>
+          </div>
+        ))}
+        {evenements.length === 0 && <p style={{ color: '#787068', fontFamily: 'Jost', fontSize: '0.85rem' }}>Aucune édition. Créez-en une ci-dessus.</p>}
+      </div>
+
+      {openId && evenements.find(ev => ev.id === openId) && (
+        <EvenementManager pin={pin} evenement={evenements.find(ev => ev.id === openId)} reload={reload} />
+      )}
+    </div>
+  )
+}
+
 /* ─────────────────────────  Onglet Témoignages  ───────────────────────── */
 function TestimonialsTab({ pin, testimonials, reload }) {
   const [form, setForm] = useState({ nom: '', titre: '', tag: '', texte: '' })
@@ -525,8 +700,8 @@ function SettingsTab({ pin, onPinChange }) {
 }
 
 /* ─────────────────────────  Sidebar  ───────────────────────── */
-const TABS = ['Analytics', 'Galeries', 'Témoignages', 'Réglages']
-const ICONS = { Analytics: '▤', Galeries: '▦', 'Témoignages': '❝', 'Réglages': '⚙' }
+const TABS = ['Analytics', 'Galeries', 'Événementiel', 'Témoignages', 'Réglages']
+const ICONS = { Analytics: '▤', Galeries: '▦', 'Événementiel': '✦', 'Témoignages': '❝', 'Réglages': '⚙' }
 
 function Sidebar({ tab, setTab, logout, open, setOpen }) {
   return (
@@ -583,20 +758,22 @@ export default function AdminPage() {
   const [authed, setAuthed] = useState(false)
   const [tab, setTab] = useState('Analytics')
   const [sidebarOpen, setSidebarOpen] = useState(false)
-  const [data, setData] = useState({ testimonials: [], collections: [] })
+  const [data, setData] = useState({ testimonials: [], collections: [], evenements: [] })
   const [analytics, setAnalytics] = useState(null)
   const [refreshing, setRefreshing] = useState(false)
 
   const load = useCallback(async (p) => {
     const key = p || pin
     setRefreshing(true)
-    const [list, cols, ana] = await Promise.all([
+    const [list, cols, evs, ana] = await Promise.all([
       adminCall(key, 'list'),
       adminCall(key, 'list_collections'),
+      adminCall(key, 'list_evenements'),
       adminCall(key, 'analytics'),
     ])
     if (list.ok) setData(d => ({ ...d, testimonials: list.testimonials }))
     if (cols.ok) setData(d => ({ ...d, collections: cols.collections || [] }))
+    if (evs.ok) setData(d => ({ ...d, evenements: evs.evenements || [] }))
     if (ana.ok) setAnalytics(ana)
     setRefreshing(false)
   }, [pin])
@@ -639,6 +816,7 @@ export default function AdminPage() {
         <div className="px-5 md:px-8 lg:px-10 py-8" style={{ maxWidth: '1120px' }}>
           {tab === 'Analytics' && <Analytics analytics={analytics} onRefresh={() => load()} refreshing={refreshing} />}
           {tab === 'Galeries' && <CollectionsTab pin={pin} collections={data.collections} reload={() => load()} />}
+          {tab === 'Événementiel' && <EvenementsTab pin={pin} evenements={data.evenements} reload={() => load()} />}
           {tab === 'Témoignages' && <TestimonialsTab pin={pin} testimonials={data.testimonials} reload={() => load()} />}
           {tab === 'Réglages' && <SettingsTab pin={pin} onPinChange={(p) => { setPin(p); sessionStorage.setItem('sc_admin_pin', p) }} />}
 
