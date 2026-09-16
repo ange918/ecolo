@@ -22,7 +22,7 @@ export const FALLBACK_COLLECTIONS = [
     slug: 'gaani',
     titre: 'Gaani',
     tag: 'Fête traditionnelle',
-    cover_url: '/gallery/img20.jpg',
+    cover_url: '/gallery/gaani/cover.jpg',
     description:
       "La Gaani, fête emblématique du royaume de Nikki (Borgou), rythmée par les cavaliers et les parures royales. Créations et ornements dédiés à l'éclat de l'événement.",
   },
@@ -48,7 +48,7 @@ export const FALLBACK_COLLECTIONS = [
 export const FALLBACK_PHOTOS = {
   'vodun-days': ['/gallery/vodun/1.jpg', '/gallery/vodun/2.jpg', '/gallery/vodun/3.jpg', '/gallery/vodun/4.jpg', '/gallery/vodun/5.jpg', '/gallery/vodun/6.jpg', '/gallery/vodun/7.jpg'],
   'festival-des-masques': [],
-  'gaani': ['/gallery/img20.jpg', '/gallery/img1.jpg', '/gallery/img5.jpg', '/gallery/img2.jpg'],
+  'gaani': ['/gallery/gaani/1.jpg', '/gallery/gaani/2.jpg', '/gallery/gaani/3.jpg', '/gallery/gaani/4.jpg', '/gallery/gaani/5.jpg', '/gallery/gaani/6.jpg', '/gallery/gaani/7.jpg', '/gallery/gaani/8.jpg', '/gallery/gaani/9.jpg', '/gallery/gaani/10.jpg'],
   'trone-de-behanzin': ['/gallery/behanzin/1.jpg', '/gallery/behanzin/2.jpg', '/gallery/behanzin/3.jpg', '/gallery/behanzin/4.jpg', '/gallery/behanzin/5.jpg', '/gallery/behanzin/6.jpg', '/gallery/behanzin/7.jpg', '/gallery/behanzin/8.jpg', '/gallery/behanzin/9.jpg', '/gallery/behanzin/10.jpg', '/gallery/behanzin/11.jpg', '/gallery/behanzin/12.jpg', '/gallery/behanzin/13.jpg', '/gallery/behanzin/14.jpg', '/gallery/behanzin/15.jpg'],
   'collaborations-diverses': ['/gallery/img9.jpg', '/gallery/img12.jpg', '/gallery/img13.jpg', '/gallery/img14.jpg', '/gallery/img19.jpg'],
 }
