@@ -25,7 +25,10 @@ function Card({ item, delay }) {
         {item.cover_url
           ? <img src={item.cover_url} alt={item.titre} loading="lazy"
               style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.6s ease', transform: hovered ? 'scale(1.05)' : 'scale(1)' }} />
-          : <div style={{ width: '100%', height: '100%', background: '#1A1A1A' }} />}
+          : <div className="flex flex-col items-center justify-center gap-2" style={{ width: '100%', height: '100%', background: 'radial-gradient(circle at 30% 25%, #1C1810, #0E0E0E)' }}>
+              <span style={{ fontFamily: 'Syncopate, sans-serif', fontWeight: 700, fontSize: '1.1rem', color: '#C9A84C' }}>SC</span>
+              <span style={{ fontFamily: 'Jost, sans-serif', fontWeight: 300, fontSize: '0.68rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#787068' }}>Bientôt</span>
+            </div>}
         {item.tag && (
           <span style={{
             position: 'absolute', top: 12, left: 12, fontFamily: 'Jost, sans-serif', fontWeight: 500,
