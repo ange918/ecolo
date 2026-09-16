@@ -236,64 +236,151 @@ function Analytics({ analytics, onRefresh, refreshing }) {
   )
 }
 
-/* ─────────────────────────  Onglet Galerie  ───────────────────────── */
-function GalleryTab({ pin, photos, reload }) {
-  const [file, setFile] = useState(null)
-  const [category, setCategory] = useState('Costumerie')
+/* ─────────────────────────  Onglet Galeries (collections)  ───────────────────────── */
+function CollectionManager({ pin, collection, reload }) {
+  const [form, setForm] = useState({ titre: collection.titre, tag: collection.tag || '', description: collection.description || '' })
+  const [coverFile, setCoverFile] = useState(null)
+  const [photoFile, setPhotoFile] = useState(null)
+  const [busy, setBusy] = useState('')
+  const [msg, setMsg] = useState('')
+  const ch = (k) => (e) => setForm({ ...form, [k]: e.target.value })
+  const photos = collection.photos || []
+
+  const saveInfos = async (e) => {
+    e.preventDefault()
+    setBusy('infos'); setMsg('')
+    let imageBase64, filename, contentType
+    if (coverFile) { imageBase64 = await fileToBase64(coverFile); filename = coverFile.name; contentType = coverFile.type }
+    const res = await adminCall(pin, 'update_collection', { id: collection.id, ...form, imageBase64, filename, contentType })
+    setBusy('')
+    if (res.ok) { setMsg('Enregistré ✓'); setCoverFile(null); reload() }
+    else setMsg('Erreur : ' + (res.error || 'inconnue'))
+  }
+  const addPhoto = async (e) => {
+    e.preventDefault()
+    if (!photoFile) return
+    setBusy('photo'); setMsg('')
+    const imageBase64 = await fileToBase64(photoFile)
+    const res = await adminCall(pin, 'add_collection_photo', { collection_id: collection.id, imageBase64, filename: photoFile.name, contentType: photoFile.type })
+    setBusy('')
+    if (res.ok) { setPhotoFile(null); reload() }
+    else setMsg('Erreur : ' + (res.error || 'inconnue'))
+  }
+  const delPhoto = async (p) => {
+    if (!confirm('Supprimer cette photo ?')) return
+    await adminCall(pin, 'delete_collection_photo', { id: p.id, image_url: p.image_url })
+    reload()
+  }
+
+  return (
+    <div style={{ ...card, borderColor: 'rgba(201,168,76,0.3)' }} className="flex flex-col gap-5">
+      <form onSubmit={saveInfos} className="flex flex-col gap-4">
+        <div className="grid sm:grid-cols-2 gap-4">
+          <div><label style={label}>Titre</label><input value={form.titre} onChange={ch('titre')} style={input} /></div>
+          <div><label style={label}>Tag</label><input value={form.tag} onChange={ch('tag')} style={input} /></div>
+        </div>
+        <div><label style={label}>Description</label><textarea rows={3} value={form.description} onChange={ch('description')} style={{ ...input, resize: 'vertical' }} /></div>
+        <div><label style={label}>Changer la couverture (optionnel)</label><input type="file" accept="image/*" onChange={e => setCoverFile(e.target.files?.[0] || null)} style={{ ...input, padding: '0.5rem' }} /></div>
+        <div className="flex items-center gap-4">
+          <button type="submit" disabled={busy === 'infos'} style={{ ...btn(), opacity: busy === 'infos' ? 0.6 : 1 }}>{busy === 'infos' ? 'Enregistrement…' : 'Enregistrer les infos'}</button>
+          {msg && <span style={{ fontFamily: 'Jost', fontSize: '0.85rem', color: msg.startsWith('Erreur') ? '#E27B7B' : OR }}>{msg}</span>}
+        </div>
+      </form>
+
+      <form onSubmit={addPhoto} className="flex items-end gap-4 flex-wrap pt-4" style={{ borderTop: '1px solid rgba(201,168,76,0.12)' }}>
+        <div className="flex-1" style={{ minWidth: 200 }}>
+          <label style={label}>Ajouter une photo à cette galerie</label>
+          <input type="file" accept="image/*" onChange={e => setPhotoFile(e.target.files?.[0] || null)} style={{ ...input, padding: '0.5rem' }} />
+        </div>
+        <button type="submit" disabled={busy === 'photo' || !photoFile} style={{ ...btn(), opacity: busy === 'photo' || !photoFile ? 0.6 : 1 }}>{busy === 'photo' ? 'Envoi…' : 'Ajouter la photo'}</button>
+      </form>
+
+      <div>
+        <p style={{ fontFamily: 'Jost', fontWeight: 500, fontSize: '0.78rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#B8B0A0', marginBottom: '0.9rem' }}>Photos ({photos.length})</p>
+        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-3">
+          {photos.map(p => (
+            <div key={p.id} className="relative overflow-hidden" style={{ borderRadius: 10, aspectRatio: '1/1', background: '#1A1A1A' }}>
+              <img src={p.image_url} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              <button onClick={() => delPhoto(p)} style={{ position: 'absolute', top: 4, right: 4, width: 24, height: 24, borderRadius: '50%', background: 'rgba(10,10,10,0.8)', border: '1px solid rgba(226,123,123,0.6)', color: '#E27B7B', cursor: 'pointer', fontSize: '0.75rem' }}>✕</button>
+            </div>
+          ))}
+          {photos.length === 0 && <p style={{ color: '#787068', fontFamily: 'Jost', fontSize: '0.85rem' }}>Aucune photo dans cette galerie.</p>}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function CollectionsTab({ pin, collections, reload }) {
+  const [form, setForm] = useState({ titre: '', tag: '', description: '' })
+  const [coverFile, setCoverFile] = useState(null)
   const [busy, setBusy] = useState(false)
   const [msg, setMsg] = useState('')
+  const [openId, setOpenId] = useState(null)
+  const ch = (k) => (e) => setForm({ ...form, [k]: e.target.value })
 
   const add = async (e) => {
     e.preventDefault()
-    if (!file) return
+    if (!form.titre) return
     setBusy(true); setMsg('')
-    const imageBase64 = await fileToBase64(file)
-    const res = await adminCall(pin, 'add_photo', { imageBase64, filename: file.name, contentType: file.type, category })
+    let imageBase64, filename, contentType
+    if (coverFile) { imageBase64 = await fileToBase64(coverFile); filename = coverFile.name; contentType = coverFile.type }
+    const res = await adminCall(pin, 'add_collection', { ...form, imageBase64, filename, contentType })
     setBusy(false)
-    if (res.ok) { setFile(null); setMsg('Photo ajoutée ✓'); reload() }
+    if (res.ok) { setForm({ titre: '', tag: '', description: '' }); setCoverFile(null); setMsg('Galerie créée ✓'); reload() }
     else setMsg('Erreur : ' + (res.error || 'inconnue'))
   }
-  const remove = async (p) => {
-    if (!confirm('Supprimer cette photo ?')) return
-    await adminCall(pin, 'delete_photo', { id: p.id, image_url: p.image_url })
+  const del = async (c) => {
+    if (!confirm(`Supprimer la galerie « ${c.titre} » et toutes ses photos ?`)) return
+    if (openId === c.id) setOpenId(null)
+    await adminCall(pin, 'delete_collection', { id: c.id, cover_url: c.cover_url })
     reload()
   }
 
   return (
     <div className="flex flex-col gap-6">
-      <h2 style={{ ...h3, fontSize: '1.2rem' }}>Galerie</h2>
+      <h2 style={{ ...h3, fontSize: '1.2rem' }}>Galeries</h2>
+
       <form onSubmit={add} style={card}>
-        <h3 style={{ ...h3, fontSize: '1rem', marginBottom: '1.2rem' }}>Ajouter une photo</h3>
-        <div className="grid sm:grid-cols-2 gap-4">
-          <div>
-            <label style={label}>Image</label>
-            <input type="file" accept="image/*" onChange={e => setFile(e.target.files?.[0] || null)} style={{ ...input, padding: '0.5rem' }} />
-          </div>
-          <div>
-            <label style={label}>Catégorie</label>
-            <select value={category} onChange={e => setCategory(e.target.value)} style={input}>
-              {CATEGORIES.map(c => <option key={c} value={c} style={{ background: '#0A0A0A' }}>{c}</option>)}
-            </select>
-          </div>
+        <h3 style={{ ...h3, fontSize: '1rem', marginBottom: '1.2rem' }}>Créer une galerie / un événement</h3>
+        <div className="grid sm:grid-cols-2 gap-4 mb-4">
+          <div><label style={label}>Titre</label><input value={form.titre} onChange={ch('titre')} required placeholder="Ex : Vodun Days" style={input} /></div>
+          <div><label style={label}>Tag</label><input value={form.tag} onChange={ch('tag')} placeholder="Ex : Festival culturel" style={input} /></div>
         </div>
+        <label style={label}>Description</label>
+        <textarea rows={3} value={form.description} onChange={ch('description')} style={{ ...input, resize: 'vertical' }} />
+        <label style={{ ...label, marginTop: '1rem' }}>Photo de couverture</label>
+        <input type="file" accept="image/*" onChange={e => setCoverFile(e.target.files?.[0] || null)} style={{ ...input, padding: '0.5rem' }} />
         <div className="flex items-center gap-4 mt-4">
-          <button type="submit" disabled={busy || !file} style={{ ...btn(), opacity: busy || !file ? 0.6 : 1 }}>{busy ? 'Envoi…' : 'Ajouter'}</button>
+          <button type="submit" disabled={busy} style={{ ...btn(), opacity: busy ? 0.6 : 1 }}>{busy ? 'Création…' : 'Créer la galerie'}</button>
           {msg && <span style={{ fontFamily: 'Jost', fontSize: '0.85rem', color: msg.startsWith('Erreur') ? '#E27B7B' : OR }}>{msg}</span>}
         </div>
       </form>
-      <div>
-        <p style={{ fontFamily: 'Jost', fontWeight: 500, fontSize: '0.8rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#B8B0A0', marginBottom: '1rem' }}>Photos ajoutées ({photos.length})</p>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
-          {photos.map(p => (
-            <div key={p.id} className="relative overflow-hidden" style={{ borderRadius: 12, aspectRatio: '3/4', background: '#1A1A1A' }}>
-              <img src={p.image_url} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-              <button onClick={() => remove(p)} style={{ position: 'absolute', top: 6, right: 6, width: 28, height: 28, borderRadius: '50%', background: 'rgba(10,10,10,0.8)', border: '1px solid rgba(226,123,123,0.6)', color: '#E27B7B', cursor: 'pointer' }}>✕</button>
-              <span style={{ position: 'absolute', bottom: 6, left: 6, fontFamily: 'Jost', fontSize: '0.62rem', color: '#F5F0E8', background: 'rgba(10,10,10,0.7)', padding: '2px 8px', borderRadius: 9999 }}>{p.category}</span>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {collections.map(c => (
+          <div key={c.id} className="flex flex-col overflow-hidden" style={{ ...card, padding: 0 }}>
+            <div style={{ aspectRatio: '4/3', background: '#1A1A1A' }}>
+              {c.cover_url && <img src={c.cover_url} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />}
             </div>
-          ))}
-          {photos.length === 0 && <p style={{ color: '#787068', fontFamily: 'Jost', fontSize: '0.85rem' }}>Aucune photo ajoutée.</p>}
-        </div>
+            <div className="flex flex-col flex-1" style={{ padding: '1rem 1.1rem' }}>
+              <p style={{ fontFamily: 'Jost', fontWeight: 600, fontSize: '0.98rem', color: '#F5F0E8' }}>{c.titre}</p>
+              <p style={{ fontFamily: 'Jost', fontWeight: 300, fontSize: '0.72rem', color: OR, marginTop: '0.15rem' }}>{c.tag} · {(c.photos || []).length} photo(s)</p>
+              <div className="flex gap-2 mt-3">
+                <button onClick={() => setOpenId(openId === c.id ? null : c.id)} style={{ ...btn(openId === c.id ? OR : 'transparent', openId === c.id ? '#0A0A0A' : OR), border: '1px solid rgba(201,168,76,0.4)', fontSize: '0.76rem', padding: '0.45rem 1rem' }}>
+                  {openId === c.id ? 'Fermer' : 'Gérer'}
+                </button>
+                <button onClick={() => del(c)} style={{ ...btn('transparent', '#E27B7B'), border: '1px solid rgba(226,123,123,0.5)', fontSize: '0.76rem', padding: '0.45rem 1rem' }}>Supprimer</button>
+              </div>
+            </div>
+          </div>
+        ))}
+        {collections.length === 0 && <p style={{ color: '#787068', fontFamily: 'Jost', fontSize: '0.85rem' }}>Aucune galerie. Créez-en une ci-dessus.</p>}
       </div>
+
+      {openId && collections.find(c => c.id === openId) && (
+        <CollectionManager pin={pin} collection={collections.find(c => c.id === openId)} reload={reload} />
+      )}
     </div>
   )
 }
@@ -438,8 +525,8 @@ function SettingsTab({ pin, onPinChange }) {
 }
 
 /* ─────────────────────────  Sidebar  ───────────────────────── */
-const TABS = ['Analytics', 'Galerie', 'Témoignages', 'Réalisations', 'Réglages']
-const ICONS = { Analytics: '▤', Galerie: '▦', 'Témoignages': '❝', 'Réalisations': '✦', 'Réglages': '⚙' }
+const TABS = ['Analytics', 'Galeries', 'Témoignages', 'Réglages']
+const ICONS = { Analytics: '▤', Galeries: '▦', 'Témoignages': '❝', 'Réglages': '⚙' }
 
 function Sidebar({ tab, setTab, logout, open, setOpen }) {
   return (
@@ -496,18 +583,20 @@ export default function AdminPage() {
   const [authed, setAuthed] = useState(false)
   const [tab, setTab] = useState('Analytics')
   const [sidebarOpen, setSidebarOpen] = useState(false)
-  const [data, setData] = useState({ photos: [], testimonials: [], realisations: [] })
+  const [data, setData] = useState({ testimonials: [], collections: [] })
   const [analytics, setAnalytics] = useState(null)
   const [refreshing, setRefreshing] = useState(false)
 
   const load = useCallback(async (p) => {
     const key = p || pin
     setRefreshing(true)
-    const [list, ana] = await Promise.all([
+    const [list, cols, ana] = await Promise.all([
       adminCall(key, 'list'),
+      adminCall(key, 'list_collections'),
       adminCall(key, 'analytics'),
     ])
-    if (list.ok) setData({ photos: list.photos, testimonials: list.testimonials, realisations: list.realisations || [] })
+    if (list.ok) setData(d => ({ ...d, testimonials: list.testimonials }))
+    if (cols.ok) setData(d => ({ ...d, collections: cols.collections || [] }))
     if (ana.ok) setAnalytics(ana)
     setRefreshing(false)
   }, [pin])
@@ -549,9 +638,8 @@ export default function AdminPage() {
 
         <div className="px-5 md:px-8 lg:px-10 py-8" style={{ maxWidth: '1120px' }}>
           {tab === 'Analytics' && <Analytics analytics={analytics} onRefresh={() => load()} refreshing={refreshing} />}
-          {tab === 'Galerie' && <GalleryTab pin={pin} photos={data.photos} reload={() => load()} />}
+          {tab === 'Galeries' && <CollectionsTab pin={pin} collections={data.collections} reload={() => load()} />}
           {tab === 'Témoignages' && <TestimonialsTab pin={pin} testimonials={data.testimonials} reload={() => load()} />}
-          {tab === 'Réalisations' && <RealisationsTab pin={pin} realisations={data.realisations} reload={() => load()} />}
           {tab === 'Réglages' && <SettingsTab pin={pin} onPinChange={(p) => { setPin(p); sessionStorage.setItem('sc_admin_pin', p) }} />}
 
           <p style={{ fontFamily: 'Jost', fontWeight: 300, fontSize: '0.72rem', color: '#5f574c', textAlign: 'center', marginTop: '3rem' }}>
