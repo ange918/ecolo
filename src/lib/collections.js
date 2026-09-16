@@ -50,5 +50,14 @@ export const FALLBACK_PHOTOS = {
   'festival-des-masques': [],
   'gaani': ['/gallery/gaani/1.jpg', '/gallery/gaani/2.jpg', '/gallery/gaani/3.jpg', '/gallery/gaani/4.jpg', '/gallery/gaani/5.jpg', '/gallery/gaani/6.jpg', '/gallery/gaani/7.jpg', '/gallery/gaani/8.jpg', '/gallery/gaani/9.jpg', '/gallery/gaani/10.jpg'],
   'trone-de-behanzin': ['/gallery/behanzin/1.jpg', '/gallery/behanzin/2.jpg', '/gallery/behanzin/3.jpg', '/gallery/behanzin/4.jpg', '/gallery/behanzin/5.jpg', '/gallery/behanzin/6.jpg', '/gallery/behanzin/7.jpg', '/gallery/behanzin/8.jpg', '/gallery/behanzin/9.jpg', '/gallery/behanzin/10.jpg', '/gallery/behanzin/11.jpg', '/gallery/behanzin/12.jpg', '/gallery/behanzin/13.jpg', '/gallery/behanzin/14.jpg', '/gallery/behanzin/15.jpg'],
-  'collaborations-diverses': ['/gallery/img9.jpg', '/gallery/img12.jpg', '/gallery/img13.jpg', '/gallery/img14.jpg', '/gallery/img19.jpg'],
+  'collaborations-diverses': [
+    '/gallery/collaborations/1.jpg', '/gallery/collaborations/2.jpg', '/gallery/collaborations/3.jpg', '/gallery/collaborations/4.jpg',
+    '/gallery/collaborations/5.jpg', '/gallery/collaborations/6.jpg', '/gallery/collaborations/7.jpg', '/gallery/collaborations/8.jpg',
+    '/gallery/collaborations/9.jpg', '/gallery/collaborations/10.jpg', '/gallery/collaborations/11.jpg', '/gallery/collaborations/12.jpg',
+    '/gallery/collaborations/13.jpg', '/gallery/collaborations/14.jpg', '/gallery/collaborations/15.jpg', '/gallery/collaborations/16.jpg',
+    '/gallery/img16.jpg', '/gallery/img17.jpg', '/gallery/img15.jpg', '/gallery/img18.jpg', '/gallery/img6.jpg', '/gallery/img10.jpg',
+    '/gallery/img7.jpg', '/gallery/img8.jpg', '/gallery/img20.jpg', '/gallery/img1.jpg', '/gallery/img5.jpg', '/gallery/img2.jpg',
+    '/gallery/img4.jpg', '/gallery/img3.jpg', '/gallery/img11.jpg', '/gallery/img9.jpg', '/gallery/img19.jpg', '/gallery/img12.jpg',
+    '/gallery/img13.jpg', '/gallery/img14.jpg',
+  ],
 }
