@@ -77,6 +77,12 @@ export default function Navbar() {
               onClick={() => trackClick('nav:' + link.to)}
             />
           ))}
+          <RouterLink to="/evenementiel"
+            style={{ ...linkStyle, color: location.pathname === '/evenementiel' ? '#C9A84C' : '#B8B0A0' }}
+            onClick={() => trackClick('nav:evenementiel')}
+          >
+            Événementiel
+          </RouterLink>
           <RouterLink to="/qui-sommes-nous"
             style={{ ...linkStyle, color: location.pathname === '/qui-sommes-nous' ? '#C9A84C' : '#B8B0A0' }}
             onClick={() => trackClick('nav:qui-sommes-nous')}
@@ -114,6 +120,10 @@ export default function Navbar() {
             <SectionLink key={link.to} to={link.to} label={link.label}
               style={linkStyle} onClick={() => { trackClick('nav:' + link.to); setMenuOpen(false) }} />
           ))}
+          <RouterLink to="/evenementiel" onClick={() => { trackClick('nav:evenementiel'); setMenuOpen(false) }}
+            style={{ ...linkStyle, color: '#B8B0A0', textDecoration: 'none' }}>
+            Événementiel
+          </RouterLink>
           <RouterLink to="/qui-sommes-nous" onClick={() => { trackClick('nav:qui-sommes-nous'); setMenuOpen(false) }}
             style={{ ...linkStyle, color: '#B8B0A0', textDecoration: 'none' }}>
             Qui sommes-nous

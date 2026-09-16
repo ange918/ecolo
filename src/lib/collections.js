@@ -1,0 +1,54 @@
+// Données de repli (utilisées si Supabase est vide/indisponible).
+// Le contenu réel est géré depuis le tableau de bord (/andychris) → onglet Galeries.
+
+export const FALLBACK_COLLECTIONS = [
+  {
+    slug: 'vodun-days',
+    titre: 'Vodun Days',
+    tag: 'Cérémonie spirituelle',
+    cover_url: '/gallery/vodun/cover.jpg',
+    description:
+      "Célébration internationale des religions endogènes et de la spiritualité vodun à Ouidah. Senan Concept y signe parures et tenues cérémonielles qui honorent le sacré.",
+  },
+  {
+    slug: 'festival-des-masques',
+    titre: 'Festival des Masques',
+    tag: 'Festival culturel',
+    cover_url: '',
+    description:
+      "Grand rendez-vous des masques sacrés et des traditions rituelles du Bénin. Nous habillons les participants de costumes qui racontent une histoire.",
+  },
+  {
+    slug: 'gaani',
+    titre: 'Gaani',
+    tag: 'Fête traditionnelle',
+    cover_url: '/gallery/gaani/cover.jpg',
+    description:
+      "La Gaani, fête emblématique du royaume de Nikki (Borgou), rythmée par les cavaliers et les parures royales. Créations et ornements dédiés à l'éclat de l'événement.",
+  },
+  {
+    slug: 'trone-de-behanzin',
+    titre: 'Trône de Béhanzin',
+    tag: 'Comédie musicale',
+    cover_url: '/gallery/behanzin/cover.jpg',
+    description:
+      "Hommage au roi Béhanzin du Dahomey : costumes et décors de scène pour une production célébrant la mémoire royale.",
+  },
+  {
+    slug: 'collaborations-diverses',
+    titre: 'Collaborations diverses',
+    tag: 'Sur mesure',
+    cover_url: '/gallery/img17.jpg',
+    description:
+      "Créations hors festivals : tenues et accessoires pour artistes, personnalités et clients particuliers. Un mélange de projets sur mesure.",
+  },
+]
+
+// Quelques photos de repli par événement (placeholders, en attendant l'upload réel)
+export const FALLBACK_PHOTOS = {
+  'vodun-days': ['/gallery/vodun/1.jpg', '/gallery/vodun/2.jpg', '/gallery/vodun/3.jpg', '/gallery/vodun/4.jpg', '/gallery/vodun/5.jpg', '/gallery/vodun/6.jpg', '/gallery/vodun/7.jpg'],
+  'festival-des-masques': [],
+  'gaani': ['/gallery/gaani/1.jpg', '/gallery/gaani/2.jpg', '/gallery/gaani/3.jpg', '/gallery/gaani/4.jpg', '/gallery/gaani/5.jpg', '/gallery/gaani/6.jpg', '/gallery/gaani/7.jpg', '/gallery/gaani/8.jpg', '/gallery/gaani/9.jpg', '/gallery/gaani/10.jpg'],
+  'trone-de-behanzin': ['/gallery/behanzin/1.jpg', '/gallery/behanzin/2.jpg', '/gallery/behanzin/3.jpg', '/gallery/behanzin/4.jpg', '/gallery/behanzin/5.jpg', '/gallery/behanzin/6.jpg', '/gallery/behanzin/7.jpg', '/gallery/behanzin/8.jpg', '/gallery/behanzin/9.jpg', '/gallery/behanzin/10.jpg', '/gallery/behanzin/11.jpg', '/gallery/behanzin/12.jpg', '/gallery/behanzin/13.jpg', '/gallery/behanzin/14.jpg', '/gallery/behanzin/15.jpg'],
+  'collaborations-diverses': ['/gallery/img9.jpg', '/gallery/img12.jpg', '/gallery/img13.jpg', '/gallery/img14.jpg', '/gallery/img19.jpg'],
+}
