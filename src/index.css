@@ -31,6 +31,8 @@ img { display: block; max-width: 100%; }
 button, input, textarea, select { font: inherit; color: inherit; }
 a { color: inherit; }
 
+section[id] { scroll-margin-top: 88px; }
+
 h1, h2, h3, h4, .display {
   font-family: 'Syne', system-ui, sans-serif;
   font-weight: 700;

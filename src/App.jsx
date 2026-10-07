@@ -21,10 +21,16 @@ function HashScroll() {
       return
     }
     const id = decodeURIComponent(hash.slice(1))
-    const timer = window.setTimeout(() => {
-      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-    }, 60)
-    return () => window.clearTimeout(timer)
+    const scroll = () => {
+      document.getElementById(id)?.scrollIntoView({ behavior: 'auto', block: 'start' })
+    }
+    scroll()
+    const t1 = window.setTimeout(scroll, 120)
+    const t2 = window.setTimeout(scroll, 450)
+    return () => {
+      window.clearTimeout(t1)
+      window.clearTimeout(t2)
+    }
   }, [pathname, hash])
   return null
 }
