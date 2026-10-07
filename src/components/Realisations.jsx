@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useCollections } from '../lib/collections'
+import { Reveal, useStagger } from './Reveal'
 
 export function RealCard({ item, wide = false }) {
   return (
@@ -22,24 +23,30 @@ export function RealCard({ item, wide = false }) {
 export default function Realisations({ limit, showHeading = true }) {
   const items = useCollections()
   const shown = typeof limit === 'number' ? items.slice(0, limit) : items
+  const s = useStagger(0.08)
+  const { Grid, Item } = s
 
   return (
     <section className="section" id="realisations">
       <div className="wrap">
         {showHeading && (
-          <div className="section-head">
-            <div>
-              <p className="eyebrow">Portfolio</p>
-              <h2>Nos réalisations emblématiques</h2>
+          <Reveal>
+            <div className="section-head">
+              <div>
+                <p className="eyebrow">Portfolio</p>
+                <h2>Nos réalisations emblématiques</h2>
+              </div>
+              <Link to="/realisations" className="btn btn-ghost btn-sm">Voir tout →</Link>
             </div>
-            <Link to="/realisations" className="btn btn-ghost btn-sm">Voir tout →</Link>
-          </div>
+          </Reveal>
         )}
-        <div className="real-grid">
+        <Grid className="real-grid" {...s.gridProps}>
           {shown.map((item, i) => (
-            <RealCard key={item.slug} item={item} wide={i === 0} />
+            <Item key={item.slug} {...s.itemProps} className={i === 0 ? 'wide' : undefined} style={{ height: '100%' }}>
+              <RealCard item={item} wide={i === 0} />
+            </Item>
           ))}
-        </div>
+        </Grid>
       </div>
     </section>
   )

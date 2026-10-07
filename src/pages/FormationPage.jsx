@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { trackVisit } from '../lib/supabase'
 import { FORMATION_PARCOURS } from '../lib/offerings'
 import { SITE, openMailto } from '../lib/site'
+import { Reveal, useStagger } from '../components/Reveal'
 
 const empty = { nom: '', email: '', parcours: FORMATION_PARCOURS[0].label, message: '' }
 
@@ -10,6 +11,8 @@ export default function FormationPage() {
   const [form, setForm] = useState(empty)
   const [sent, setSent] = useState(false)
   useEffect(() => { trackVisit('formation') }, [])
+  const s = useStagger(0.08)
+  const { Grid, Item } = s
 
   const onChange = (e) => setForm({ ...form, [e.target.name]: e.target.value })
 
@@ -37,9 +40,12 @@ export default function FormationPage() {
       <section className="section" style={{ paddingTop: 12 }}>
         <div className="wrap">
           <div className="grid-2" style={{ alignItems: 'center', marginBottom: 40 }}>
+            <Reveal>
             <div className="photo-frame">
-              <img src="/gallery/img10.jpg" alt="Savoir-faire de l'atelier Senan Concept" />
+              <img src="/gallery/img10.jpg" alt="Savoir-faire de l'atelier Senan Concept" style={{ objectPosition: 'center 16%' }} />
             </div>
+            </Reveal>
+            <Reveal delay={0.08}>
             <div>
               <p className="eyebrow">Parcours</p>
               <h2 style={{ fontSize: 'clamp(1.6rem, 3vw, 2rem)', margin: '12px 0 16px' }}>Ce que couvrent les formations</h2>
@@ -57,14 +63,16 @@ export default function FormationPage() {
                 ))}
               </div>
             </div>
+            </Reveal>
           </div>
 
-          <div className="grid-3" style={{ marginBottom: 36 }}>
-            <article className="why"><div className="pt">Lieu</div><h3 style={{ fontSize: 16 }}>Atelier Senan Concept · Porto-Novo</h3></article>
-            <article className="why"><div className="pt">Domaines</div><h3 style={{ fontSize: 16 }}>Mode, accessoires, décoration</h3></article>
-            <article className="why"><div className="pt">Contact</div><h3 style={{ fontSize: 16 }}>{SITE.email}</h3></article>
-          </div>
+          <Grid className="grid-3" style={{ marginBottom: 36 }} {...s.gridProps}>
+            <Item {...s.itemProps} style={{ height: '100%' }}><article className="why"><div className="pt">Lieu</div><h3 style={{ fontSize: 16 }}>Atelier Senan Concept · Porto-Novo</h3></article></Item>
+            <Item {...s.itemProps} style={{ height: '100%' }}><article className="why"><div className="pt">Domaines</div><h3 style={{ fontSize: 16 }}>Mode, accessoires, décoration</h3></article></Item>
+            <Item {...s.itemProps} style={{ height: '100%' }}><article className="why"><div className="pt">Contact</div><h3 style={{ fontSize: 16 }}>{SITE.email}</h3></article></Item>
+          </Grid>
 
+          <Reveal>
           <div className="card" style={{ padding: '28px 22px' }}>
             <div className="grid-2" style={{ alignItems: 'start' }}>
               <div>
@@ -105,6 +113,7 @@ export default function FormationPage() {
               )}
             </div>
           </div>
+          </Reveal>
         </div>
       </section>
     </>

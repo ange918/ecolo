@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { supabase, trackVisit } from '../lib/supabase'
 import { COLLECTION_META, FALLBACK_COLLECTIONS, FALLBACK_PHOTOS, photoCaption, useCollections } from '../lib/collections'
+import { Reveal, useStagger } from '../components/Reveal'
 
 export default function CollectionPage() {
   const { slug } = useParams()
@@ -11,6 +12,8 @@ export default function CollectionPage() {
   const [photos, setPhotos] = useState(() => (FALLBACK_PHOTOS[slug] || []).map(src => ({ image_url: src })))
   const [checked, setChecked] = useState(Boolean(fallback))
   const [lightbox, setLightbox] = useState(null)
+  const gallery = useStagger(0.05)
+  const othersMotion = useStagger(0.08)
 
   useEffect(() => { trackVisit('galerie:' + slug) }, [slug])
 
@@ -101,16 +104,18 @@ export default function CollectionPage() {
           {photos.length === 0 ? (
             <p className="muted">Les photos de cette galerie seront bientôt disponibles.</p>
           ) : (
-            <div className="gal-grid">
+            <gallery.Grid className="gal-grid" {...gallery.gridProps}>
               {photos.map((p, i) => (
-                <figure key={p.image_url + i} className={i === 0 ? 'gal-item span2' : 'gal-item'}>
+                <gallery.Item key={p.image_url + i} {...gallery.itemProps} className={i === 0 ? 'span2' : undefined}>
+                <figure className={i === 0 ? 'gal-item span2' : 'gal-item'}>
                   <button type="button" onClick={() => setLightbox({ src: p.image_url, caption: photoCaption(collection.titre, i) })}>
                     <img src={p.image_url} alt={photoCaption(collection.titre, i)} />
                   </button>
                   <figcaption>{photoCaption(collection.titre, i)}</figcaption>
                 </figure>
+                </gallery.Item>
               ))}
-            </div>
+            </gallery.Grid>
           )}
         </div>
       </section>
@@ -118,15 +123,18 @@ export default function CollectionPage() {
       {others.length > 0 && (
         <section className="section" style={{ paddingTop: 0 }}>
           <div className="wrap">
+            <Reveal>
             <div className="section-head">
               <div>
                 <p className="eyebrow">Autres projets</p>
                 <h2>Continuer l'exploration</h2>
               </div>
             </div>
-            <div className="grid-4">
+            </Reveal>
+            <othersMotion.Grid className="grid-4" {...othersMotion.gridProps}>
               {others.map(item => (
-                <Link key={item.slug} to={`/galerie/${item.slug}`} className="card" style={{ textDecoration: 'none', color: 'inherit' }}>
+                <othersMotion.Item key={item.slug} {...othersMotion.itemProps} style={{ height: '100%' }}>
+                <Link to={`/galerie/${item.slug}`} className="card" style={{ textDecoration: 'none', color: 'inherit' }}>
                   <div className="ph">
                     {item.cover_url
                       ? <img src={item.cover_url} alt="" />
@@ -137,8 +145,9 @@ export default function CollectionPage() {
                     <span className="tag">Voir la galerie →</span>
                   </div>
                 </Link>
+                </othersMotion.Item>
               ))}
-            </div>
+            </othersMotion.Grid>
           </div>
         </section>
       )}

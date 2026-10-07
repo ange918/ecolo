@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { supabase, trackVisit, trackClick } from '../lib/supabase'
 import { FALLBACK_EVENEMENTS } from '../lib/evenements'
 import { SITE } from '../lib/site'
+import { Reveal, useStagger } from '../components/Reveal'
 
 function useCountdown(dateIso) {
   const [left, setLeft] = useState(null)
@@ -79,6 +80,8 @@ export default function EvenementielPage() {
   const passed = evenements.filter(e => e.statut === 'passe')
   const focus = upcoming[0] || branche
   const visual = focus.cover_url || '/gallery/img18.jpg'
+  const s = useStagger(0.06)
+  const { Grid, Item } = s
 
   return (
     <>
@@ -103,6 +106,7 @@ export default function EvenementielPage() {
       <section className="section">
         <div className="wrap">
           <div className="grid-2" style={{ alignItems: 'start' }}>
+            <Reveal>
             <div>
               <p className="eyebrow">Le projet</p>
               <h2 style={{ fontSize: 'clamp(1.8rem, 3vw, 2.25rem)', margin: '12px 0 16px' }}>
@@ -115,9 +119,12 @@ export default function EvenementielPage() {
                 <Link to="/contact" className="btn btn-gold" onClick={() => trackClick('evenementiel:contact')}>Nous contacter →</Link>
               </div>
             </div>
+            </Reveal>
+            <Reveal delay={0.08}>
             <div className="photo-frame">
               <img src={visual} alt={focus.cover_url ? (focus.theme || focus.nom) : 'Création Senan Concept'} />
             </div>
+            </Reveal>
           </div>
         </div>
       </section>
@@ -125,27 +132,32 @@ export default function EvenementielPage() {
       {evenements.filter(ev => (ev.photos || []).length > 0).map(ev => (
         <section key={ev.id} className="section" style={{ paddingTop: 0 }}>
           <div className="wrap">
+            <Reveal>
             <div className="section-head">
               <div>
                 <p className="eyebrow">{ev.theme || ev.nom}</p>
                 <h2>Visuels {ev.date_texte || ''}</h2>
               </div>
             </div>
-            <div className="gal-grid">
+            </Reveal>
+            <Grid className="gal-grid" {...s.gridProps}>
               {ev.photos.map((p, i) => (
-                <figure key={p.id || i} className="gal-item">
+                <Item key={p.id || i} {...s.itemProps}>
+                <figure className="gal-item">
                   <button type="button" onClick={() => setLightbox(p.image_url)}>
                     <img src={p.image_url} alt={`${ev.theme || ev.nom} · création ${String(i + 1).padStart(2, '0')}`} />
                   </button>
                   <figcaption>{ev.theme || ev.nom} · création {String(i + 1).padStart(2, '0')}</figcaption>
                 </figure>
+                </Item>
               ))}
-            </div>
+            </Grid>
           </div>
         </section>
       ))}
 
       <div className="wrap">
+        <Reveal>
         <div className="cta-band">
           <div>
             <p className="eyebrow">Contact IFA</p>
@@ -161,6 +173,7 @@ export default function EvenementielPage() {
             <div><strong>WhatsApp</strong><a href={SITE.whatsapp} target="_blank" rel="noreferrer">{SITE.phoneDisplay}</a></div>
           </div>
         </div>
+        </Reveal>
       </div>
 
       {lightbox && (

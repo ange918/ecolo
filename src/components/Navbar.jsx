@@ -6,7 +6,6 @@ import Logo from './Logo'
 const LINKS = [
   { label: 'Services', to: '/services' },
   { label: 'Réalisations', to: '/realisations' },
-  { label: 'Contact', to: '/contact' },
   { label: 'Événementiel', to: '/evenementiel' },
   { label: 'Qui sommes-nous', to: '/qui-sommes-nous' },
 ]

@@ -1,3 +1,5 @@
+import { Reveal, useStagger } from './Reveal'
+
 const reasons = [
   { num: '01', tag: 'Tradition', titre: 'Savoir-faire ancestral', desc: "Chaque création puise dans des techniques transmises de génération en génération, garantissant une authenticité et une qualité irréprochables." },
   { num: '02', tag: 'Sur-mesure', titre: 'Créations 100% sur-mesure', desc: "Nous n'utilisons aucun patron standard. Chaque pièce est pensée, discutée et façonnée exclusivement pour vous, selon vos besoins et votre vision." },
@@ -8,25 +10,31 @@ const reasons = [
 ]
 
 export default function WhyUs() {
+  const s = useStagger()
+  const { Grid, Item } = s
   return (
     <section className="section section-alt" id="pourquoi-nous">
       <div className="wrap">
-        <div className="section-head">
-          <div>
-            <p className="eyebrow">Pourquoi nous</p>
-            <h2>Ce qui nous rend uniques</h2>
+        <Reveal>
+          <div className="section-head">
+            <div>
+              <p className="eyebrow">Pourquoi nous</p>
+              <h2>Ce qui nous rend uniques</h2>
+            </div>
+            <p>Depuis plus de 5 ans, Senan Concept s'est imposée comme la maison de mode de référence pour les créations culturelles au Bénin.</p>
           </div>
-          <p>Depuis plus de 5 ans, Senan Concept s'est imposée comme la maison de mode de référence pour les créations culturelles au Bénin.</p>
-        </div>
-        <div className="grid-3">
+        </Reveal>
+        <Grid className="grid-3" {...s.gridProps}>
           {reasons.map(r => (
-            <article key={r.num} className="why">
-              <div className="pt">Point {r.num} · {r.tag}</div>
-              <h3>{r.titre}</h3>
-              <p>{r.desc}</p>
-            </article>
+            <Item key={r.num} {...s.itemProps} style={{ height: '100%' }}>
+              <article className="why">
+                <div className="pt">Point {r.num} · {r.tag}</div>
+                <h3>{r.titre}</h3>
+                <p>{r.desc}</p>
+              </article>
+            </Item>
           ))}
-        </div>
+        </Grid>
       </div>
     </section>
   )

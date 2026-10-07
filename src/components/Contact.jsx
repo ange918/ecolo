@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { SITE, openMailto } from '../lib/site'
 import { trackClick } from '../lib/supabase'
+import { Reveal } from './Reveal'
 
 const TYPES = [
   { value: 'tenue', label: 'Tenue artistique' },
@@ -97,6 +98,7 @@ export default function Contact() {
   return (
     <section id="contact" style={{ paddingBottom: 8 }}>
       <div className="wrap">
+        <Reveal>
         <div className="cta-band">
           <div>
             <p className="eyebrow">Travaillons ensemble</p>
@@ -118,6 +120,7 @@ export default function Contact() {
             <div><strong>Disponibilité</strong><span>{SITE.hoursShort}</span></div>
           </div>
         </div>
+        </Reveal>
       </div>
     </section>
   )
