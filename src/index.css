@@ -254,14 +254,20 @@ h1, h2, h3, h4, .display {
   padding: 0 0 72px;
 }
 .hero-cover-inner {
-  flex: 1;
+  flex: 1 1 auto;
   display: flex;
   flex-direction: column;
-  min-height: 100%;
+  min-height: 0;
 }
 .hero-visual { position: relative; max-width: 1100px; margin: 0 auto; width: 100%; }
-.hero-pin-cover .hero-visual { flex: 1; display: flex; margin-bottom: 0; }
+.hero-pin-cover .hero-visual {
+  flex: 1 1 auto;
+  display: flex;
+  margin-bottom: 0;
+  min-height: clamp(260px, 48vw, 520px);
+}
 .hero-visual .main {
+  position: relative;
   width: 100%;
   height: clamp(260px, 48vw, 520px);
   border-radius: 22px;
@@ -269,8 +275,19 @@ h1, h2, h3, h4, .display {
   border: 1px solid var(--line);
   background: #111;
 }
-.hero-pin-cover .hero-visual .main { flex: 1; height: auto; min-height: clamp(260px, 48vw, 520px); }
-.hero-visual .main img { width: 100%; height: 100%; object-fit: cover; object-position: center 28%; }
+.hero-pin-cover .hero-visual .main {
+  flex: 1 1 auto;
+  height: auto;
+  min-height: clamp(260px, 48vw, 520px);
+}
+.hero-visual .main img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 28%;
+}
 .float-card {
   display: none;
   position: absolute;
