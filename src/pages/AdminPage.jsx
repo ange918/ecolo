@@ -13,21 +13,21 @@ const card = {
   padding: '1.5rem',
 }
 const label = {
-  display: 'block', fontFamily: 'Jost, sans-serif', fontWeight: 500,
+  display: 'block', fontFamily: 'Manrope, sans-serif', fontWeight: 500,
   fontSize: '0.68rem', letterSpacing: '0.12em', textTransform: 'uppercase',
   color: OR, marginBottom: '0.5rem',
 }
 const input = {
   width: '100%', background: '#0A0A0A', border: '1px solid rgba(201,168,76,0.25)',
   borderRadius: '10px', padding: '0.7rem 0.9rem', color: '#F5F0E8',
-  fontFamily: 'Jost, sans-serif', fontWeight: 300, fontSize: '0.92rem', outline: 'none',
+  fontFamily: 'Manrope, sans-serif', fontWeight: 300, fontSize: '0.92rem', outline: 'none',
 }
 const btn = (bg = OR, color = '#0A0A0A') => ({
   background: bg, color, border: 'none', borderRadius: '9999px',
-  padding: '0.6rem 1.4rem', fontFamily: 'Jost, sans-serif', fontWeight: 600,
+  padding: '0.6rem 1.4rem', fontFamily: 'Manrope, sans-serif', fontWeight: 600,
   fontSize: '0.82rem', cursor: 'pointer', transition: 'opacity 0.2s',
 })
-const h3 = { fontFamily: 'Syncopate, sans-serif', fontWeight: 700, fontSize: '1rem', color: '#F5F0E8', letterSpacing: '0.01em' }
+const h3 = { fontFamily: 'Syne, sans-serif', fontWeight: 700, fontSize: '1rem', color: '#F5F0E8', letterSpacing: '0.01em' }
 
 /* ─────────────────────────  Graphiques  ───────────────────────── */
 function Donut({ data, size = 150 }) {
@@ -49,16 +49,16 @@ function Donut({ data, size = 150 }) {
           offset += dash
           return seg
         })}
-        <text x="75" y="70" textAnchor="middle" fill="#F5F0E8" fontSize="24" fontFamily="Jost" fontWeight="700">{total}</text>
-        <text x="75" y="88" textAnchor="middle" fill="#787068" fontSize="9" fontFamily="Jost" letterSpacing="1.5">TOTAL</text>
+        <text x="75" y="70" textAnchor="middle" fill="#F5F0E8" fontSize="24" fontFamily="Manrope" fontWeight="700">{total}</text>
+        <text x="75" y="88" textAnchor="middle" fill="#787068" fontSize="9" fontFamily="Manrope" letterSpacing="1.5">TOTAL</text>
       </svg>
       <div className="flex flex-col gap-2 min-w-0">
-        {data.length === 0 && <span style={{ color: '#787068', fontFamily: 'Jost', fontSize: '0.85rem' }}>Aucune donnée</span>}
+        {data.length === 0 && <span style={{ color: '#787068', fontFamily: 'Manrope', fontSize: '0.85rem' }}>Aucune donnée</span>}
         {data.map((d, i) => (
           <div key={i} className="flex items-center gap-2.5">
             <span style={{ width: 11, height: 11, borderRadius: 3, background: PALETTE[i % PALETTE.length], flexShrink: 0 }} />
-            <span style={{ fontFamily: 'Jost', fontSize: '0.82rem', color: '#F5F0E8', whiteSpace: 'nowrap' }}>{d.label}</span>
-            <span style={{ fontFamily: 'Jost', fontSize: '0.78rem', color: '#787068' }}>
+            <span style={{ fontFamily: 'Manrope', fontSize: '0.82rem', color: '#F5F0E8', whiteSpace: 'nowrap' }}>{d.label}</span>
+            <span style={{ fontFamily: 'Manrope', fontSize: '0.78rem', color: '#787068' }}>
               {d.count} · {total > 0 ? Math.round((d.count / total) * 100) : 0}%
             </span>
           </div>
@@ -91,7 +91,7 @@ function AreaChart({ daily }) {
       {gridVals.map((v, k) => (
         <g key={k}>
           <line x1={padL} y1={y(v)} x2={W - padR} y2={y(v)} stroke="rgba(255,255,255,0.06)" strokeWidth="1" />
-          <text x={padL - 6} y={y(v) + 3} textAnchor="end" fill="#5f574c" fontSize="9" fontFamily="Jost">{v}</text>
+          <text x={padL - 6} y={y(v) + 3} textAnchor="end" fill="#5f574c" fontSize="9" fontFamily="Manrope">{v}</text>
         </g>
       ))}
       <path d={area} fill="url(#areaGold)" />
@@ -99,7 +99,7 @@ function AreaChart({ daily }) {
       <polyline points={clicksPts} fill="none" stroke="#8FB8A8" strokeWidth="2" strokeDasharray="5 4" strokeLinejoin="round" strokeLinecap="round" />
       {daily.map((d, i) => (
         (i % 2 === 0 || i === n - 1) ? (
-          <text key={i} x={x(i)} y={H - 8} textAnchor="middle" fill="#5f574c" fontSize="8.5" fontFamily="Jost">
+          <text key={i} x={x(i)} y={H - 8} textAnchor="middle" fill="#5f574c" fontSize="8.5" fontFamily="Manrope">
             {d.date.slice(8)}/{d.date.slice(5, 7)}
           </text>
         ) : null
@@ -111,9 +111,9 @@ function AreaChart({ daily }) {
 function StatTile({ value, label: l, sub, subColor }) {
   return (
     <div style={{ ...card, padding: '1.2rem 1.4rem' }}>
-      <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 400, fontSize: '0.68rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#B8B0A0', marginBottom: '0.5rem' }}>{l}</p>
-      <p style={{ fontFamily: 'Syncopate, sans-serif', fontWeight: 700, fontSize: '1.9rem', color: '#F5F0E8', lineHeight: 1 }}>{value}</p>
-      {sub && <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 400, fontSize: '0.72rem', color: subColor || OR, marginTop: '0.5rem' }}>{sub}</p>}
+      <p style={{ fontFamily: 'Manrope, sans-serif', fontWeight: 400, fontSize: '0.68rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#B8B0A0', marginBottom: '0.5rem' }}>{l}</p>
+      <p style={{ fontFamily: 'Syne, sans-serif', fontWeight: 700, fontSize: '1.9rem', color: '#F5F0E8', lineHeight: 1 }}>{value}</p>
+      {sub && <p style={{ fontFamily: 'Manrope, sans-serif', fontWeight: 400, fontSize: '0.72rem', color: subColor || OR, marginTop: '0.5rem' }}>{sub}</p>}
     </div>
   )
 }
@@ -146,10 +146,10 @@ function PinGate({ onOk }) {
   return (
     <div className="min-h-screen flex items-center justify-center px-6" style={{ background: '#0A0A0A' }}>
       <form onSubmit={submit} style={{ ...card, width: '100%', maxWidth: 380, padding: '2.5rem' }}>
-        <p style={{ fontFamily: 'Syncopate, sans-serif', fontWeight: 700, fontSize: '1.3rem', color: '#F5F0E8', marginBottom: '0.3rem' }}>
+        <p style={{ fontFamily: 'Syne, sans-serif', fontWeight: 700, fontSize: '1.3rem', color: '#F5F0E8', marginBottom: '0.3rem' }}>
           Tableau de bord
         </p>
-        <p style={{ fontFamily: 'Jost', fontWeight: 300, fontSize: '0.9rem', color: '#B8B0A0', marginBottom: '1.8rem' }}>
+        <p style={{ fontFamily: 'Manrope', fontWeight: 300, fontSize: '0.9rem', color: '#B8B0A0', marginBottom: '1.8rem' }}>
           Senan Concept · Espace administrateur
         </p>
         <label style={label}>Code d'accès</label>
@@ -158,7 +158,7 @@ function PinGate({ onOk }) {
           onChange={e => setPin(e.target.value)}
           style={{ ...input, letterSpacing: '0.2em', textAlign: 'center', fontSize: '1.1rem' }}
         />
-        {err && <p style={{ color: '#E27B7B', fontFamily: 'Jost', fontSize: '0.8rem', marginTop: '0.7rem' }}>{err}</p>}
+        {err && <p style={{ color: '#E27B7B', fontFamily: 'Manrope', fontSize: '0.8rem', marginTop: '0.7rem' }}>{err}</p>}
         <button type="submit" disabled={loading} style={{ ...btn(), width: '100%', marginTop: '1.5rem', padding: '0.8rem', opacity: loading ? 0.6 : 1 }}>
           {loading ? 'Vérification…' : 'Entrer'}
         </button>
@@ -169,7 +169,7 @@ function PinGate({ onOk }) {
 
 /* ─────────────────────────  Onglet Analytics  ───────────────────────── */
 function Analytics({ analytics, onRefresh, refreshing }) {
-  if (!analytics) return <p style={{ color: '#B8B0A0', fontFamily: 'Jost' }}>Chargement…</p>
+  if (!analytics) return <p style={{ color: '#B8B0A0', fontFamily: 'Manrope' }}>Chargement…</p>
   const { totals, daily, byDevice, byElement } = analytics
   const today = daily[daily.length - 1] || { visits: 0, clicks: 0 }
 
@@ -178,11 +178,11 @@ function Analytics({ analytics, onRefresh, refreshing }) {
       {/* En-tête */}
       <div className="flex items-center justify-between flex-wrap gap-3">
         <div>
-          <h2 style={{ fontFamily: 'Syncopate, sans-serif', fontWeight: 700, fontSize: '1.2rem', color: '#F5F0E8', letterSpacing: '0.01em' }}>Tableau de bord</h2>
-          <p style={{ fontFamily: 'Jost', fontWeight: 300, fontSize: '0.82rem', color: '#787068', marginTop: '0.2rem' }}>Audience & interactions</p>
+          <h2 style={{ fontFamily: 'Syne, sans-serif', fontWeight: 700, fontSize: '1.2rem', color: '#F5F0E8', letterSpacing: '0.01em' }}>Tableau de bord</h2>
+          <p style={{ fontFamily: 'Manrope', fontWeight: 300, fontSize: '0.82rem', color: '#787068', marginTop: '0.2rem' }}>Audience & interactions</p>
         </div>
         <div className="flex items-center gap-3">
-          <span className="flex items-center gap-2" style={{ fontFamily: 'Jost', fontSize: '0.72rem', color: '#8FB8A8' }}>
+          <span className="flex items-center gap-2" style={{ fontFamily: 'Manrope', fontSize: '0.72rem', color: '#8FB8A8' }}>
             <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#8FB8A8', display: 'inline-block' }} />
             Données en direct
           </span>
@@ -205,13 +205,13 @@ function Analytics({ analytics, onRefresh, refreshing }) {
         <div className="flex items-center justify-between flex-wrap gap-2 mb-4">
           <div>
             <h3 style={h3}>Fréquentation</h3>
-            <p style={{ fontFamily: 'Jost', fontWeight: 300, fontSize: '0.78rem', color: '#787068', marginTop: '0.2rem' }}>Visites et clics sur les 14 derniers jours</p>
+            <p style={{ fontFamily: 'Manrope', fontWeight: 300, fontSize: '0.78rem', color: '#787068', marginTop: '0.2rem' }}>Visites et clics sur les 14 derniers jours</p>
           </div>
           <div className="flex items-center gap-4">
-            <span className="flex items-center gap-2" style={{ fontFamily: 'Jost', fontSize: '0.72rem', color: '#B8B0A0' }}>
+            <span className="flex items-center gap-2" style={{ fontFamily: 'Manrope', fontSize: '0.72rem', color: '#B8B0A0' }}>
               <span style={{ width: 12, height: 3, background: OR, display: 'inline-block', borderRadius: 2 }} /> Visites
             </span>
-            <span className="flex items-center gap-2" style={{ fontFamily: 'Jost', fontSize: '0.72rem', color: '#B8B0A0' }}>
+            <span className="flex items-center gap-2" style={{ fontFamily: 'Manrope', fontSize: '0.72rem', color: '#B8B0A0' }}>
               <span style={{ width: 12, height: 3, background: '#8FB8A8', display: 'inline-block', borderRadius: 2 }} /> Clics
             </span>
           </div>
@@ -223,12 +223,12 @@ function Analytics({ analytics, onRefresh, refreshing }) {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div style={card}>
           <h3 style={h3}>Par appareil</h3>
-          <p style={{ fontFamily: 'Jost', fontWeight: 300, fontSize: '0.78rem', color: '#787068', margin: '0.2rem 0 1.2rem' }}>Répartition des visites</p>
+          <p style={{ fontFamily: 'Manrope', fontWeight: 300, fontSize: '0.78rem', color: '#787068', margin: '0.2rem 0 1.2rem' }}>Répartition des visites</p>
           <Donut data={byDevice} />
         </div>
         <div style={card}>
           <h3 style={h3}>Clics par élément</h3>
-          <p style={{ fontFamily: 'Jost', fontWeight: 300, fontSize: '0.78rem', color: '#787068', margin: '0.2rem 0 1.2rem' }}>Boutons & liens les plus cliqués</p>
+          <p style={{ fontFamily: 'Manrope', fontWeight: 300, fontSize: '0.78rem', color: '#787068', margin: '0.2rem 0 1.2rem' }}>Boutons & liens les plus cliqués</p>
           <Donut data={byElement} />
         </div>
       </div>
@@ -283,7 +283,7 @@ function CollectionManager({ pin, collection, reload }) {
         <div><label style={label}>Changer la couverture (optionnel)</label><input type="file" accept="image/*" onChange={e => setCoverFile(e.target.files?.[0] || null)} style={{ ...input, padding: '0.5rem' }} /></div>
         <div className="flex items-center gap-4">
           <button type="submit" disabled={busy === 'infos'} style={{ ...btn(), opacity: busy === 'infos' ? 0.6 : 1 }}>{busy === 'infos' ? 'Enregistrement…' : 'Enregistrer les infos'}</button>
-          {msg && <span style={{ fontFamily: 'Jost', fontSize: '0.85rem', color: msg.startsWith('Erreur') ? '#E27B7B' : OR }}>{msg}</span>}
+          {msg && <span style={{ fontFamily: 'Manrope', fontSize: '0.85rem', color: msg.startsWith('Erreur') ? '#E27B7B' : OR }}>{msg}</span>}
         </div>
       </form>
 
@@ -296,7 +296,7 @@ function CollectionManager({ pin, collection, reload }) {
       </form>
 
       <div>
-        <p style={{ fontFamily: 'Jost', fontWeight: 500, fontSize: '0.78rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#B8B0A0', marginBottom: '0.9rem' }}>Photos ({photos.length})</p>
+        <p style={{ fontFamily: 'Manrope', fontWeight: 500, fontSize: '0.78rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#B8B0A0', marginBottom: '0.9rem' }}>Photos ({photos.length})</p>
         <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-3">
           {photos.map(p => (
             <div key={p.id} className="relative overflow-hidden" style={{ borderRadius: 10, aspectRatio: '1/1', background: '#1A1A1A' }}>
@@ -304,7 +304,7 @@ function CollectionManager({ pin, collection, reload }) {
               <button onClick={() => delPhoto(p)} style={{ position: 'absolute', top: 4, right: 4, width: 24, height: 24, borderRadius: '50%', background: 'rgba(10,10,10,0.8)', border: '1px solid rgba(226,123,123,0.6)', color: '#E27B7B', cursor: 'pointer', fontSize: '0.75rem' }}>✕</button>
             </div>
           ))}
-          {photos.length === 0 && <p style={{ color: '#787068', fontFamily: 'Jost', fontSize: '0.85rem' }}>Aucune photo dans cette galerie.</p>}
+          {photos.length === 0 && <p style={{ color: '#787068', fontFamily: 'Manrope', fontSize: '0.85rem' }}>Aucune photo dans cette galerie.</p>}
         </div>
       </div>
     </div>
@@ -353,7 +353,7 @@ function CollectionsTab({ pin, collections, reload }) {
         <input type="file" accept="image/*" onChange={e => setCoverFile(e.target.files?.[0] || null)} style={{ ...input, padding: '0.5rem' }} />
         <div className="flex items-center gap-4 mt-4">
           <button type="submit" disabled={busy} style={{ ...btn(), opacity: busy ? 0.6 : 1 }}>{busy ? 'Création…' : 'Créer la galerie'}</button>
-          {msg && <span style={{ fontFamily: 'Jost', fontSize: '0.85rem', color: msg.startsWith('Erreur') ? '#E27B7B' : OR }}>{msg}</span>}
+          {msg && <span style={{ fontFamily: 'Manrope', fontSize: '0.85rem', color: msg.startsWith('Erreur') ? '#E27B7B' : OR }}>{msg}</span>}
         </div>
       </form>
 
@@ -364,8 +364,8 @@ function CollectionsTab({ pin, collections, reload }) {
               {c.cover_url && <img src={c.cover_url} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />}
             </div>
             <div className="flex flex-col flex-1" style={{ padding: '1rem 1.1rem' }}>
-              <p style={{ fontFamily: 'Jost', fontWeight: 600, fontSize: '0.98rem', color: '#F5F0E8' }}>{c.titre}</p>
-              <p style={{ fontFamily: 'Jost', fontWeight: 300, fontSize: '0.72rem', color: OR, marginTop: '0.15rem' }}>{c.tag} · {(c.photos || []).length} photo(s)</p>
+              <p style={{ fontFamily: 'Manrope', fontWeight: 600, fontSize: '0.98rem', color: '#F5F0E8' }}>{c.titre}</p>
+              <p style={{ fontFamily: 'Manrope', fontWeight: 300, fontSize: '0.72rem', color: OR, marginTop: '0.15rem' }}>{c.tag} · {(c.photos || []).length} photo(s)</p>
               <div className="flex gap-2 mt-3">
                 <button onClick={() => setOpenId(openId === c.id ? null : c.id)} style={{ ...btn(openId === c.id ? OR : 'transparent', openId === c.id ? '#0A0A0A' : OR), border: '1px solid rgba(201,168,76,0.4)', fontSize: '0.76rem', padding: '0.45rem 1rem' }}>
                   {openId === c.id ? 'Fermer' : 'Gérer'}
@@ -375,7 +375,7 @@ function CollectionsTab({ pin, collections, reload }) {
             </div>
           </div>
         ))}
-        {collections.length === 0 && <p style={{ color: '#787068', fontFamily: 'Jost', fontSize: '0.85rem' }}>Aucune galerie. Créez-en une ci-dessus.</p>}
+        {collections.length === 0 && <p style={{ color: '#787068', fontFamily: 'Manrope', fontSize: '0.85rem' }}>Aucune galerie. Créez-en une ci-dessus.</p>}
       </div>
 
       {openId && collections.find(c => c.id === openId) && (
@@ -445,7 +445,7 @@ function EvenementManager({ pin, evenement, reload }) {
         <div><label style={label}>Changer la couverture (optionnel)</label><input type="file" accept="image/*" onChange={e => setCoverFile(e.target.files?.[0] || null)} style={{ ...input, padding: '0.5rem' }} /></div>
         <div className="flex items-center gap-4">
           <button type="submit" disabled={busy === 'infos'} style={{ ...btn(), opacity: busy === 'infos' ? 0.6 : 1 }}>{busy === 'infos' ? 'Enregistrement…' : 'Enregistrer les infos'}</button>
-          {msg && <span style={{ fontFamily: 'Jost', fontSize: '0.85rem', color: msg.startsWith('Erreur') ? '#E27B7B' : OR }}>{msg}</span>}
+          {msg && <span style={{ fontFamily: 'Manrope', fontSize: '0.85rem', color: msg.startsWith('Erreur') ? '#E27B7B' : OR }}>{msg}</span>}
         </div>
       </form>
 
@@ -458,7 +458,7 @@ function EvenementManager({ pin, evenement, reload }) {
       </form>
 
       <div>
-        <p style={{ fontFamily: 'Jost', fontWeight: 500, fontSize: '0.78rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#B8B0A0', marginBottom: '0.9rem' }}>Photos ({photos.length})</p>
+        <p style={{ fontFamily: 'Manrope', fontWeight: 500, fontSize: '0.78rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#B8B0A0', marginBottom: '0.9rem' }}>Photos ({photos.length})</p>
         <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-3">
           {photos.map(p => (
             <div key={p.id} className="relative overflow-hidden" style={{ borderRadius: 10, aspectRatio: '1/1', background: '#1A1A1A' }}>
@@ -466,7 +466,7 @@ function EvenementManager({ pin, evenement, reload }) {
               <button onClick={() => delPhoto(p)} style={{ position: 'absolute', top: 4, right: 4, width: 24, height: 24, borderRadius: '50%', background: 'rgba(10,10,10,0.8)', border: '1px solid rgba(226,123,123,0.6)', color: '#E27B7B', cursor: 'pointer', fontSize: '0.75rem' }}>✕</button>
             </div>
           ))}
-          {photos.length === 0 && <p style={{ color: '#787068', fontFamily: 'Jost', fontSize: '0.85rem' }}>Aucune photo pour cette édition.</p>}
+          {photos.length === 0 && <p style={{ color: '#787068', fontFamily: 'Manrope', fontSize: '0.85rem' }}>Aucune photo pour cette édition.</p>}
         </div>
       </div>
     </div>
@@ -524,7 +524,7 @@ function EvenementsTab({ pin, evenements, reload }) {
         <input type="file" accept="image/*" onChange={e => setCoverFile(e.target.files?.[0] || null)} style={{ ...input, padding: '0.5rem' }} />
         <div className="flex items-center gap-4 mt-4">
           <button type="submit" disabled={busy} style={{ ...btn(), opacity: busy ? 0.6 : 1 }}>{busy ? 'Création…' : 'Créer l’édition'}</button>
-          {msg && <span style={{ fontFamily: 'Jost', fontSize: '0.85rem', color: msg.startsWith('Erreur') ? '#E27B7B' : OR }}>{msg}</span>}
+          {msg && <span style={{ fontFamily: 'Manrope', fontSize: '0.85rem', color: msg.startsWith('Erreur') ? '#E27B7B' : OR }}>{msg}</span>}
         </div>
       </form>
 
@@ -534,11 +534,11 @@ function EvenementsTab({ pin, evenements, reload }) {
             <div className="flex items-center justify-center" style={{ aspectRatio: '16/9', background: ev.cover_url ? '#1A1A1A' : 'radial-gradient(circle at 30% 25%, #1C1810, #0E0E0E)' }}>
               {ev.cover_url
                 ? <img src={ev.cover_url} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                : <span style={{ fontFamily: 'Syncopate, sans-serif', fontWeight: 700, fontSize: '1.1rem', color: OR }}>{ev.theme || ev.nom}</span>}
+                : <span style={{ fontFamily: 'Syne, sans-serif', fontWeight: 700, fontSize: '1.1rem', color: OR }}>{ev.theme || ev.nom}</span>}
             </div>
             <div className="flex flex-col flex-1" style={{ padding: '1rem 1.1rem' }}>
-              <p style={{ fontFamily: 'Jost', fontWeight: 600, fontSize: '0.98rem', color: '#F5F0E8' }}>{ev.nom} <span style={{ color: OR, fontWeight: 400 }}>· {ev.theme}</span></p>
-              <p style={{ fontFamily: 'Jost', fontWeight: 300, fontSize: '0.72rem', color: '#787068', marginTop: '0.15rem' }}>
+              <p style={{ fontFamily: 'Manrope', fontWeight: 600, fontSize: '0.98rem', color: '#F5F0E8' }}>{ev.nom} <span style={{ color: OR, fontWeight: 400 }}>· {ev.theme}</span></p>
+              <p style={{ fontFamily: 'Manrope', fontWeight: 300, fontSize: '0.72rem', color: '#787068', marginTop: '0.15rem' }}>
                 {ev.statut === 'passe' ? 'Passé' : 'À venir'} · {ev.date_texte || '—'} · {(ev.photos || []).length} photo(s)
               </p>
               <div className="flex gap-2 mt-3">
@@ -550,7 +550,7 @@ function EvenementsTab({ pin, evenements, reload }) {
             </div>
           </div>
         ))}
-        {evenements.length === 0 && <p style={{ color: '#787068', fontFamily: 'Jost', fontSize: '0.85rem' }}>Aucune édition. Créez-en une ci-dessus.</p>}
+        {evenements.length === 0 && <p style={{ color: '#787068', fontFamily: 'Manrope', fontSize: '0.85rem' }}>Aucune édition. Créez-en une ci-dessus.</p>}
       </div>
 
       {openId && evenements.find(ev => ev.id === openId) && (
@@ -595,21 +595,21 @@ function TestimonialsTab({ pin, testimonials, reload }) {
         <textarea value={form.texte} onChange={ch('texte')} required rows={4} style={{ ...input, resize: 'vertical' }} />
         <div className="flex items-center gap-4 mt-4">
           <button type="submit" disabled={busy} style={{ ...btn(), opacity: busy ? 0.6 : 1 }}>{busy ? 'Envoi…' : 'Ajouter'}</button>
-          {msg && <span style={{ fontFamily: 'Jost', fontSize: '0.85rem', color: msg.startsWith('Erreur') ? '#E27B7B' : OR }}>{msg}</span>}
+          {msg && <span style={{ fontFamily: 'Manrope', fontSize: '0.85rem', color: msg.startsWith('Erreur') ? '#E27B7B' : OR }}>{msg}</span>}
         </div>
       </form>
       <div className="flex flex-col gap-3">
-        <p style={{ fontFamily: 'Jost', fontWeight: 500, fontSize: '0.8rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#B8B0A0' }}>Témoignages ajoutés ({testimonials.length})</p>
+        <p style={{ fontFamily: 'Manrope', fontWeight: 500, fontSize: '0.8rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#B8B0A0' }}>Témoignages ajoutés ({testimonials.length})</p>
         {testimonials.map(t => (
           <div key={t.id} style={{ ...card, padding: '1.2rem 1.4rem' }} className="flex items-start justify-between gap-4">
             <div>
-              <p style={{ fontFamily: 'Jost', fontWeight: 600, fontSize: '0.95rem', color: '#F5F0E8' }}>{t.nom} <span style={{ color: OR, fontWeight: 400, fontSize: '0.8rem' }}>· {t.titre}</span></p>
-              <p style={{ fontFamily: 'Jost', fontWeight: 300, fontSize: '0.85rem', color: '#B8B0A0', marginTop: '0.3rem', fontStyle: 'italic' }}>“{t.texte}”</p>
+              <p style={{ fontFamily: 'Manrope', fontWeight: 600, fontSize: '0.95rem', color: '#F5F0E8' }}>{t.nom} <span style={{ color: OR, fontWeight: 400, fontSize: '0.8rem' }}>· {t.titre}</span></p>
+              <p style={{ fontFamily: 'Manrope', fontWeight: 300, fontSize: '0.85rem', color: '#B8B0A0', marginTop: '0.3rem', fontStyle: 'italic' }}>“{t.texte}”</p>
             </div>
             <button onClick={() => remove(t)} style={{ ...btn('transparent', '#E27B7B'), border: '1px solid rgba(226,123,123,0.5)', flexShrink: 0 }}>Supprimer</button>
           </div>
         ))}
-        {testimonials.length === 0 && <p style={{ color: '#787068', fontFamily: 'Jost', fontSize: '0.85rem' }}>Aucun témoignage ajouté.</p>}
+        {testimonials.length === 0 && <p style={{ color: '#787068', fontFamily: 'Manrope', fontSize: '0.85rem' }}>Aucun témoignage ajouté.</p>}
       </div>
     </div>
   )
@@ -653,7 +653,7 @@ function RealisationsTab({ pin, realisations, reload }) {
         <input type="file" accept="image/*" onChange={e => setFile(e.target.files?.[0] || null)} style={{ ...input, padding: '0.5rem' }} />
         <div className="flex items-center gap-4 mt-4">
           <button type="submit" disabled={busy} style={{ ...btn(), opacity: busy ? 0.6 : 1 }}>{busy ? 'Envoi…' : 'Ajouter'}</button>
-          {msg && <span style={{ fontFamily: 'Jost', fontSize: '0.85rem', color: msg.startsWith('Erreur') ? '#E27B7B' : OR }}>{msg}</span>}
+          {msg && <span style={{ fontFamily: 'Manrope', fontSize: '0.85rem', color: msg.startsWith('Erreur') ? '#E27B7B' : OR }}>{msg}</span>}
         </div>
       </form>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
@@ -662,12 +662,12 @@ function RealisationsTab({ pin, realisations, reload }) {
             {r.image_url ? <img src={r.image_url} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /> : <div style={{ width: '100%', height: '100%' }} />}
             <button onClick={() => remove(r)} style={{ position: 'absolute', top: 6, right: 6, width: 28, height: 28, borderRadius: '50%', background: 'rgba(10,10,10,0.8)', border: '1px solid rgba(226,123,123,0.6)', color: '#E27B7B', cursor: 'pointer' }}>✕</button>
             <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '0.7rem', background: 'linear-gradient(to top, rgba(10,10,10,0.95), transparent)' }}>
-              <p style={{ fontFamily: 'Jost', fontSize: '0.6rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: OR }}>{r.tag}</p>
-              <p style={{ fontFamily: 'Jost', fontWeight: 600, fontSize: '0.9rem', color: '#F5F0E8' }}>{r.titre}</p>
+              <p style={{ fontFamily: 'Manrope', fontSize: '0.6rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: OR }}>{r.tag}</p>
+              <p style={{ fontFamily: 'Manrope', fontWeight: 600, fontSize: '0.9rem', color: '#F5F0E8' }}>{r.titre}</p>
             </div>
           </div>
         ))}
-        {realisations.length === 0 && <p style={{ color: '#787068', fontFamily: 'Jost', fontSize: '0.85rem' }}>Aucune réalisation ajoutée.</p>}
+        {realisations.length === 0 && <p style={{ color: '#787068', fontFamily: 'Manrope', fontSize: '0.85rem' }}>Aucune réalisation ajoutée.</p>}
       </div>
     </div>
   )
@@ -692,7 +692,7 @@ function SettingsTab({ pin, onPinChange }) {
         <input type="password" value={newPin} autoCapitalize="none" autoCorrect="off" onChange={e => setNewPin(e.target.value)} required style={input} />
         <div className="flex items-center gap-4 mt-4">
           <button type="submit" style={btn()}>Enregistrer</button>
-          {msg && <span style={{ fontFamily: 'Jost', fontSize: '0.85rem', color: msg.startsWith('Erreur') ? '#E27B7B' : OR }}>{msg}</span>}
+          {msg && <span style={{ fontFamily: 'Manrope', fontSize: '0.85rem', color: msg.startsWith('Erreur') ? '#E27B7B' : OR }}>{msg}</span>}
         </div>
       </form>
     </div>
@@ -718,10 +718,10 @@ function Sidebar({ tab, setTab, logout, open, setOpen }) {
         }}
       >
         <div className="flex items-center gap-3 mb-8 px-1">
-          <span className="flex items-center justify-center shrink-0" style={{ width: 40, height: 40, borderRadius: 12, background: 'linear-gradient(150deg,#C9A84C,#9A7A32)', color: '#0A0A0A', fontFamily: 'Syncopate, sans-serif', fontWeight: 700, fontSize: '0.75rem' }}>SC</span>
+          <span className="flex items-center justify-center shrink-0" style={{ width: 40, height: 40, borderRadius: 12, background: 'linear-gradient(150deg,#C9A84C,#9A7A32)', color: '#0A0A0A', fontFamily: 'Syne, sans-serif', fontWeight: 700, fontSize: '0.75rem' }}>SC</span>
           <div>
-            <p style={{ fontFamily: 'Syncopate, sans-serif', fontWeight: 700, fontSize: '0.82rem', color: '#F5F0E8' }}>Senan</p>
-            <p style={{ fontFamily: 'Jost', fontWeight: 300, fontSize: '0.66rem', color: '#787068', letterSpacing: '0.1em' }}>ADMINISTRATION</p>
+            <p style={{ fontFamily: 'Syne, sans-serif', fontWeight: 700, fontSize: '0.82rem', color: '#F5F0E8' }}>Senan</p>
+            <p style={{ fontFamily: 'Manrope', fontWeight: 300, fontSize: '0.66rem', color: '#787068', letterSpacing: '0.1em' }}>ADMINISTRATION</p>
           </div>
         </div>
 
@@ -730,7 +730,7 @@ function Sidebar({ tab, setTab, logout, open, setOpen }) {
             <button key={t} onClick={() => { setTab(t); setOpen(false) }}
               className="flex items-center gap-3 text-left transition-all duration-200"
               style={{
-                fontFamily: 'Jost, sans-serif', fontWeight: 500, fontSize: '0.9rem', cursor: 'pointer',
+                fontFamily: 'Manrope, sans-serif', fontWeight: 500, fontSize: '0.9rem', cursor: 'pointer',
                 padding: '0.7rem 0.9rem', borderRadius: '12px',
                 background: tab === t ? 'rgba(201,168,76,0.14)' : 'transparent',
                 color: tab === t ? OR : '#B8B0A0',
@@ -744,7 +744,7 @@ function Sidebar({ tab, setTab, logout, open, setOpen }) {
         </nav>
 
         <div className="flex flex-col gap-2 pt-4" style={{ borderTop: '1px solid rgba(201,168,76,0.1)' }}>
-          <a href="/" style={{ fontFamily: 'Jost', fontSize: '0.82rem', color: '#B8B0A0', textDecoration: 'none', padding: '0.5rem 0.9rem' }}>↗ Voir le site</a>
+          <a href="/" style={{ fontFamily: 'Manrope', fontSize: '0.82rem', color: '#B8B0A0', textDecoration: 'none', padding: '0.5rem 0.9rem' }}>↗ Voir le site</a>
           <button onClick={logout} style={{ ...btn('transparent', OR), border: '1px solid rgba(201,168,76,0.3)', textAlign: 'center' }}>Déconnexion</button>
         </div>
       </aside>
@@ -809,7 +809,7 @@ export default function AdminPage() {
             <span style={{ display: 'block', height: 2, width: 22, background: OR }} />
             <span style={{ display: 'block', height: 2, width: 22, background: OR }} />
           </button>
-          <p style={{ fontFamily: 'Syncopate, sans-serif', fontWeight: 700, fontSize: '0.9rem', color: '#F5F0E8' }}>{tab}</p>
+          <p style={{ fontFamily: 'Syne, sans-serif', fontWeight: 700, fontSize: '0.9rem', color: '#F5F0E8' }}>{tab}</p>
           <span style={{ width: 38 }} />
         </div>
 
@@ -820,7 +820,7 @@ export default function AdminPage() {
           {tab === 'Témoignages' && <TestimonialsTab pin={pin} testimonials={data.testimonials} reload={() => load()} />}
           {tab === 'Réglages' && <SettingsTab pin={pin} onPinChange={(p) => { setPin(p); sessionStorage.setItem('sc_admin_pin', p) }} />}
 
-          <p style={{ fontFamily: 'Jost', fontWeight: 300, fontSize: '0.72rem', color: '#5f574c', textAlign: 'center', marginTop: '3rem' }}>
+          <p style={{ fontFamily: 'Manrope', fontWeight: 300, fontSize: '0.72rem', color: '#5f574c', textAlign: 'center', marginTop: '3rem' }}>
             Senan Concept · Tableau de bord alimenté par Supabase
           </p>
         </div>

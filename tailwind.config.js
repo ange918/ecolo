@@ -7,18 +7,23 @@ export default {
   theme: {
     extend: {
       colors: {
-        or: '#C9A84C',
+        or: '#c9a84c',
         'or-light': '#E8D5A0',
         'or-pale': '#F5EDD8',
-        noir: '#0A0A0A',
+        noir: '#0a0a0a',
         'noir-2': '#111111',
-        'noir-3': '#1A1A1A',
-        blanc: '#F5F0E8',
-        texte: '#B8B0A0',
+        'noir-3': '#161616',
+        blanc: '#f5f0e8',
+        texte: '#9ca3af',
       },
       fontFamily: {
-        cormorant: ['"Cormorant Garamond"', 'serif'],
-        jost: ['Jost', 'sans-serif'],
+        display: ['Syne', 'system-ui', 'sans-serif'],
+        body: ['Manrope', 'system-ui', 'sans-serif'],
+        cormorant: ['Syne', 'system-ui', 'sans-serif'],
+        jost: ['Manrope', 'system-ui', 'sans-serif'],
+      },
+      maxWidth: {
+        site: '1200px',
       },
     },
   },

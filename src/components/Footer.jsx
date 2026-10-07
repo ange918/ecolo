@@ -1,124 +1,49 @@
-import { Link as ScrollLink } from 'react-scroll'
-import { Link as RouterLink, useLocation } from 'react-router-dom'
-
-const scrollStyle = {
-  fontFamily: 'Jost, sans-serif', fontWeight: 300, fontSize: '0.88rem',
-  color: '#B8B0A0', cursor: 'pointer', textDecoration: 'none',
-  transition: 'color 0.2s',
-}
+import { Link } from 'react-router-dom'
+import Logo from './Logo'
+import { SITE } from '../lib/site'
 
 export default function Footer() {
-  const location = useLocation()
-  const isHome = location.pathname === '/'
-
-  const SLink = ({ to, children }) =>
-    isHome
-      ? <ScrollLink to={to} smooth duration={700} offset={-64} style={scrollStyle}
-          onMouseEnter={e => e.currentTarget.style.color = '#C9A84C'}
-          onMouseLeave={e => e.currentTarget.style.color = '#B8B0A0'}>
-          {children}
-        </ScrollLink>
-      : <RouterLink to={`/#${to}`} style={scrollStyle}
-          onMouseEnter={e => e.currentTarget.style.color = '#C9A84C'}
-          onMouseLeave={e => e.currentTarget.style.color = '#B8B0A0'}>
-          {children}
-        </RouterLink>
-
   return (
-    <footer style={{ background: '#0A0A0A', borderTop: '1px solid rgba(201,168,76,0.12)' }}>
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 py-16">
-
-        {/* Top */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
-
-          {/* Brand */}
-          <div className="lg:col-span-2">
-            <RouterLink to="/" style={{ textDecoration: 'none' }}>
-              <span style={{ fontFamily: 'Jost, sans-serif', fontWeight: 700, fontSize: '1.4rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#C9A84C' }}>
-                SENAN<span style={{ color: '#F5F0E8', fontWeight: 300 }}> CONCEPT</span>
-              </span>
-            </RouterLink>
-            <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 300, fontSize: '0.9rem', color: '#B8B0A0', lineHeight: 1.85, marginTop: '1rem', maxWidth: '340px' }}>
-              Maison de mode d'excellence basée à Porto Novo, Bénin. Tenues artistiques sur mesure, décoration d'événements et d'intérieurs à l'africaine et formations, au service des cultures et des mémoires.
+    <footer className="site-footer">
+      <div className="wrap">
+        <div className="cols">
+          <div>
+            <Logo small />
+            <p style={{ marginTop: 16, maxWidth: 360 }}>
+              Maison de mode d'excellence basée à Porto-Novo, Bénin. Tenues artistiques sur mesure, décoration d'événements et d'intérieurs à l'africaine et formations, au service des cultures et des mémoires.
             </p>
-            <div className="flex gap-4 mt-5">
-              {['Facebook', 'Instagram', 'WhatsApp'].map(s => (
-                <a key={s} href="#" style={{ fontFamily: 'Jost, sans-serif', fontWeight: 400, fontSize: '0.75rem', color: '#B8B0A0', textDecoration: 'none', letterSpacing: '0.05em', transition: 'color 0.2s' }}
-                  onMouseEnter={e => e.currentTarget.style.color = '#C9A84C'}
-                  onMouseLeave={e => e.currentTarget.style.color = '#B8B0A0'}>
-                  {s}
-                </a>
-              ))}
+            <div className="social">
+              <a href={SITE.whatsapp} target="_blank" rel="noreferrer">WhatsApp</a>
             </div>
           </div>
-
-          {/* Navigation */}
           <div>
-            <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 600, fontSize: '0.8rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#F5F0E8', marginBottom: '1.2rem' }}>
-              Navigation
-            </p>
-            <div className="flex flex-col gap-3">
-              <SLink to="services">Nos services</SLink>
-              <SLink to="realisations">Réalisations</SLink>
-              <SLink to="temoignages">Témoignages</SLink>
-              <SLink to="faq">FAQ</SLink>
-              <RouterLink to="/evenementiel" style={scrollStyle}
-                onMouseEnter={e => e.currentTarget.style.color = '#C9A84C'}
-                onMouseLeave={e => e.currentTarget.style.color = '#B8B0A0'}>
-                Événementiel
-              </RouterLink>
-              <RouterLink to="/qui-sommes-nous" style={scrollStyle}
-                onMouseEnter={e => e.currentTarget.style.color = '#C9A84C'}
-                onMouseLeave={e => e.currentTarget.style.color = '#B8B0A0'}>
-                Qui sommes-nous
-              </RouterLink>
-            </div>
+            <h4>Navigation</h4>
+            <Link className="foot-link" to="/services">Nos services</Link>
+            <Link className="foot-link" to="/realisations">Réalisations</Link>
+            <Link className="foot-link" to="/formation">Formations</Link>
+            <Link className="foot-link" to="/#temoignages">Témoignages</Link>
+            <Link className="foot-link" to="/#faq">FAQ</Link>
+            <Link className="foot-link" to="/evenementiel">Événementiel · IFA</Link>
+            <Link className="foot-link" to="/qui-sommes-nous">Qui sommes-nous</Link>
           </div>
-
-          {/* Contact */}
           <div>
-            <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 600, fontSize: '0.8rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#F5F0E8', marginBottom: '1.2rem' }}>
-              Contact
-            </p>
-            <div className="flex flex-col gap-3">
-              {[
-                { label: 'Porto Novo, Bénin' },
-                { label: 'contacts@senanconcept.com' },
-                { label: '+229 0161791627' },
-                { label: 'Lun – Ven · 8h – 18h' },
-              ].map((item, i) => (
-                <p key={i} style={{ fontFamily: 'Jost, sans-serif', fontWeight: 300, fontSize: '0.88rem', color: '#B8B0A0' }}>{item.label}</p>
-              ))}
-            </div>
+            <h4>Contact</h4>
+            <p>{SITE.city}</p>
+            <a className="foot-link" href={`mailto:${SITE.email}`}>{SITE.email}</a>
+            <a className="foot-link" href={`tel:${SITE.phoneTel}`}>{SITE.phoneDisplay}</a>
+            <p>{SITE.hours}</p>
           </div>
         </div>
-
-        {/* Divider */}
-        <div style={{ height: '1px', background: 'rgba(201,168,76,0.1)', marginBottom: '1.5rem' }} />
-
-        {/* Bottom */}
-        <div className="flex flex-wrap items-center justify-between gap-4">
-          <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 300, fontSize: '0.78rem', color: 'rgba(184,176,160,0.5)' }}>
-            © 2026 Senan Concept · Tous droits réservés · Porto Novo, Bénin.
-          </p>
-          <div className="flex items-center gap-4">
-            <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 300, fontSize: '0.78rem', color: 'rgba(184,176,160,0.35)' }}>
-              Fondée par Christelle FASSINOU
-            </p>
-            <span style={{ color: 'rgba(184,176,160,0.2)', fontSize: '0.78rem' }}>·</span>
-            <a
-              href="https://angeakonde-dev.vercel.app/"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ fontFamily: 'Jost, sans-serif', fontWeight: 300, fontSize: '0.78rem', color: 'rgba(184,176,160,0.35)', textDecoration: 'none', transition: 'color 0.2s' }}
-              onMouseEnter={e => e.currentTarget.style.color = '#C9A84C'}
-              onMouseLeave={e => e.currentTarget.style.color = 'rgba(184,176,160,0.35)'}
-            >
-              Réalisé par Ange Akonde
-            </a>
-          </div>
+        <div className="foot-bottom">
+          <span>© {new Date().getFullYear()} Senan Concept · Tous droits réservés · Porto-Novo, Bénin</span>
+          <span>
+            Fondée par {SITE.founder}
+            {' · '}
+            <Link to="/mentions-legales">Mentions légales</Link>
+            {' · '}
+            <a href="https://angeakonde-dev.vercel.app/" target="_blank" rel="noreferrer">Réalisé par Ange Akonde</a>
+          </span>
         </div>
-
       </div>
     </footer>
   )

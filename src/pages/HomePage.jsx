@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { trackVisit } from '../lib/supabase'
 import Hero from '../components/Hero'
 import AboutSnippet from '../components/AboutSnippet'
-import Services from '../components/Services'
+import { Creations, Domaines } from '../components/Services'
 import WhyUs from '../components/WhyUs'
 import Process from '../components/Process'
 import Testimonials from '../components/Testimonials'
@@ -16,8 +16,9 @@ export default function HomePage() {
   return (
     <>
       <Hero />
+      <Creations />
       <AboutSnippet />
-      <Services />
+      <Domaines />
       <WhyUs />
       <Process />
       <Testimonials />
