@@ -1,3 +1,5 @@
+import { Reveal, useStagger } from './Reveal'
+
 const steps = [
   { num: '01', titre: 'Consultation initiale', desc: "Nous prenons le temps de vous écouter : votre projet, votre vision, l'événement, le contexte culturel. Chaque détail compte pour créer quelque chose d'unique.", duree: '1 – 2 jours' },
   { num: '02', titre: 'Conception & esquisse', desc: "Christelle FASSINOU et son équipe élaborent des esquisses détaillées de votre création. Les matières, couleurs et motifs sont sélectionnés avec soin selon la tradition.", duree: '3 – 5 jours' },
@@ -8,26 +10,32 @@ const steps = [
 ]
 
 export default function Process() {
+  const s = useStagger(0.07)
+  const { Grid, Item } = s
   return (
     <section className="section" id="processus">
       <div className="wrap">
-        <div className="section-head">
-          <div>
-            <p className="eyebrow">Processus</p>
-            <h2>Notre processus de création</h2>
+        <Reveal>
+          <div className="section-head">
+            <div>
+              <p className="eyebrow">Processus</p>
+              <h2>Notre processus de création</h2>
+            </div>
+            <p>Six étapes, de la consultation initiale à la livraison soignée.</p>
           </div>
-          <p>Six étapes, de la consultation initiale à la livraison soignée.</p>
-        </div>
-        <div className="grid-3">
+        </Reveal>
+        <Grid className="grid-3" {...s.gridProps}>
           {steps.map(step => (
-            <article key={step.num} className="step">
-              <div className="n">{step.num}</div>
-              <h3>{step.titre}</h3>
-              <p>{step.desc}</p>
-              <div className="dur">{step.duree}</div>
-            </article>
+            <Item key={step.num} {...s.itemProps} style={{ height: '100%' }}>
+              <article className="step">
+                <div className="n">{step.num}</div>
+                <h3>{step.titre}</h3>
+                <p>{step.desc}</p>
+                <div className="dur">{step.duree}</div>
+              </article>
+            </Item>
           ))}
-        </div>
+        </Grid>
       </div>
     </section>
   )

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { trackVisit } from '../lib/supabase'
 import { SITE } from '../lib/site'
 import { ContactForm, ContactInfos } from '../components/Contact'
+import { Reveal } from '../components/Reveal'
 
 export default function ContactPage() {
   useEffect(() => { trackVisit('contact') }, [])
@@ -20,10 +21,13 @@ export default function ContactPage() {
       <section className="section" style={{ paddingTop: 16 }}>
         <div className="wrap">
           <div className="grid-2" style={{ alignItems: 'start' }}>
+            <Reveal>
             <div className="card" style={{ padding: 28 }}>
               <h2 style={{ fontSize: 24, marginBottom: 18 }}>Envoyer une demande</h2>
               <ContactForm />
             </div>
+            </Reveal>
+            <Reveal delay={0.08}>
             <div>
               <ContactInfos />
               <div className="card" style={{ padding: 22, marginTop: 16 }}>
@@ -43,6 +47,7 @@ export default function ContactPage() {
                 </div>
               </div>
             </div>
+            </Reveal>
           </div>
         </div>
       </section>

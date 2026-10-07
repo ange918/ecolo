@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { trackVisit } from '../lib/supabase'
 import { CREATIONS } from '../lib/offerings'
 import { SITE } from '../lib/site'
+import { Reveal } from '../components/Reveal'
 
 export default function ServicesPage() {
   useEffect(() => { trackVisit('services') }, [])
@@ -21,9 +22,10 @@ export default function ServicesPage() {
       <section className="section" style={{ paddingTop: 28 }}>
         <div className="wrap">
           {CREATIONS.map((item, i) => (
-            <article id={item.id} key={item.id} className={i % 2 ? 'service-block reverse' : 'service-block'}>
+            <Reveal key={item.id}>
+            <article id={item.id} className={i % 2 ? 'service-block reverse' : 'service-block'}>
               <div className="photo-frame">
-                <img src={item.img} alt={item.alt} />
+                <img src={item.img} alt={item.alt} style={{ objectPosition: item.focus }} />
               </div>
               <div className="copy">
                 <div className="num" style={{ fontFamily: 'Syne, sans-serif', color: 'var(--gold)', letterSpacing: '0.14em', marginBottom: 12 }}>{item.num}</div>
@@ -37,11 +39,13 @@ export default function ServicesPage() {
                 </Link>
               </div>
             </article>
+            </Reveal>
           ))}
         </div>
       </section>
 
       <div className="wrap">
+        <Reveal>
         <div className="cta-band">
           <div>
             <p className="eyebrow">Un projet en tête ?</p>
@@ -56,6 +60,7 @@ export default function ServicesPage() {
             <div><strong>WhatsApp</strong><a href={SITE.whatsapp} target="_blank" rel="noreferrer">{SITE.phoneDisplay}</a></div>
           </div>
         </div>
+        </Reveal>
       </div>
     </>
   )

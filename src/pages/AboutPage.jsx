@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { trackVisit } from '../lib/supabase'
+import { Reveal, useStagger } from '../components/Reveal'
 
 const stats = [
   { v: '8+', l: "Années d'expérience" },
@@ -18,6 +19,8 @@ const valeurs = [
 
 export default function AboutPage() {
   useEffect(() => { trackVisit('qui-sommes-nous') }, [])
+  const statsMotion = useStagger(0.08)
+  const valuesMotion = useStagger(0.1)
 
   return (
     <>
@@ -33,6 +36,7 @@ export default function AboutPage() {
       <section className="section" style={{ paddingTop: 20 }}>
         <div className="wrap">
           <div className="grid-2" style={{ alignItems: 'center' }}>
+            <Reveal>
             <div>
               <p className="eyebrow">Notre histoire</p>
               <h2 style={{ fontSize: 'clamp(1.8rem, 3vw, 2.25rem)', margin: '12px 0 18px' }}>
@@ -48,28 +52,36 @@ export default function AboutPage() {
                 De la cour du Trône de Béhanzin aux scènes des plus grands festivals du Bénin (Festival des Masques, Vodouns Days), nos créations ont habillé les moments les plus sacrés et les plus festifs de la culture béninoise.
               </p>
             </div>
+            </Reveal>
+            <Reveal delay={0.08}>
             <div className="photo-frame">
               <img src="/gallery/img6.jpg" alt="Création textile Senan Concept" />
             </div>
+            </Reveal>
           </div>
-          <div className="grid-4" style={{ marginTop: 36 }}>
+          <statsMotion.Grid className="grid-4" style={{ marginTop: 36 }} {...statsMotion.gridProps}>
             {stats.map(s => (
-              <div key={s.l} className="stat">
+              <statsMotion.Item key={s.l} {...statsMotion.itemProps}>
+              <div className="stat">
                 <strong>{s.v}</strong>
                 <span>{s.l}</span>
               </div>
+              </statsMotion.Item>
             ))}
-          </div>
+          </statsMotion.Grid>
         </div>
       </section>
 
       <section className="section section-alt">
         <div className="wrap">
+          <Reveal>
           <p className="eyebrow" style={{ textAlign: 'center' }}>La fondatrice</p>
           <h2 style={{ fontSize: 'clamp(1.8rem, 3.5vw, 2.5rem)', textAlign: 'center', margin: '12px auto 36px', maxWidth: 800 }}>
             Christelle FASSINOU,<br /><span className="gold">Senan Concept</span>
           </h2>
+          </Reveal>
           <div className="grid-2" style={{ alignItems: 'center' }}>
+            <Reveal>
             <div className="founder-wrap">
               <div className="arch">
                 <img src="/gallery/img18.jpg" alt="Création portée, maison Senan Concept" />
@@ -79,6 +91,8 @@ export default function AboutPage() {
                 <div className="badge"><strong>2ème</strong><span>Trophée accessoiriste d'Afrique</span></div>
               </div>
             </div>
+            </Reveal>
+            <Reveal delay={0.08}>
             <div>
               <p className="muted" style={{ marginBottom: 8 }}>Fondatrice · Styliste · Accessoiriste · Décoratrice</p>
               <p style={{ marginBottom: 14 }}>
@@ -95,29 +109,37 @@ export default function AboutPage() {
                 <span className="muted" style={{ fontSize: 13 }}>— Christelle FASSINOU, Fondatrice</span>
               </blockquote>
             </div>
+            </Reveal>
           </div>
         </div>
       </section>
 
       <section className="section">
         <div className="wrap">
+          <Reveal>
           <div className="section-head">
             <div>
               <p className="eyebrow">Notre ADN</p>
               <h2>Mission, Vision & Valeurs</h2>
             </div>
           </div>
-          <div className="grid-3">
+          </Reveal>
+          <valuesMotion.Grid className="grid-3" {...valuesMotion.gridProps}>
+            <valuesMotion.Item {...valuesMotion.itemProps} style={{ height: '100%' }}>
             <article className="card pad">
               <p className="eyebrow">Mission</p>
               <h3 style={{ fontSize: 22, margin: '12px 0' }}>Valoriser le patrimoine culturel africain</h3>
               <p>Créer des tenues, décors et objets artisanaux qui honorent les traditions du Bénin et d'Afrique, en mêlant authenticité ancestrale et excellence contemporaine. Chaque création est un acte de mémoire et de fierté culturelle.</p>
             </article>
+            </valuesMotion.Item>
+            <valuesMotion.Item {...valuesMotion.itemProps} style={{ height: '100%' }}>
             <article className="card pad">
               <p className="eyebrow">Vision</p>
               <h3 style={{ fontSize: 22, margin: '12px 0' }}>Devenir la référence mondiale de l'artisanat africain</h3>
               <p>Faire rayonner Senan Concept au-delà des frontières du Bénin pour que l'artisanat béninois soit reconnu, respecté et célébré sur la scène internationale.</p>
             </article>
+            </valuesMotion.Item>
+            <valuesMotion.Item {...valuesMotion.itemProps} style={{ height: '100%' }}>
             <article className="card pad">
               <p className="eyebrow">Valeurs</p>
               <h3 style={{ fontSize: 22, margin: '12px 0' }}>Ce qui guide chacune de nos créations</h3>
@@ -127,13 +149,15 @@ export default function AboutPage() {
                 ))}
               </div>
             </article>
-          </div>
+            </valuesMotion.Item>
+          </valuesMotion.Grid>
         </div>
       </section>
 
       <section className="section section-alt">
         <div className="wrap">
           <div className="grid-2" style={{ alignItems: 'center' }}>
+            <Reveal>
             <div>
               <p className="eyebrow">Vision globale</p>
               <h2 style={{ fontSize: 'clamp(1.8rem, 3vw, 2.25rem)', margin: '12px 0 18px' }}>
@@ -147,9 +171,12 @@ export default function AboutPage() {
               </p>
               <Link to="/realisations" className="btn btn-gold">Voir nos réalisations →</Link>
             </div>
+            </Reveal>
+            <Reveal delay={0.08}>
             <div className="photo-frame">
               <img src="/gallery/behanzin/cover.jpg" alt="Costume de scène, Trône de Béhanzin" />
             </div>
+            </Reveal>
           </div>
         </div>
       </section>

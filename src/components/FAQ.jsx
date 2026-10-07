@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Reveal, useStagger } from './Reveal'
 
 const faqs = [
   {
@@ -37,25 +38,31 @@ const faqs = [
 
 export default function FAQ() {
   const [open, setOpen] = useState(null)
+  const s = useStagger(0.05)
+  const { Grid, Item } = s
 
   return (
     <section className="section section-alt" id="faq">
       <div className="wrap">
-        <div className="section-head center">
-          <p className="eyebrow">FAQ</p>
-          <h2>Tout ce que vous voulez savoir</h2>
-        </div>
-        <div className="faq">
+        <Reveal>
+          <div className="section-head center">
+            <p className="eyebrow">FAQ</p>
+            <h2>Tout ce que vous voulez savoir</h2>
+          </div>
+        </Reveal>
+        <Grid className="faq" {...s.gridProps}>
           {faqs.map((faq, i) => (
-            <div className="faq-item" key={faq.q}>
+            <Item {...s.itemProps} key={faq.q}>
+            <div className="faq-item">
               <button aria-expanded={open === i} onClick={() => setOpen(open === i ? null : i)}>
                 <h4>{faq.q}</h4>
                 <span className="plus">{open === i ? '–' : '+'}</span>
               </button>
               {open === i && <p className="a">{faq.a}</p>}
             </div>
+            </Item>
           ))}
-        </div>
+        </Grid>
       </div>
     </section>
   )

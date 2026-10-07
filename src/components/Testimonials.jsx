@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { supabase } from '../lib/supabase'
+import { Reveal, useStagger } from './Reveal'
 
 const collaborators = [
   { nom: 'EFAMBE', role: 'Créateur de contenu' },
@@ -31,6 +32,8 @@ const initials = (name) => {
 
 export default function Testimonials() {
   const [dbItems, setDbItems] = useState([])
+  const s = useStagger(0.06)
+  const { Grid, Item } = s
 
   useEffect(() => {
     let active = true
@@ -47,19 +50,24 @@ export default function Testimonials() {
   return (
     <section className="section section-alt" id="temoignages">
       <div className="wrap">
-        <div className="section-head center">
-          <p className="eyebrow">Témoignages</p>
-          <h2>Ce que disent nos clients</h2>
-          <p style={{ marginTop: 8 }}>Nous avons déjà collaboré avec</p>
-        </div>
-        <div className="clients">
-          {collaborators.map(c => (
-            <span key={c.nom} className="client-pill" title={c.role}>{c.nom}</span>
-          ))}
-        </div>
-        <div className="grid-3">
+        <Reveal>
+          <div className="section-head center">
+            <p className="eyebrow">Témoignages</p>
+            <h2>Ce que disent nos clients</h2>
+            <p style={{ marginTop: 8 }}>Nous avons déjà collaboré avec</p>
+          </div>
+        </Reveal>
+        <Reveal delay={0.05}>
+          <div className="clients">
+            {collaborators.map(c => (
+              <span key={c.nom} className="client-pill" title={c.role}>{c.nom}</span>
+            ))}
+          </div>
+        </Reveal>
+        <Grid className="grid-3" {...s.gridProps}>
           {all.map((t, i) => (
-            <article key={`${t.nom}-${i}`} className="tcard">
+            <Item key={`${t.nom}-${i}`} {...s.itemProps} style={{ height: '100%' }}>
+            <article className="tcard">
               <div className="q">"</div>
               <p className="quote">{t.texte}</p>
               <div className="who">
@@ -71,8 +79,9 @@ export default function Testimonials() {
                 </div>
               </div>
             </article>
+            </Item>
           ))}
-        </div>
+        </Grid>
       </div>
     </section>
   )
