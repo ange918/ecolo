@@ -1,18 +1,24 @@
-import { useState, useEffect } from 'react'
-import { useParams, Link as RouterLink } from 'react-router-dom'
-import { motion, AnimatePresence } from 'framer-motion'
+import { useEffect, useState } from 'react'
+import { Link, useParams } from 'react-router-dom'
 import { supabase, trackVisit } from '../lib/supabase'
-import { FALLBACK_COLLECTIONS, FALLBACK_PHOTOS } from '../lib/collections'
+import { COLLECTION_META, FALLBACK_COLLECTIONS, FALLBACK_PHOTOS, photoCaption, useCollections } from '../lib/collections'
 
 export default function CollectionPage() {
   const { slug } = useParams()
-  const [collection, setCollection] = useState(() => FALLBACK_COLLECTIONS.find(c => c.slug === slug) || null)
+  const all = useCollections()
+  const fallback = FALLBACK_COLLECTIONS.find(c => c.slug === slug) || null
+  const [collection, setCollection] = useState(fallback)
   const [photos, setPhotos] = useState(() => (FALLBACK_PHOTOS[slug] || []).map(src => ({ image_url: src })))
+  const [checked, setChecked] = useState(Boolean(fallback))
   const [lightbox, setLightbox] = useState(null)
 
-  useEffect(() => { window.scrollTo(0, 0); trackVisit('galerie:' + slug) }, [slug])
+  useEffect(() => { trackVisit('galerie:' + slug) }, [slug])
 
   useEffect(() => {
+    const local = FALLBACK_COLLECTIONS.find(c => c.slug === slug) || null
+    setCollection(local)
+    setPhotos((FALLBACK_PHOTOS[slug] || []).map(src => ({ image_url: src })))
+    setChecked(Boolean(local))
     let active = true
     ;(async () => {
       const { data: col } = await supabase
@@ -25,96 +31,124 @@ export default function CollectionPage() {
         setCollection(col)
         const { data: ph } = await supabase
           .from('collection_photos')
-          .select('image_url')
+          .select('image_url, position')
           .eq('collection_id', col.id)
           .order('position', { ascending: true })
           .order('created_at', { ascending: true })
         if (active && ph && ph.length) setPhotos(ph)
+      } else if (!local) {
+        setCollection(null)
       }
+      if (active) setChecked(true)
     })()
     return () => { active = false }
   }, [slug])
 
+  if (!checked) {
+    return <div className="section"><div className="wrap"><p className="muted">Chargement de la galerie…</p></div></div>
+  }
+
   if (!collection) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center gap-6 px-6" style={{ background: '#0A0A0A' }}>
-        <p style={{ fontFamily: 'Syncopate, sans-serif', fontWeight: 700, fontSize: '1.4rem', color: '#F5F0E8', textAlign: 'center' }}>Galerie introuvable</p>
-        <RouterLink to="/#realisations" style={{ fontFamily: 'Jost', color: '#C9A84C', textDecoration: 'none' }}>← Retour aux réalisations</RouterLink>
+      <div className="section">
+        <div className="wrap" style={{ textAlign: 'center' }}>
+          <h1 style={{ fontSize: 32, marginBottom: 16 }}>Galerie introuvable</h1>
+          <Link to="/realisations" className="btn btn-outline-gold btn-sm">← Retour aux réalisations</Link>
+        </div>
       </div>
     )
   }
 
+  const meta = COLLECTION_META[collection.slug] || {}
+  const others = all.filter(c => c.slug !== collection.slug).slice(0, 4)
+
   return (
-    <div style={{ background: '#0A0A0A' }}>
-      {/* En-tête */}
-      <section className="relative px-6 lg:px-12 pt-28 pb-16 lg:pt-32 lg:pb-20 overflow-hidden">
-        {collection.cover_url && (
-          <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
-            <img src={collection.cover_url} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.28 }} />
-            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(10,10,10,0.55), #0A0A0A)' }} />
-          </div>
-        )}
-        <div className="max-w-5xl mx-auto relative" style={{ zIndex: 1 }}>
-          <RouterLink to="/#realisations" style={{ fontFamily: 'Jost, sans-serif', fontWeight: 400, fontSize: '0.82rem', color: '#B8B0A0', textDecoration: 'none' }}>
-            ← Réalisations
-          </RouterLink>
-          {collection.tag && <p className="section-label" style={{ marginTop: '1.5rem' }}>{collection.tag}</p>}
-          <h1 style={{ fontFamily: 'Syncopate, sans-serif', fontWeight: 700, fontSize: 'clamp(1.6rem, 5.5vw, 3.6rem)', color: '#F5F0E8', lineHeight: 1.14, letterSpacing: '-0.01em', margin: '0.4rem 0 1.2rem' }}>
-            {collection.titre}
-          </h1>
-          <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 300, fontSize: '1rem', color: '#B8B0A0', lineHeight: 1.85, maxWidth: '640px' }}>
-            {collection.description}
-          </p>
+    <div>
+      <section
+        className="page-hero"
+        style={{
+          minHeight: collection.cover_url ? 340 : undefined,
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'flex-end',
+          background: collection.cover_url
+            ? `linear-gradient(180deg, rgba(10,10,10,.45), #0a0a0a), url('${collection.cover_url}') center/cover`
+            : undefined,
+          paddingBottom: 36,
+        }}
+      >
+        <div className="wrap">
+          <p className="crumb"><Link to="/realisations">← Réalisations</Link></p>
+          {collection.tag && <p className="eyebrow">{collection.tag}</p>}
+          <h1>{collection.titre}</h1>
+          <p style={{ color: 'rgba(245,240,232,.85)' }}>{collection.description}</p>
         </div>
       </section>
 
-      {/* Grille de photos */}
-      <section className="px-6 lg:px-12 pb-24 lg:pb-32">
-        <div className="max-w-7xl mx-auto">
+      <section className="section" style={{ paddingTop: 20, paddingBottom: 12 }}>
+        <div className="wrap">
+          <div className="meta-row">
+            {meta.lieu && <div><strong>Lieu</strong> · {meta.lieu}</div>}
+            {meta.role && <div><strong>Rôle</strong> · {meta.role}</div>}
+            {collection.tag && <div><strong>Type</strong> · {collection.tag}</div>}
+            <div><strong>Photos</strong> · {photos.length}</div>
+          </div>
+        </div>
+      </section>
+
+      <section style={{ paddingBottom: 48 }}>
+        <div className="wrap">
           {photos.length === 0 ? (
-            <p style={{ fontFamily: 'Jost', fontWeight: 300, color: '#787068' }}>Les photos de cette galerie seront bientôt disponibles.</p>
+            <p className="muted">Les photos de cette galerie seront bientôt disponibles.</p>
           ) : (
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+            <div className="gal-grid">
               {photos.map((p, i) => (
-                <motion.button
-                  key={i}
-                  initial={{ opacity: 0, scale: 0.96 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: (i % 8) * 0.04 }}
-                  onClick={() => setLightbox(p.image_url)}
-                  className="overflow-hidden"
-                  style={{ aspectRatio: '3/4', borderRadius: '14px', cursor: 'pointer', border: 'none', padding: 0, background: '#1A1A1A' }}
-                >
-                  <img src={p.image_url} alt="" loading="lazy"
-                    style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
-                </motion.button>
+                <figure key={p.image_url + i} className={i === 0 ? 'gal-item span2' : 'gal-item'}>
+                  <button type="button" onClick={() => setLightbox({ src: p.image_url, caption: photoCaption(collection.titre, i) })}>
+                    <img src={p.image_url} alt={photoCaption(collection.titre, i)} />
+                  </button>
+                  <figcaption>{photoCaption(collection.titre, i)}</figcaption>
+                </figure>
               ))}
             </div>
           )}
         </div>
       </section>
 
-      {/* Lightbox */}
-      <AnimatePresence>
-        {lightbox && (
-          <motion.div
-            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-            onClick={() => setLightbox(null)}
-            style={{ position: 'fixed', inset: 0, zIndex: 100, background: 'rgba(5,5,5,0.94)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1.5rem', cursor: 'zoom-out' }}
-          >
-            <motion.img
-              initial={{ scale: 0.94 }} animate={{ scale: 1 }} exit={{ scale: 0.94 }}
-              src={lightbox} alt=""
-              style={{ maxWidth: '100%', maxHeight: '90vh', objectFit: 'contain', borderRadius: '10px' }}
-            />
-            <button onClick={() => setLightbox(null)} aria-label="Fermer"
-              style={{ position: 'fixed', top: 20, right: 24, width: 44, height: 44, borderRadius: '50%', background: 'rgba(10,10,10,0.7)', border: '1px solid rgba(201,168,76,0.4)', color: '#C9A84C', fontSize: '1.2rem', cursor: 'pointer' }}>
-              ✕
-            </button>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {others.length > 0 && (
+        <section className="section" style={{ paddingTop: 0 }}>
+          <div className="wrap">
+            <div className="section-head">
+              <div>
+                <p className="eyebrow">Autres projets</p>
+                <h2>Continuer l'exploration</h2>
+              </div>
+            </div>
+            <div className="grid-4">
+              {others.map(item => (
+                <Link key={item.slug} to={`/galerie/${item.slug}`} className="card" style={{ textDecoration: 'none', color: 'inherit' }}>
+                  <div className="ph">
+                    {item.cover_url
+                      ? <img src={item.cover_url} alt="" />
+                      : <div style={{ height: '100%', background: '#14120e' }} />}
+                  </div>
+                  <div className="body">
+                    <h3 style={{ fontSize: 16 }}>{item.titre}</h3>
+                    <span className="tag">Voir la galerie →</span>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {lightbox && (
+        <div className="lightbox" onClick={() => setLightbox(null)} role="dialog" aria-modal="true" aria-label={lightbox.caption}>
+          <img src={lightbox.src} alt={lightbox.caption} />
+          <button type="button" onClick={() => setLightbox(null)} aria-label="Fermer">✕</button>
+        </div>
+      )}
     </div>
   )
 }

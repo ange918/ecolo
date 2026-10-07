@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
 
 const faqs = [
   {
@@ -40,67 +39,21 @@ export default function FAQ() {
   const [open, setOpen] = useState(null)
 
   return (
-    <section id="faq" className="py-24 lg:py-32 px-6 lg:px-12" style={{ background: '#0A0A0A' }}>
-      <div className="max-w-4xl mx-auto">
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-14 text-center"
-        >
-          <p className="section-label" style={{ textAlign: 'center' }}>Questions fréquentes</p>
-          <h2 style={{ fontFamily: 'Syncopate, sans-serif', fontWeight: 600, fontSize: 'clamp(1.55rem, 5vw, 3.6rem)', color: '#F5F0E8', lineHeight: 1.08, letterSpacing: '-0.01em' }}>
-            Tout ce que vous <span style={{ color: '#C9A84C', fontStyle: 'italic' }}>voulez savoir</span>
-          </h2>
-        </motion.div>
-
-        <div
-          className="flex flex-col px-6 sm:px-10"
-          style={{ background: '#111111', border: '1px solid rgba(201,168,76,0.12)', borderRadius: '28px' }}
-        >
+    <section className="section section-alt" id="faq">
+      <div className="wrap">
+        <div className="section-head center">
+          <p className="eyebrow">FAQ</p>
+          <h2>Tout ce que vous voulez savoir</h2>
+        </div>
+        <div className="faq">
           {faqs.map((faq, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: i * 0.05 }}
-              style={{ borderBottom: i < faqs.length - 1 ? '1px solid rgba(201,168,76,0.1)' : 'none' }}
-            >
-              <button
-                onClick={() => setOpen(open === i ? null : i)}
-                className="w-full text-left py-6 flex items-center justify-between gap-4"
-                style={{ background: 'none', border: 'none', cursor: 'pointer' }}
-              >
-                <span style={{ fontFamily: 'Jost, sans-serif', fontWeight: 500, fontSize: '1rem', color: open === i ? '#F5F0E8' : '#B8B0A0', transition: 'color 0.2s' }}>
-                  {faq.q}
-                </span>
-                <span style={{
-                  flexShrink: 0, width: '28px', height: '28px', borderRadius: '50%',
-                  border: '1px solid rgba(201,168,76,0.35)', display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  color: '#C9A84C', fontSize: '1.1rem', fontWeight: 300,
-                  transform: open === i ? 'rotate(45deg)' : 'rotate(0deg)', transition: 'transform 0.3s',
-                }}>+</span>
+            <div className="faq-item" key={faq.q}>
+              <button aria-expanded={open === i} onClick={() => setOpen(open === i ? null : i)}>
+                <h4>{faq.q}</h4>
+                <span className="plus">{open === i ? '–' : '+'}</span>
               </button>
-
-              <AnimatePresence>
-                {open === i && (
-                  <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: 'auto', opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.3 }}
-                    style={{ overflow: 'hidden' }}
-                  >
-                    <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 300, fontSize: '0.93rem', color: '#B8B0A0', lineHeight: 1.9, paddingBottom: '1.5rem' }}>
-                      {faq.a}
-                    </p>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </motion.div>
+              {open === i && <p className="a">{faq.a}</p>}
+            </div>
           ))}
         </div>
       </div>

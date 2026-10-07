@@ -1,5 +1,37 @@
+import { useEffect, useState } from 'react'
+import { supabase } from './supabase'
+
 // Données de repli (utilisées si Supabase est vide/indisponible).
 // Le contenu réel est géré depuis le tableau de bord (/andychris) → onglet Galeries.
+
+// Lieux déjà cités dans les descriptions des collections.
+export const COLLECTION_META = {
+  'vodun-days': { lieu: 'Ouidah, Bénin', role: 'Costumerie & parures' },
+  'festival-des-masques': { lieu: 'Bénin', role: 'Costumes de festival' },
+  gaani: { lieu: 'Nikki, Borgou', role: 'Parures royales' },
+  'trone-de-behanzin': { lieu: 'Scène', role: 'Costumes & décors' },
+  'collaborations-diverses': { lieu: 'Sur mesure', role: 'Tenues & accessoires' },
+}
+
+export function photoCaption(titre, index) {
+  return `${titre} · création ${String(index + 1).padStart(2, '0')}`
+}
+
+export function useCollections() {
+  const [items, setItems] = useState(FALLBACK_COLLECTIONS)
+  useEffect(() => {
+    let active = true
+    supabase
+      .from('collections')
+      .select('slug, titre, description, cover_url, tag, position')
+      .order('position', { ascending: true })
+      .then(({ data }) => {
+        if (active && data && data.length) setItems(data)
+      })
+    return () => { active = false }
+  }, [])
+  return items
+}
 
 export const FALLBACK_COLLECTIONS = [
   {

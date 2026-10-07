@@ -1,5 +1,4 @@
-import { motion } from 'framer-motion'
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { supabase } from '../lib/supabase'
 
 const collaborators = [
@@ -14,129 +13,20 @@ const collaborators = [
 ]
 
 const testimonials = [
-  {
-    nom: 'EFAMBE',
-    titre: 'Créateur de contenu',
-    tag: 'Tenue artistique',
-    texte: "Senan Concept a transformé ma vision artistique en réalité. Les tenues créées pour ma performance étaient d'une précision et d'une beauté à couper le souffle. Christelle FASSINOU a su capturer l'essence de mon univers.",
-  },
-  {
-    nom: 'Pepe Oleka',
-    titre: 'Artiste musical',
-    tag: 'Accessoires & Décors',
-    texte: "Pour mon dernier clip, j'avais besoin d'accessoires et de décors qui parlent d'Afrique sans clichés. Senan Concept a répondu au-delà de mes espérances : des pièces modernes, ancrées dans la tradition. Un travail d'orfèvre.",
-  },
-  {
-    nom: 'Sagbohan Danialou',
-    titre: 'Musicien traditionnel',
-    tag: 'Accessoires & Décors',
-    texte: "Les accessoires et décors réalisés pour mes prestations scéniques incarnent parfaitement la fierté culturelle du Bénin. Senan Concept comprend la profondeur de notre héritage et sait le magnifier avec talent et respect.",
-  },
-  {
-    nom: 'Stéphanie MONTCHO',
-    titre: 'Animatrice',
-    tag: 'Événementiel',
-    texte: "J'ai fait appel à Senan Concept pour un événement haut de gamme. La qualité est irréprochable, les délais respectés. C'est ma référence absolue pour la costumerie au Bénin.",
-  },
-  {
-    nom: 'Maeva Gomez',
-    titre: 'Créatrice de contenus & entrepreneur',
-    tag: 'Mode artisanale',
-    texte: "En tant que professionnelle du secteur, je suis exigeante. Senan Concept m'a impressionnée par la finesse de ses finitions et surtout par la créativité débordante de Christelle FASSINOU. Un talent rare.",
-  },
-  {
-    nom: 'Trône de Béhanzin',
-    titre: 'Comédie musicale',
-    tag: 'Costumerie de scène',
-    texte: "Les costumes réalisés par Senan Concept honorent dignement notre production. Chaque pièce témoigne d'une connaissance profonde et d'un respect sincère pour notre histoire millénaire.",
-  },
-  {
-    nom: 'Festival des Masques',
-    titre: 'Direction artistique',
-    tag: 'Festival culturel',
-    texte: "Depuis notre collaboration avec Senan Concept, nos participants se présentent avec des tenues qui racontent une histoire. L'authenticité des créations contribue à l'âme même de notre festival.",
-  },
-  {
-    nom: 'Vision Days',
-    titre: 'Festival culturel et spirituel',
-    tag: 'Cérémonie spirituelle',
-    texte: "Les parures et tenues cérémonielles créées pour Vision Days ont élevé notre célébration à un niveau de beauté et de sacralité inédit. Christelle FASSINOU comprend le spirituel autant que l'esthétique.",
-  },
+  { nom: 'EFAMBE', titre: 'Créateur de contenu', tag: 'Tenue artistique', texte: "Senan Concept a transformé ma vision artistique en réalité. Les tenues créées pour ma performance étaient d'une précision et d'une beauté à couper le souffle. Christelle FASSINOU a su capturer l'essence de mon univers." },
+  { nom: 'Pepe Oleka', titre: 'Artiste musical', tag: 'Accessoires & Décors', texte: "Pour mon dernier clip, j'avais besoin d'accessoires et de décors qui parlent d'Afrique sans clichés. Senan Concept a répondu au-delà de mes espérances : des pièces modernes, ancrées dans la tradition. Un travail d'orfèvre." },
+  { nom: 'Sagbohan Danialou', titre: 'Musicien traditionnel', tag: 'Accessoires & Décors', texte: "Les accessoires et décors réalisés pour mes prestations scéniques incarnent parfaitement la fierté culturelle du Bénin. Senan Concept comprend la profondeur de notre héritage et sait le magnifier avec talent et respect." },
+  { nom: 'Stéphanie MONTCHO', titre: 'Animatrice', tag: 'Événementiel', texte: "J'ai fait appel à Senan Concept pour un événement haut de gamme. La qualité est irréprochable, les délais respectés. C'est ma référence absolue pour la costumerie au Bénin." },
+  { nom: 'Maeva Gomez', titre: 'Créatrice de contenus & entrepreneur', tag: 'Mode artisanale', texte: "En tant que professionnelle du secteur, je suis exigeante. Senan Concept m'a impressionnée par la finesse de ses finitions et surtout par la créativité débordante de Christelle FASSINOU. Un talent rare." },
+  { nom: 'Trône de Béhanzin', titre: 'Comédie musicale', tag: 'Costumerie de scène', texte: "Les costumes réalisés par Senan Concept honorent dignement notre production. Chaque pièce témoigne d'une connaissance profonde et d'un respect sincère pour notre histoire millénaire." },
+  { nom: 'Festival des Masques', titre: 'Direction artistique', tag: 'Festival culturel', texte: "Depuis notre collaboration avec Senan Concept, nos participants se présentent avec des tenues qui racontent une histoire. L'authenticité des créations contribue à l'âme même de notre festival." },
+  { nom: 'Vision Days', titre: 'Festival culturel et spirituel', tag: 'Cérémonie spirituelle', texte: "Les parures et tenues cérémonielles créées pour Vision Days ont élevé notre célébration à un niveau de beauté et de sacralité inédit. Christelle FASSINOU comprend le spirituel autant que l'esthétique." },
 ]
 
 const initials = (name) => {
   const parts = name.trim().split(/\s+/)
   if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase()
-  return (parts[0][0] + parts[1][0]).toUpperCase()
-}
-
-function TestimonialCard({ t, isActive = true }) {
-  return (
-    <div
-      className="flex flex-col justify-between"
-      style={{
-        padding: '2rem',
-        background: isActive ? '#1A1A1A' : 'rgba(26,26,26,0.4)',
-        border: `1px solid ${isActive ? 'rgba(201,168,76,0.4)' : 'rgba(201,168,76,0.1)'}`,
-        borderRadius: '20px',
-        width: 'min(360px, 84vw)',
-        minHeight: '260px',
-        whiteSpace: 'normal',
-      }}
-    >
-      {/* Quote top */}
-      <div>
-        <p style={{
-          fontFamily: 'Jost, sans-serif',
-          fontSize: '3.5rem',
-          color: isActive ? 'rgba(201,168,76,0.25)' : 'rgba(201,168,76,0.1)',
-          lineHeight: 0.8,
-          marginBottom: '0.8rem',
-          transition: 'color 0.3s',
-        }}>"</p>
-        <p style={{
-          fontFamily: 'Jost, sans-serif',
-          fontWeight: 300,
-          fontSize: '0.88rem',
-          color: isActive ? '#D0C8B8' : '#787068',
-          lineHeight: 1.85,
-          fontStyle: 'italic',
-          transition: 'color 0.3s',
-        }}>
-          {t.texte}
-        </p>
-      </div>
-
-      {/* Footer card */}
-      <div className="flex items-end justify-between gap-3 mt-5 pt-4"
-        style={{ borderTop: `1px solid ${isActive ? 'rgba(201,168,76,0.2)' : 'rgba(201,168,76,0.07)'}` }}>
-        <div>
-          <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 600, fontSize: '0.92rem', color: isActive ? '#F5F0E8' : '#787068', transition: 'color 0.3s' }}>
-            {t.nom}
-          </p>
-          <p style={{ fontFamily: 'Jost, sans-serif', fontWeight: 300, fontSize: '0.72rem', color: '#B8B0A0', marginTop: '0.15rem' }}>
-            {t.titre}
-          </p>
-        </div>
-        <span style={{
-          flexShrink: 0,
-          fontFamily: 'Jost, sans-serif',
-          fontWeight: 400,
-          fontSize: '0.62rem',
-          letterSpacing: '0.15em',
-          textTransform: 'uppercase',
-          color: isActive ? '#C9A84C' : 'rgba(201,168,76,0.35)',
-          border: `1px solid ${isActive ? 'rgba(201,168,76,0.35)' : 'rgba(201,168,76,0.12)'}`,
-          padding: '0.2rem 0.6rem',
-          borderRadius: '9999px',
-          transition: 'all 0.3s',
-          whiteSpace: 'nowrap',
-        }}>
-          {t.tag}
-        </span>
-      </div>
-    </div>
-  )
+  return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase()
 }
 
 export default function Testimonials() {
@@ -153,105 +43,36 @@ export default function Testimonials() {
   }, [])
 
   const all = [...dbItems, ...testimonials]
-  const mid = Math.ceil(all.length / 2)
-  const rowTop = all.slice(0, mid)
-  const rowBottom = all.slice(mid)
 
   return (
-    <section id="temoignages" className="py-24 lg:py-32 px-6 lg:px-12" style={{ background: '#0A0A0A' }}>
-      <div className="max-w-7xl mx-auto">
-
-        {/* ─── Header ─── */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-16"
-        >
-          <p className="section-label">Témoignages</p>
-          <h2 style={{ fontFamily: 'Syncopate, sans-serif', fontWeight: 600, fontSize: 'clamp(1.55rem, 5vw, 3.6rem)', color: '#F5F0E8', lineHeight: 1.08, letterSpacing: '-0.01em' }}>
-            Ce que disent <span style={{ color: '#C9A84C', fontStyle: 'italic' }}>nos clients</span>
-          </h2>
-        </motion.div>
-
-        {/* ─── Collaborateurs ─── */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="mb-16 p-8"
-          style={{ background: '#111111', border: '1px solid rgba(201,168,76,0.12)', borderRadius: '24px' }}
-        >
-          <p style={{
-            fontFamily: 'Jost, sans-serif', fontWeight: 600, fontSize: '0.7rem',
-            letterSpacing: '0.3em', textTransform: 'uppercase', color: '#C9A84C',
-            marginBottom: '1.5rem',
-          }}>
-            Nous avons déjà collaboré avec
-          </p>
-          <div className="flex flex-wrap gap-x-6 gap-y-8 justify-center sm:justify-start">
-            {collaborators.map((c, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, scale: 0.85 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.35, delay: i * 0.06 }}
-                className="flex flex-col items-center text-center"
-                style={{ width: '96px' }}
-              >
-                {/* Cercle (photo / monogramme) */}
-                <div
-                  className="flex items-center justify-center"
-                  style={{
-                    width: '72px', height: '72px', borderRadius: '50%',
-                    background: 'radial-gradient(circle at 30% 25%, #1F1B12, #0C0C0C)',
-                    border: '1px solid rgba(201,168,76,0.35)',
-                    boxShadow: 'inset 0 0 0 3px rgba(10,10,10,0.6)',
-                    color: '#C9A84C', fontFamily: 'Syncopate, sans-serif', fontWeight: 700, fontSize: '0.9rem',
-                    overflow: 'hidden',
-                  }}
-                >
-                  {initials(c.nom)}
-                </div>
-                <span style={{ fontFamily: 'Jost, sans-serif', fontWeight: 600, fontSize: '0.75rem', color: '#F5F0E8', marginTop: '0.7rem', lineHeight: 1.25 }}>
-                  {c.nom}
-                </span>
-                <span style={{ fontFamily: 'Jost, sans-serif', fontWeight: 300, fontSize: '0.62rem', color: '#B8B0A0', marginTop: '0.15rem', lineHeight: 1.2 }}>
-                  {c.role}
-                </span>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-
-        {/* ─── Bandes roulantes de témoignages ─── */}
-        <div className="-mx-6 lg:-mx-12 flex flex-col gap-4">
-          {/* Ligne du haut : défile de gauche à droite */}
-          <div className="marquee-viewport">
-            <div className="marquee-track to-right marquee-hover-pause" style={{ '--marquee-dur': '48s' }}>
-              {[...rowTop, ...rowTop].map((t, i) => (
-                <div key={i} className="shrink-0" style={{ marginRight: '1rem' }}>
-                  <TestimonialCard t={t} />
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Ligne du bas : défile de droite à gauche */}
-          <div className="marquee-viewport">
-            <div className="marquee-track to-left marquee-hover-pause" style={{ '--marquee-dur': '48s' }}>
-              {[...rowBottom, ...rowBottom].map((t, i) => (
-                <div key={i} className="shrink-0" style={{ marginRight: '1rem' }}>
-                  <TestimonialCard t={t} />
-                </div>
-              ))}
-            </div>
-          </div>
+    <section className="section section-alt" id="temoignages">
+      <div className="wrap">
+        <div className="section-head center">
+          <p className="eyebrow">Témoignages</p>
+          <h2>Ce que disent nos clients</h2>
+          <p style={{ marginTop: 8 }}>Nous avons déjà collaboré avec</p>
         </div>
-
+        <div className="clients">
+          {collaborators.map(c => (
+            <span key={c.nom} className="client-pill" title={c.role}>{c.nom}</span>
+          ))}
+        </div>
+        <div className="grid-3">
+          {all.map((t, i) => (
+            <article key={`${t.nom}-${i}`} className="tcard">
+              <div className="q">"</div>
+              <p className="quote">{t.texte}</p>
+              <div className="who">
+                <div className="av" aria-hidden="true">{initials(t.nom)}</div>
+                <div className="meta">
+                  <strong>{t.nom}</strong>
+                  <span>{t.titre}</span>
+                  {t.tag && <div className="tag">{t.tag}</div>}
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
       </div>
     </section>
   )
